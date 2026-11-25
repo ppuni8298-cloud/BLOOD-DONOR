@@ -90,6 +90,6 @@ All 8 database migrations are consolidated in `supabase/combined_migrations.sql`
 ## 7. Production Readiness Assessment
 
 BloodLink meets all technical, architectural, security, and governance standards for controlled staging and production deployment.
-- **Frontend**: Ready for instantaneous zero-build deployment on **Vercel** (`vercel.json` configured).
+- **Frontend**: **DEPLOYED & 100% LIVE ON VERCEL** at [https://bloodlink-network-ppuni8298-9673s-projects.vercel.app](https://bloodlink-network-ppuni8298-9673s-projects.vercel.app).
 - **Backend**: Ready for containerized deployment on **Render / Railway / Docker** (`Dockerfile` & `wsgi.py` configured).
 - **Database**: Fully deployed, verified, and operational on **Supabase PostgreSQL** (`bjsvcijupiojifrgrgle`).

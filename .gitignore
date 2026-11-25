@@ -55,3 +55,7 @@ Thumbs.db
 # Supabase CLI temp
 supabase/.temp/
 
+# Deployment scripts with credentials
+scripts/deploy_to_vercel.js
+
+
