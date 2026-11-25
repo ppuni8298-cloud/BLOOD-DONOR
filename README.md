@@ -4,7 +4,7 @@
 > Aligned with **United Nations Sustainable Development Goal 3: Good Health and Well-being** (Targets 3.6 & 3.8).
 
 🌐 **LIVE PRODUCTION DEPLOYMENT**: **[https://bloodlink-network-ppuni8298-9673s-projects.vercel.app](https://bloodlink-network-ppuni8298-9673s-projects.vercel.app)**  
-🗄️ **LIVE DATABASE (SUPABASE)**: `https://bjsvcijupiojifrgrgle.supabase.co` (Active & Protected by RLS)  
+ 
 🐙 **GITHUB REPOSITORY**: **[https://github.com/ppuni8298-cloud/BLOOD-DONOR](https://github.com/ppuni8298-cloud/BLOOD-DONOR)**
 
 ---
