@@ -1,0 +1,204 @@
+/* ==========================================================================
+   BLOODLINK - RESPONSIVE STYLES (responsive.css)
+   Breakpoints: 1280px (desktop), 1024px (laptop), 768px (tablet), 576px (mobile)
+   ========================================================================== */
+
+/* Laptop & Medium Screens (< 1200px) */
+@media (max-width: 1200px) {
+  .hero-telemetry-panel {
+    height: 480px;
+  }
+
+  .footer-top {
+    grid-template-columns: 1.5fr repeat(3, 1fr);
+  }
+
+  .emergency-hotline-card {
+    grid-column: span 4;
+  }
+}
+
+/* Tablet Landscape (< 1024px) */
+@media (max-width: 1024px) {
+  .nav-menu {
+    display: none;
+  }
+
+  .nav-actions .btn-secondary {
+    display: none;
+  }
+
+  .mobile-toggle-btn {
+    display: flex;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: var(--space-8);
+  }
+
+  .hero-content {
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-cta-group {
+    justify-content: center;
+  }
+
+  .hero-trust-metrics {
+    justify-content: center;
+  }
+
+  .hero-telemetry-panel {
+    height: 280px;
+    max-width: 500px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .card-pos-top-right {
+    top: 0;
+    right: 10%;
+  }
+
+  .card-pos-bottom-left {
+    bottom: 0;
+    left: 10%;
+  }
+
+  .card-pos-center-edge {
+    display: none;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .how-it-works-grid {
+    grid-template-columns: 1fr;
+    max-width: 580px;
+    margin: 0 auto;
+  }
+
+  .feature-row, .feature-row.reverse {
+    grid-template-columns: 1fr;
+    direction: ltr;
+    gap: var(--space-6);
+  }
+
+  .feature-text {
+    max-width: 100%;
+  }
+
+  .sdg-banner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .timeline-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+
+  .timeline-step:nth-child(2) .timeline-line {
+    display: none;
+  }
+}
+
+/* Tablet Portrait & Large Mobile (< 768px) */
+@media (max-width: 768px) {
+  :root {
+    --nav-height: 68px;
+  }
+
+  .section {
+    padding-top: clamp(3rem, 6vw, 4.5rem);
+    padding-bottom: clamp(3rem, 6vw, 4.5rem);
+  }
+
+  .hero-section {
+    min-height: auto;
+    padding-top: calc(var(--nav-height) + 1.5rem);
+    padding-bottom: 3.5rem;
+  }
+
+  .hero-headline {
+    font-size: 2.25rem;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+  }
+
+  .hero-telemetry-panel {
+    display: none; /* Hide floating overlays on mobile to give full prominence to 3D canvas or text */
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-line {
+    display: none;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .emergency-hotline-card {
+    grid-column: span 1;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--space-3);
+  }
+
+  .footer-legal-links {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .hero-3d-hint {
+    display: none;
+  }
+
+  .toast-container {
+    left: 20px;
+    right: 20px;
+    max-width: none;
+  }
+}
+
+/* Small Mobile (< 480px) */
+@media (max-width: 480px) {
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-cta-group .btn {
+    width: 100%;
+  }
+
+  .hero-trust-metrics {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .blood-group-selector {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

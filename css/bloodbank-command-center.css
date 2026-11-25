@@ -1,0 +1,325 @@
+/* ==========================================================================
+   BLOODLINK - BLOOD BANK COMMAND CENTER STYLESHEET (bloodbank-command-center.css)
+   Cold-Chain Inventory, Batch Traceability, Separation & Regional Logistics
+   ========================================================================== */
+
+.bloodbank-app-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   1. BLOOD BANK SIDEBAR
+   ========================================================================== */
+.bloodbank-sidebar {
+  width: 285px;
+  background: var(--color-surface);
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  z-index: 100;
+  transition: width var(--transition-normal), transform var(--transition-normal);
+  flex-shrink: 0;
+}
+
+.bloodbank-sidebar .sidebar-header {
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.bloodbank-sidebar .sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-extrabold);
+  font-size: 1.2rem;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.bloodbank-sidebar .sidebar-nav-list {
+  list-style: none;
+  padding: 1rem 0.75rem;
+  margin: 0;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.bloodbank-sidebar .sidebar-section-title {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-tertiary);
+  font-weight: 700;
+  padding: 0.75rem 0.75rem 0.35rem 0.75rem;
+}
+
+.bloodbank-sidebar .sidebar-nav-item {
+  margin-bottom: 2px;
+}
+
+.bloodbank-sidebar .sidebar-nav-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius-md);
+  border: none;
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: left;
+}
+
+.bloodbank-sidebar .sidebar-nav-btn:hover {
+  background: var(--color-surface-hover);
+  color: var(--color-text);
+}
+
+.bloodbank-sidebar .sidebar-nav-btn.active {
+  background: rgba(245, 158, 11, 0.12);
+  color: #B45309;
+  font-weight: 700;
+}
+
+[data-theme="dark"] .bloodbank-sidebar .sidebar-nav-btn.active {
+  background: rgba(245, 158, 11, 0.2);
+  color: #FBBF24;
+}
+
+.bloodbank-sidebar .sidebar-nav-btn svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.bloodbank-sidebar .sidebar-badge {
+  margin-left: auto;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-full);
+  background: var(--color-warning);
+  color: #fff;
+}
+
+.bloodbank-sidebar .sidebar-footer {
+  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--color-border-subtle);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--color-surface);
+}
+
+/* ==========================================================================
+   2. CONTENT AREA & TOPBAR
+   ========================================================================== */
+.bloodbank-content-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.bloodbank-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.85rem 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.cold-chain-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-full);
+  background: rgba(2, 132, 199, 0.1);
+  color: var(--color-info);
+  font-size: 0.75rem;
+  font-weight: 700;
+  border: 1px solid rgba(2, 132, 199, 0.25);
+}
+
+.bloodbank-view-container {
+  padding: 1.75rem 2rem 3rem 2rem;
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.bloodbank-tab-pane {
+  display: none;
+}
+
+.bloodbank-tab-pane.active {
+  display: block;
+  animation: tabFadeIn 0.25s ease-out;
+}
+
+/* ==========================================================================
+   3. INVENTORY MATRIX (8 groups x 5 components)
+   ========================================================================== */
+.inventory-matrix-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 1.75rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.group-stock-cell {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+  position: relative;
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.group-stock-cell:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-border-focus);
+}
+
+.group-badge-lg {
+  font-size: 1.4rem;
+  font-weight: 800;
+  font-family: var(--font-family-display);
+  color: var(--color-primary);
+}
+
+.component-bar-list {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.component-bar-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+}
+
+/* ==========================================================================
+   4. TEMPERATURE LOGGING VAULTS
+   ========================================================================== */
+.cold-vaults-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.vault-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.vault-temp {
+  font-size: 1.85rem;
+  font-weight: 800;
+  font-family: var(--font-family-display);
+}
+
+.vault-temp.optimal {
+  color: var(--color-success);
+}
+
+.vault-temp.warning {
+  color: var(--color-warning);
+}
+
+.vault-temp.danger {
+  color: var(--color-primary);
+}
+
+/* ==========================================================================
+   5. EXPIRY RISK BADGES & TRACEABILITY
+   ========================================================================== */
+.expiry-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-full);
+}
+
+.expiry-badge.risk-critical {
+  background: rgba(199, 25, 50, 0.15);
+  color: var(--color-primary);
+  border: 1px solid rgba(199, 25, 50, 0.3);
+}
+
+.expiry-badge.risk-warning {
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--color-warning);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.expiry-badge.risk-optimal {
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--color-success);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .bloodbank-sidebar {
+    position: fixed;
+    left: -285px;
+  }
+  .bloodbank-sidebar.mobile-open {
+    left: 0;
+    box-shadow: var(--shadow-xl);
+  }
+  .matrix-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .cold-vaults-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .matrix-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,587 @@
+/* ==========================================================================
+   BLOODLINK - PATIENT EMERGENCY COMMAND CENTER (patient-command-center.css)
+   Healthcare SaaS Layout: Sidebar, top navigation, emergency telemetry,
+   timeline tracking, request form, facility directory, and printable reports.
+   ========================================================================== */
+
+/* Layout Grid */
+.patient-app-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   1. COLLAPSIBLE PATIENT SIDEBAR
+   ========================================================================== */
+.patient-sidebar {
+  width: 275px;
+  background: var(--color-surface);
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  z-index: 100;
+  transition: width var(--transition-normal), transform var(--transition-normal);
+  flex-shrink: 0;
+}
+
+.patient-sidebar .sidebar-header {
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.patient-sidebar .sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-extrabold);
+  font-size: 1.2rem;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.patient-sidebar .sidebar-brand:hover {
+  text-decoration: none;
+}
+
+.patient-sidebar .sidebar-nav-list {
+  list-style: none;
+  padding: 1rem 0.75rem;
+  margin: 0;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.patient-sidebar .sidebar-section-title {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-tertiary);
+  font-weight: 700;
+  padding: 0.75rem 0.75rem 0.35rem 0.75rem;
+}
+
+.patient-sidebar .sidebar-nav-item {
+  margin-bottom: 2px;
+}
+
+.patient-sidebar .sidebar-nav-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius-md);
+  border: none;
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: left;
+}
+
+.patient-sidebar .sidebar-nav-btn:hover {
+  background: var(--color-surface-hover);
+  color: var(--color-text);
+}
+
+.patient-sidebar .sidebar-nav-btn.active {
+  background: var(--color-soft-red);
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.patient-sidebar .sidebar-nav-btn svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.patient-sidebar .sidebar-badge {
+  margin-left: auto;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  color: #FFFFFF;
+}
+
+.patient-sidebar .sidebar-footer {
+  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--color-border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ==========================================================================
+   2. TOP NAVIGATION
+   ========================================================================== */
+.patient-main-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.patient-top-nav {
+  height: 70px;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(1rem, 3vw, 2.5rem);
+  position: sticky;
+  top: 0;
+  z-index: 90;
+}
+
+.patient-top-nav .top-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.emergency-status-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  background: rgba(239, 68, 68, 0.12);
+  color: #DC2626;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.live-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #DC2626;
+  box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7);
+  animation: live-pulse 2s infinite;
+}
+
+@keyframes live-pulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(220, 38, 38, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+}
+
+/* ==========================================================================
+   3. TAB CONTENT PANELS
+   ========================================================================== */
+.patient-tab-content-wrapper {
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+  flex: 1;
+}
+
+.patient-tab-panel {
+  display: none;
+  animation: fadeIn 0.25s ease-out;
+}
+
+.patient-tab-panel.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   4. EMERGENCY OVERVIEW & 3D PULSE HERO
+   ========================================================================== */
+.emergency-overview-banner {
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: var(--space-6);
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: var(--space-6);
+  box-shadow: var(--shadow-sm);
+}
+
+.patient-3d-pulse-viewport {
+  width: 100%;
+  height: 180px;
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: radial-gradient(circle at center, rgba(199, 25, 50, 0.08) 0%, transparent 70%);
+}
+
+.patient-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.patient-metric-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-xs);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.patient-metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.patient-metric-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-tertiary);
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.patient-metric-val {
+  font-family: var(--font-family-display);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-text);
+  line-height: 1.1;
+  margin-bottom: 0.25rem;
+}
+
+/* ==========================================================================
+   5. REQUEST PROGRESS TIMELINE
+   ========================================================================== */
+.request-tracking-card {
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--space-6);
+}
+
+.tracking-header-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--color-border-subtle);
+  margin-bottom: 1.5rem;
+}
+
+.request-code-pill {
+  font-family: var(--font-family-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  background: var(--color-soft-red);
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-soft-red-border);
+}
+
+/* Stepper Progress Bar */
+.tracking-stepper {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin: 2rem 0;
+}
+
+.tracking-stepper::before {
+  content: "";
+  position: absolute;
+  top: 18px;
+  left: 30px;
+  right: 30px;
+  height: 3px;
+  background: var(--color-border);
+  z-index: 1;
+}
+
+.tracking-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  flex: 1;
+}
+
+.tracking-step-node {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  border: 3px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--color-text-tertiary);
+  margin-bottom: 0.5rem;
+  transition: all var(--transition-normal);
+}
+
+.tracking-step.completed .tracking-step-node {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #FFFFFF;
+}
+
+.tracking-step.active .tracking-step-node {
+  background: #FFFFFF;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  box-shadow: 0 0 0 4px var(--color-soft-red);
+}
+
+.tracking-step-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+}
+
+.tracking-step.active .tracking-step-label {
+  color: var(--color-primary);
+}
+
+/* Event List Log */
+.timeline-event-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.timeline-event-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--color-bg);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--color-border);
+}
+
+.timeline-event-item.verified {
+  border-left-color: #10B981;
+}
+
+.timeline-event-item.urgent {
+  border-left-color: #EF4444;
+}
+
+.timeline-event-item.matching {
+  border-left-color: #3B82F6;
+}
+
+/* ==========================================================================
+   6. EMERGENCY REQUEST FORM
+   ========================================================================== */
+.emergency-form-container {
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  box-shadow: var(--shadow-sm);
+  max-width: 900px;
+}
+
+.clinical-disclaimer-box {
+  background: rgba(199, 25, 50, 0.06);
+  border: 1px solid rgba(199, 25, 50, 0.25);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+  margin-bottom: 1.75rem;
+}
+
+.clinical-disclaimer-box svg {
+  width: 22px;
+  height: 22px;
+  color: var(--color-primary);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.priority-selector-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.priority-option-btn {
+  padding: 0.85rem;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--color-border);
+  background: var(--color-surface);
+  cursor: pointer;
+  text-align: center;
+  transition: all var(--transition-fast);
+}
+
+.priority-option-btn:hover {
+  border-color: var(--color-border-hover);
+}
+
+.priority-option-btn.selected[data-priority="critical"] {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: #EF4444;
+  color: #DC2626;
+}
+
+.priority-option-btn.selected[data-priority="urgent"] {
+  background: rgba(245, 158, 11, 0.1);
+  border-color: #F59E0B;
+  color: #D97706;
+}
+
+.priority-option-btn.selected[data-priority="scheduled"] {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: #3B82F6;
+  color: #2563EB;
+}
+
+/* ==========================================================================
+   7. FACILITY DIRECTORY & CARDS
+   ========================================================================== */
+.facility-search-bar {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.facilities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.25rem;
+}
+
+.facility-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-xs);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.facility-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ==========================================================================
+   8. PRINTABLE SUMMARY REPORT
+   ========================================================================== */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #printable-request-summary,
+  #printable-request-summary * {
+    visibility: visible;
+  }
+
+  #printable-request-summary {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 2.5rem;
+    box-shadow: none;
+    border: 2px solid #202124;
+    page-break-inside: avoid;
+    background: #FFFFFF !important;
+    color: #202124 !important;
+  }
+
+  .patient-sidebar,
+  .patient-top-nav,
+  .btn,
+  button,
+  .modal-close-btn {
+    display: none !important;
+  }
+}
+
+/* Responsive Queries */
+@media (max-width: 1024px) {
+  .patient-sidebar {
+    position: fixed;
+    left: -275px;
+    top: 0;
+    bottom: 0;
+    box-shadow: var(--shadow-xl);
+  }
+
+  .patient-sidebar.mobile-open {
+    transform: translateX(275px);
+  }
+
+  .emergency-overview-banner {
+    grid-template-columns: 1fr;
+  }
+
+  .patient-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .patient-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .priority-selector-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tracking-stepper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .tracking-stepper::before {
+    display: none;
+  }
+}

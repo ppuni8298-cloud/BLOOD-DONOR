@@ -1,0 +1,167 @@
+/* ==========================================================================
+   BLOODLINK DESIGN SYSTEM - CSS DESIGN TOKENS & VARIABLES
+   Project: BloodLink - Intelligent Blood Donation & Emergency Network
+   SDG 3: Good Health and Well-being
+   ========================================================================== */
+
+:root {
+  /* Brand Color Palette */
+  --color-primary: #C71932;
+  --color-primary-hover: #b0152b;
+  --color-primary-active: #9c1226;
+  --color-primary-glow: rgba(199, 25, 50, 0.35);
+  --color-primary-subtle: rgba(199, 25, 50, 0.08);
+
+  --color-secondary: #8F1025;
+  --color-secondary-dark: #660c1a;
+
+  --color-accent: #E63946;
+  --color-accent-gold: #D4AF37;
+  --color-success: #10B981;
+  --color-success-bg: rgba(16, 185, 129, 0.1);
+  --color-warning: #F59E0B;
+  --color-warning-bg: rgba(245, 158, 11, 0.1);
+  --color-info: #0284C7;
+  --color-info-bg: rgba(2, 132, 199, 0.1);
+
+  /* Light Theme Specific (Default) */
+  --color-bg: #FAF9F8;
+  --color-bg-secondary: #FFFFFF;
+  --color-bg-tertiary: #F3F1EF;
+  --color-surface: #FFFFFF;
+  --color-surface-hover: #FAF7F7;
+  --color-soft-red: #FCEAEC;
+  --color-soft-red-border: rgba(199, 25, 50, 0.18);
+
+  --color-text: #202124;
+  --color-text-secondary: #5F6368;
+  --color-text-tertiary: #80868B;
+  --color-text-inverse: #FFFFFF;
+
+  --color-border: #E8E6E3;
+  --color-border-subtle: rgba(0, 0, 0, 0.06);
+  --color-border-focus: rgba(199, 25, 50, 0.4);
+
+  /* Glassmorphism & Elevation */
+  --glass-bg: rgba(255, 255, 255, 0.82);
+  --glass-bg-card: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.5);
+  --glass-blur: blur(16px);
+  --glass-shadow: 0 8px 32px 0 rgba(143, 16, 37, 0.06);
+
+  --shadow-sm: 0 2px 6px rgba(32, 33, 36, 0.04), 0 1px 2px rgba(32, 33, 36, 0.06);
+  --shadow-md: 0 8px 24px -4px rgba(32, 33, 36, 0.06), 0 4px 12px -2px rgba(32, 33, 36, 0.04);
+  --shadow-lg: 0 16px 40px -8px rgba(32, 33, 36, 0.08), 0 8px 20px -4px rgba(199, 25, 50, 0.06);
+  --shadow-xl: 0 24px 56px -12px rgba(143, 16, 37, 0.12), 0 12px 28px -6px rgba(32, 33, 36, 0.05);
+  --shadow-glow: 0 0 35px rgba(199, 25, 50, 0.25);
+  --shadow-emergency: 0 0 40px rgba(199, 25, 50, 0.45);
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #C71932 0%, #8F1025 100%);
+  --gradient-hero-overlay: radial-gradient(circle at 75% 45%, rgba(199, 25, 50, 0.09) 0%, rgba(250, 249, 248, 0) 65%);
+  --gradient-card: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 100%);
+  --gradient-dark-banner: linear-gradient(135deg, #1C0A0E 0%, #300C13 100%);
+
+  /* Typography */
+  --font-family-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-family-display: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  --font-family-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 1.875rem;  /* 30px */
+  --font-size-4xl: 2.25rem;   /* 36px */
+  --font-size-5xl: 3rem;      /* 48px */
+  --font-size-6xl: 3.75rem;   /* 60px */
+  --font-size-hero: clamp(2.5rem, 5vw + 1rem, 4.25rem);
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  --line-height-tight: 1.15;
+  --line-height-snug: 1.35;
+  --line-height-normal: 1.6;
+  --line-height-relaxed: 1.75;
+
+  /* Spacing Scale */
+  --space-1: 0.25rem;  /* 4px */
+  --space-2: 0.5rem;   /* 8px */
+  --space-3: 0.75rem;  /* 12px */
+  --space-4: 1rem;     /* 16px */
+  --space-5: 1.25rem;  /* 20px */
+  --space-6: 1.5rem;   /* 24px */
+  --space-8: 2rem;     /* 32px */
+  --space-10: 2.5rem;  /* 40px */
+  --space-12: 3rem;    /* 48px */
+  --space-16: 4rem;    /* 64px */
+  --space-20: 5rem;    /* 80px */
+  --space-24: 6rem;    /* 96px */
+
+  /* Border Radii */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
+
+  /* Transitions & Animation */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Layout Containers */
+  --container-max-width: 1280px;
+  --container-narrow-width: 960px;
+  --container-padding: clamp(1rem, 3vw, 2rem);
+  --nav-height: 76px;
+  --z-canvas: 1;
+  --z-content: 10;
+  --z-sticky: 100;
+  --z-modal: 1000;
+  --z-toast: 2000;
+}
+
+/* ==========================================================================
+   DARK THEME OVERRIDES
+   ========================================================================== */
+[data-theme="dark"] {
+  --color-bg: #0C0D10;
+  --color-bg-secondary: #14161B;
+  --color-bg-tertiary: #1C1E24;
+  --color-surface: #171920;
+  --color-surface-hover: #1F222B;
+  --color-soft-red: rgba(199, 25, 50, 0.16);
+  --color-soft-red-border: rgba(199, 25, 50, 0.35);
+
+  --color-text: #F8F9FA;
+  --color-text-secondary: #A0A6B2;
+  --color-text-tertiary: #717786;
+  --color-text-inverse: #0C0D10;
+
+  --color-border: #282B34;
+  --color-border-subtle: rgba(255, 255, 255, 0.08);
+  --color-border-focus: rgba(230, 57, 70, 0.6);
+
+  --glass-bg: rgba(20, 22, 27, 0.85);
+  --glass-bg-card: rgba(23, 25, 32, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
+
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 8px 24px -4px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 16px 40px -8px rgba(0, 0, 0, 0.65);
+  --shadow-xl: 0 24px 56px -12px rgba(0, 0, 0, 0.8);
+  --shadow-glow: 0 0 40px rgba(199, 25, 50, 0.35);
+
+  --gradient-hero-overlay: radial-gradient(circle at 75% 45%, rgba(199, 25, 50, 0.15) 0%, rgba(12, 13, 16, 0) 70%);
+  --gradient-card: linear-gradient(180deg, rgba(28, 30, 38, 0.9) 0%, rgba(20, 22, 27, 0.85) 100%);
+}

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Find Blood — Search real-time blood bank inventory and emergency donor reserves across the BloodLink network.">
+  <title>Find Blood & Emergency Reserves — BloodLink</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Core CSS Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/find-blood.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23C71932'><path d='M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z'/></svg>">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar-wrapper scrolled" id="main-navbar">
+    <div class="container nav-container">
+
+      <a href="index.html" class="brand-logo" aria-label="BloodLink Home">
+        <div class="brand-icon-wrapper">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+          </svg>
+        </div>
+        <div class="brand-name">
+          <span class="brand-title">Blood<span class="brand-highlight">Link</span></span>
+          <span class="brand-tagline-micro">Intelligent Network</span>
+        </div>
+      </a>
+
+      <nav class="nav-menu" aria-label="Primary Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="find-blood.html" class="nav-link active">Find Blood</a>
+        <a href="auth.html?role=donor" class="nav-link">Become a Donor</a>
+        <a href="index.html#blood-banks" class="nav-link">Blood Banks</a>
+        <a href="index.html#features" class="nav-link">Features</a>
+        <a href="index.html#sdg3" class="nav-link">SDG 3 Impact</a>
+        <a href="index.html#faq" class="nav-link">FAQ</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="live-pill">
+          <span class="live-dot"></span>
+          <span>42 Nodes Active</span>
+        </div>
+
+        <button class="theme-toggle-btn" aria-label="Toggle Theme" title="Toggle Theme">
+          <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+        </button>
+
+        <a href="auth.html" class="btn btn-secondary btn-sm">Login</a>
+        <a href="auth.html?tab=signup" class="btn btn-primary btn-sm">Get Started</a>
+
+        <button class="mobile-toggle-btn" aria-label="Open Mobile Menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-drawer" id="mobile-drawer">
+      <a href="index.html" class="mobile-nav-link">Home</a>
+      <a href="find-blood.html" class="mobile-nav-link active">Find Blood</a>
+      <a href="auth.html?role=donor" class="mobile-nav-link">Become a Donor</a>
+      <a href="index.html#blood-banks" class="mobile-nav-link">Blood Banks</a>
+      <a href="index.html#features" class="mobile-nav-link">Features</a>
+      <a href="index.html#sdg3" class="mobile-nav-link">SDG 3 Impact</a>
+      <a href="index.html#faq" class="mobile-nav-link">FAQ</a>
+    </div>
+  </header>
+
+  <!-- Main Search Container -->
+  <main class="find-blood-page">
+    <div class="container">
+
+      <!-- Search Filters Box -->
+      <div class="search-hero-box">
+        <span class="badge-pill" style="margin-bottom: 0.75rem;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 14px; height: 14px;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          Real-Time Regional Search
+        </span>
+        <h1 style="font-size: clamp(1.85rem, 3vw, 2.5rem); margin-bottom: 0.5rem;">
+          Find Compatible Blood & Emergency Reserves
+        </h1>
+        <p style="font-size: var(--font-size-base); color: var(--color-text-secondary); max-width: 680px;">
+          Filter by blood group, geographic radius, and hospital urgency tier. Real-time unit availability is verified directly from accredited blood bank inventory logs.
+        </p>
+
+        <!-- Filter Inputs -->
+        <div class="search-filter-grid">
+
+          <div>
+            <label style="font-size: var(--font-size-xs); font-weight: 600; display: block; margin-bottom: 0.35rem;">Blood Group</label>
+            <select id="filter-blood-type" class="filter-select">
+              <option value="O-">O- (Universal Red Cell)</option>
+              <option value="O+">O+ Positive</option>
+              <option value="A-">A- Negative</option>
+              <option value="A+">A+ Positive</option>
+              <option value="B-">B- Negative</option>
+              <option value="B+">B+ Positive</option>
+              <option value="AB-">AB- Negative</option>
+              <option value="AB+">AB+ Positive</option>
+            </select>
+          </div>
+
+          <div>
+            <label style="font-size: var(--font-size-xs); font-weight: 600; display: block; margin-bottom: 0.35rem;">City / Region</label>
+            <input type="text" id="filter-location" class="form-input" value="Central Metro District" style="padding-left: 1rem;">
+          </div>
+
+          <div class="radius-slider-group">
+            <div style="display: flex; justify-content: space-between;">
+              <label style="font-size: var(--font-size-xs); font-weight: 600;">Max Radius</label>
+              <span id="radius-val" class="slider-val-tag">15 km</span>
+            </div>
+            <input type="range" id="filter-radius" min="5" max="50" step="5" value="15" style="accent-color: var(--color-primary); cursor: pointer;" oninput="document.getElementById('radius-val').textContent = this.value + ' km';">
+          </div>
+
+          <div>
+            <label style="font-size: var(--font-size-xs); font-weight: 600; display: block; margin-bottom: 0.35rem;">Urgency Level</label>
+            <select id="filter-urgency" class="filter-select">
+              <option value="all">All Urgency Levels</option>
+              <option value="critical">Critical (Trauma / OR)</option>
+              <option value="urgent">Urgent (&lt; 4 Hours)</option>
+              <option value="elective">Scheduled Surgery</option>
+            </select>
+          </div>
+
+          <div>
+            <button type="button" id="btn-search-network" class="btn btn-primary" style="height: 44px; width: 100%;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              Scan Hubs
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Results Grid -->
+      <div class="results-grid-layout">
+
+        <!-- Left List: Verified Facilities -->
+        <div class="results-list" id="facilities-list">
+
+          <!-- Card 1 -->
+          <div class="blood-bank-result-card">
+            <div class="bank-card-top">
+              <div class="bank-info">
+                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 4px;">
+                  <span class="badge-pill" style="font-size: 0.6875rem; padding: 0.2rem 0.5rem;">Verified Level 1 Trauma Center</span>
+                  <span style="font-size: 0.75rem; color: var(--color-success); font-weight: 600;">● Online &amp; Stock Active</span>
+                </div>
+                <h3>Metropolitan Central Blood Bank &amp; Trauma Hub</h3>
+                <p class="bank-address">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 14px; height: 14px;"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                  842 Medical Center Blvd, Sector 4 • <strong>2.3 km away</strong>
+                </p>
+              </div>
+              <button class="btn btn-primary btn-sm request-btn" data-bank="Metropolitan Central">
+                Request Unit
+              </button>
+            </div>
+
+            <div>
+              <span style="font-size: 0.75rem; color: var(--color-text-secondary); font-weight: 600;">Available Units in Cold Storage:</span>
+              <div class="bank-stock-pills">
+                <span class="stock-tag stock-optimal">O- : 12 Units (Optimal)</span>
+                <span class="stock-tag stock-optimal">O+ : 48 Units (Optimal)</span>
+                <span class="stock-tag stock-low">A- : 4 Units (Low)</span>
+                <span class="stock-tag stock-optimal">B+ : 32 Units (Optimal)</span>
+              </div>
+            </div>
+
+            <div class="bank-card-footer">
+              <div class="bank-meta-tags">
+                <span>Direct Hotline: +1 (555) 019-2041</span>
+                <span>•</span>
+                <span>Avg Dispatch: 12 mins</span>
+                <span>•</span>
+                <span>Cold-Chain Temp: 4.1°C</span>
+              </div>
+              <a href="tel:5550192041" class="btn btn-secondary btn-sm">Call Dispatch</a>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="blood-bank-result-card">
+            <div class="bank-card-top">
+              <div class="bank-info">
+                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 4px;">
+                  <span class="badge-pill" style="font-size: 0.6875rem; padding: 0.2rem 0.5rem;">Regional Blood Bank</span>
+                  <span style="font-size: 0.75rem; color: var(--color-success); font-weight: 600;">● Online &amp; Stock Active</span>
+                </div>
+                <h3>St. Jude Memorial Transfusion Center</h3>
+                <p class="bank-address">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 14px; height: 14px;"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                  120 St. Jude Way, East Wing • <strong>4.8 km away</strong>
+                </p>
+              </div>
+              <button class="btn btn-primary btn-sm request-btn" data-bank="St. Jude Memorial">
+                Request Unit
+              </button>
+            </div>
+
+            <div>
+              <span style="font-size: 0.75rem; color: var(--color-text-secondary); font-weight: 600;">Available Units in Cold Storage:</span>
+              <div class="bank-stock-pills">
+                <span class="stock-tag stock-low">O- : 3 Units (Critical Low)</span>
+                <span class="stock-tag stock-optimal">O+ : 36 Units (Optimal)</span>
+                <span class="stock-tag stock-optimal">A+ : 28 Units (Optimal)</span>
+                <span class="stock-tag stock-low">AB- : 2 Units (Critical Low)</span>
+              </div>
+            </div>
+
+            <div class="bank-card-footer">
+              <div class="bank-meta-tags">
+                <span>Direct Hotline: +1 (555) 018-9182</span>
+                <span>•</span>
+                <span>Avg Dispatch: 18 mins</span>
+                <span>•</span>
+                <span>Cold-Chain Temp: 3.8°C</span>
+              </div>
+              <a href="tel:5550189182" class="btn btn-secondary btn-sm">Call Dispatch</a>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="blood-bank-result-card">
+            <div class="bank-card-top">
+              <div class="bank-info">
+                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 4px;">
+                  <span class="badge-pill" style="font-size: 0.6875rem; padding: 0.2rem 0.5rem;">University Teaching Hospital</span>
+                  <span style="font-size: 0.75rem; color: var(--color-success); font-weight: 600;">● Online &amp; Stock Active</span>
+                </div>
+                <h3>Apex Children &amp; Pediatric Surgical Clinic</h3>
+                <p class="bank-address">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 14px; height: 14px;"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                  419 University Crescent • <strong>7.1 km away</strong>
+                </p>
+              </div>
+              <button class="btn btn-primary btn-sm request-btn" data-bank="Apex Children Clinic">
+                Request Unit
+              </button>
+            </div>
+
+            <div>
+              <span style="font-size: 0.75rem; color: var(--color-text-secondary); font-weight: 600;">Available Units in Cold Storage:</span>
+              <div class="bank-stock-pills">
+                <span class="stock-tag stock-optimal">O- : 8 Units (Optimal)</span>
+                <span class="stock-tag stock-optimal">B- : 6 Units (Optimal)</span>
+                <span class="stock-tag stock-optimal">B+ : 22 Units (Optimal)</span>
+                <span class="stock-tag stock-optimal">AB+ : 15 Units (Optimal)</span>
+              </div>
+            </div>
+
+            <div class="bank-card-footer">
+              <div class="bank-meta-tags">
+                <span>Direct Hotline: +1 (555) 014-4481</span>
+                <span>•</span>
+                <span>Avg Dispatch: 20 mins</span>
+                <span>•</span>
+                <span>Cold-Chain Temp: 4.0°C</span>
+              </div>
+              <a href="tel:5550144481" class="btn btn-secondary btn-sm">Call Dispatch</a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Sidebar Summary Card -->
+        <aside>
+          <div class="sidebar-summary-card">
+            <h3 style="font-size: 1.15rem; margin-bottom: 0.25rem;">Transfusion Summary</h3>
+            <p style="font-size: 0.8rem; color: var(--color-text-secondary); margin: 0;">
+              Selected Blood Group: <strong id="summary-type-label" style="color: var(--color-primary);">O-</strong>
+            </p>
+
+            <div style="background: var(--color-bg); padding: 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--color-border); font-size: 0.8rem;">
+              <div style="font-weight: 700; color: var(--color-primary); margin-bottom: 4px;">Universal Donor Status:</div>
+              <div>O- Negative red blood cells can be safely given to recipients of ANY blood group. Critical in emergency resuscitation.</div>
+            </div>
+
+            <div class="emergency-hotline-card">
+              <div class="hotline-label">Trauma SOS Coordinator</div>
+              <div class="hotline-number">1-800-BLOOD-LINK</div>
+              <p class="hotline-note">Call for prioritized surgical courier dispatch.</p>
+            </div>
+
+            <a href="auth.html?role=donor" class="btn btn-secondary" style="width: 100%;">
+              Join as an Emergency On-Call Donor
+            </a>
+          </div>
+        </aside>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-bottom" style="border: none; padding: 0;">
+      <div>&copy; 2026 BloodLink Healthcare Technologies • Aligned with SDG 3</div>
+      <div class="footer-legal-links">
+        <a href="index.html" class="footer-link">Home</a>
+        <a href="find-blood.html" class="footer-link">Find Blood</a>
+        <a href="auth.html" class="footer-link">Account Portal</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Container -->
+  <div class="toast-container" aria-live="polite"></div>
+
+  <!-- Scripts -->
+  <script src="js/theme.js"></script>
+  <script src="js/components/toast.js"></script>
+  <script src="js/components/navbar.js"></script>
+  <script src="js/api/supabase-client.js"></script>
+
+  <script>
+    (function() {
+      const typeSelect = document.getElementById('filter-blood-type');
+      const scanBtn = document.getElementById('btn-search-network');
+      const summaryLabel = document.getElementById('summary-type-label');
+      const requestButtons = document.querySelectorAll('.request-btn');
+
+      if (typeSelect && summaryLabel) {
+        typeSelect.addEventListener('change', () => {
+          summaryLabel.textContent = typeSelect.value;
+        });
+      }
+
+      if (scanBtn) {
+        scanBtn.addEventListener('click', () => {
+          const type = typeSelect ? typeSelect.value : 'O-';
+          const radius = document.getElementById('filter-radius')?.value || 15;
+          const location = document.getElementById('filter-location')?.value || 'Area';
+
+          if (window.BloodLinkToast) {
+            window.BloodLinkToast.success(
+              `Scanned regional network for ${type} within ${radius} km of ${location}. 3 authorized facilities verified.`,
+              'Search Updated'
+            );
+          }
+        });
+      }
+
+      requestButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const bank = btn.getAttribute('data-bank') || 'Facility';
+          const type = typeSelect ? typeSelect.value : 'O-';
+          if (window.BloodLinkToast) {
+            window.BloodLinkToast.info(
+              `Transfusion request voucher drafted for ${type} at ${bank}. Pre-wired for Flask REST API dispatch.`,
+              'Request Drafted'
+            );
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="BloodLink Donor Command Center — Intelligent blood donation, real-time availability sync, clinical history, and digital donor identity.">
+  <title>Donor Command Center — BloodLink</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Core & Command Center CSS -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/donor-command-center.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23C71932'><path d='M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z'/></svg>">
+</head>
+
+<body>
+
+  <div class="donor-app-layout">
+
+    <!-- ========================================================================
+         1. COLLAPSIBLE SAAS SIDEBAR
+         ======================================================================== -->
+    <aside class="donor-sidebar" aria-label="Command Center Navigation">
+      <div class="sidebar-header">
+        <a href="index.html" class="sidebar-brand">
+          <div class="brand-icon-wrapper" style="width: 36px; height: 36px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              style="width: 20px; height: 20px;">
+              <path
+                d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z">
+              </path>
+            </svg>
+          </div>
+          <span>Blood<span class="brand-highlight">Link</span></span>
+        </a>
+      </div>
+
+      <ul class="sidebar-nav-list">
+        <li class="sidebar-section-title">Command Center</li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn active" data-tab="tab-overview">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect width="7" height="9" x="3" y="3" rx="1"></rect>
+              <rect width="7" height="5" x="14" y="3" rx="1"></rect>
+              <rect width="7" height="9" x="14" y="12" rx="1"></rect>
+              <rect width="7" height="5" x="3" y="16" rx="1"></rect>
+            </svg>
+            <span>Overview</span>
+          </button>
+        </li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-profile">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span>My Profile</span>
+          </button>
+        </li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-history">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span>Donation History</span>
+          </button>
+        </li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-appointments">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            <span>Appointments</span>
+          </button>
+        </li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-requests">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+            <span>Find Blood Requests</span>
+            <span class="sidebar-badge">Urgent</span>
+          </button>
+        </li>
+
+        <li class="sidebar-section-title">Identity &amp; Credentials</li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-digital-id">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect width="20" height="14" x="2" y="5" rx="2"></rect>
+              <line x1="2" y1="10" x2="22" y2="10"></line>
+            </svg>
+            <span>Digital Donor ID</span>
+          </button>
+        </li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-certificates">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="8" r="7"></circle>
+              <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+            </svg>
+            <span>Certificates</span>
+          </button>
+        </li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-notifications">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
+              <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path>
+            </svg>
+            <span>Notifications</span>
+            <span class="sidebar-badge" id="unread-notif-count" style="display: none;">0</span>
+          </button>
+        </li>
+
+        <li class="sidebar-section-title">Account</li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-settings">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path
+                d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z">
+              </path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            <span>Privacy &amp; Settings</span>
+          </button>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user-mini">
+          <div class="user-avatar-circle" id="sidebar-user-avatar">
+            <span>DR</span>
+          </div>
+          <div class="sidebar-user-info">
+            <span class="sidebar-user-name dynamic-donor-name">Dr. Elena Rostova</span>
+            <span class="sidebar-user-role">Verified Donor</span>
+          </div>
+        </div>
+        <button class="icon-action-btn btn-logout btn-donor-signout" title="Sign Out" aria-label="Sign Out"
+          style="width: 32px; height: 32px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            style="width: 16px; height: 16px;">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+            <polyline points="16 17 21 12 16 7"></polyline>
+            <line x1="21" y1="12" x2="9" y2="12"></line>
+          </svg>
+        </button>
+      </div>
+    </aside>
+
+    <!-- ========================================================================
+         2. MAIN CONTENT & TOP NAVBAR
+         ======================================================================== -->
+    <div class="donor-main-container">
+
+      <header class="donor-top-nav">
+        <!-- Mobile hamburger -->
+        <button id="btn-mobile-sidebar-toggle" class="icon-action-btn" aria-label="Toggle Navigation"
+          style="display: none;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="4" x2="20" y1="12" y2="12"></line>
+            <line x1="4" x2="20" y1="6" y2="6"></line>
+            <line x1="4" x2="20" y1="18" y2="18"></line>
+          </svg>
+        </button>
+
+        <div class="top-nav-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" placeholder="Search appointments, camps, or donation records...">
+        </div>
+
+        <div class="top-nav-actions">
+          <!-- Blood group badge -->
+          <div class="blood-type-indicator">
+            <span>Group</span>
+            <span class="dynamic-blood-type">O-</span>
+          </div>
+
+          <!-- Notification Dropdown Trigger -->
+          <div style="position: relative;">
+            <button class="icon-action-btn" id="btn-top-notifications" aria-label="Notifications" title="Notifications">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
+                <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path>
+              </svg>
+              <span class="notification-dot"></span>
+            </button>
+
+            <!-- Notifications Dropdown Drawer -->
+            <div id="notifications-dropdown-menu"
+              style="display: none; position: absolute; right: 0; top: 50px; width: 340px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); box-shadow: var(--shadow-xl); z-index: 1000;">
+              <div
+                style="padding: 0.85rem 1rem; border-bottom: 1px solid var(--color-border-subtle); font-weight: 700; display: flex; justify-content: space-between; align-items: center;">
+                <span>Recent Alerts</span>
+                <span class="badge-pill" style="font-size: 0.65rem;">Real-Time</span>
+              </div>
+              <div id="notifications-drawer-list" style="max-height: 280px; overflow-y: auto;">
+                <!-- Populated dynamically -->
+              </div>
+              <div style="padding: 0.5rem; text-align: center; border-top: 1px solid var(--color-border-subtle);">
+                <button class="btn btn-ghost btn-sm"
+                  onclick="document.querySelector('.sidebar-nav-btn[data-tab=\'tab-notifications\']').click();"
+                  style="width: 100%;">View All Notifications</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Light/Dark Mode Switcher -->
+          <button class="theme-toggle-btn" aria-label="Toggle Theme" title="Toggle Theme">
+            <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2"></path>
+              <path d="M12 20v2"></path>
+              <path d="m4.93 4.93 1.41 1.41"></path>
+              <path d="m17.66 17.66 1.41 1.41"></path>
+              <path d="M2 12h2"></path>
+              <path d="M20 12h2"></path>
+              <path d="m6.34 17.66-1.41 1.41"></path>
+              <path d="m19.07 4.93-1.41 1.41"></path>
+            </svg>
+            <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+            </svg>
+          </button>
+
+          <!-- User Pill -->
+          <div
+            style="display: flex; align-items: center; gap: 0.5rem; padding: 0.35rem 0.75rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-full);">
+            <div class="user-avatar-circle" style="width: 26px; height: 26px; font-size: 0.7rem;">
+              <span>DR</span>
+            </div>
+            <span class="dynamic-donor-name" style="font-size: 0.8rem; font-weight: 700;">Dr. Elena Rostova</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- ========================================================================
+           3. DYNAMIC TAB PANELS
+           ======================================================================== -->
+      <main class="donor-tab-content-wrapper">
+
+        <!-- ====================================================================
+             TAB 1: OVERVIEW DASHBOARD
+             ==================================================================== -->
+        <div class="donor-tab-panel active" id="tab-overview">
+
+          <!-- 3D Erythrocyte Hero Welcome Card -->
+          <div class="overview-welcome-banner">
+            <div class="welcome-info-col">
+              <div class="welcome-badges-row">
+                <span class="badge-pill"
+                  style="background: var(--color-soft-red); color: var(--color-primary); border-color: var(--color-soft-red-border);">
+                  Clinical Identity Verified
+                </span>
+                <span id="overview-availability-pill" class="badge-pill"
+                  style="background: var(--color-success-bg); color: var(--color-success); border-color: rgba(16,185,129,0.3);">
+                  ● Available for Matching
+                </span>
+              </div>
+              <h1>Welcome back, <span class="dynamic-donor-name text-gradient">Dr. Elena</span></h1>
+              <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: 1.25rem;">
+                Your voluntary contributions support emergency trauma and surgical care across connected regional health
+                hubs.
+              </p>
+              <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                <button class="btn btn-primary btn-sm"
+                  onclick="document.querySelector('.sidebar-nav-btn[data-tab=\'tab-appointments\']').click();">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    style="width: 15px; height: 15px;">
+                    <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                  Schedule Next Donation
+                </button>
+                <button class="btn btn-secondary btn-sm"
+                  onclick="document.querySelector('.sidebar-nav-btn[data-tab=\'tab-digital-id\']').click();">
+                  View Digital Donor Pass
+                </button>
+              </div>
+            </div>
+
+            <!-- Three.js Mini 3D Blood-Cell Viewport -->
+            <div class="donor-3d-cell-viewport" id="donor-3d-cell-viewport">
+              <!-- Rendered dynamically by donor-3d-cell.js -->
+            </div>
+          </div>
+
+          <!-- 4 Core Metric Cards -->
+          <div class="donor-metrics-row">
+            <div class="donor-metric-card">
+              <div class="metric-card-top">
+                <span class="metric-card-label">Verified Units</span>
+                <div class="metric-card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path
+                      d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z">
+                    </path>
+                  </svg>
+                </div>
+              </div>
+              <div class="metric-card-val" id="stat-total-units">3</div>
+              <span style="font-size: 0.75rem; color: var(--color-success); font-weight: 600;">100% Hospital
+                Verified</span>
+            </div>
+
+            <div class="donor-metric-card">
+              <div class="metric-card-top">
+                <span class="metric-card-label">Lives Saved</span>
+                <div class="metric-card-icon success">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+              </div>
+              <div class="metric-card-val" id="stat-lives-saved" style="color: var(--color-success);">9+</div>
+              <span style="font-size: 0.75rem; color: var(--color-text-tertiary);">3 lives per whole blood unit</span>
+            </div>
+
+            <div class="donor-metric-card">
+              <div class="metric-card-top">
+                <span class="metric-card-label">Next Eligible Donation</span>
+                <div class="metric-card-icon info">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                </div>
+              </div>
+              <div class="metric-card-val" id="stat-next-eligible" style="font-size: 1.5rem;">Eligible Now</div>
+              <span style="font-size: 0.75rem; color: var(--color-text-tertiary);">56-day whole blood interval</span>
+            </div>
+
+            <div class="donor-metric-card">
+              <div class="metric-card-top">
+                <span class="metric-card-label">Discovery Mode</span>
+                <div class="metric-card-icon warning">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                  </svg>
+                </div>
+              </div>
+              <div class="metric-card-val" style="font-size: 1.5rem; color: var(--color-primary);">Consented</div>
+              <span style="font-size: 0.75rem; color: var(--color-text-secondary);">Trauma alert broadcasts ON</span>
+            </div>
+          </div>
+
+          <!-- Section 4: Interactive Availability Control Switcher -->
+          <div class="availability-switcher-card">
+            <div class="availability-header">
+              <div>
+                <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 2px;">Donor Availability Control</h3>
+                <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">
+                  Set your live readiness state for trauma hospital dispatch. Real-time synchronization with Supabase.
+                </p>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <span class="live-dot"></span>
+                <span style="font-size: 0.75rem; font-weight: 600; color: var(--color-text-secondary);">Direct DB
+                  Sync</span>
+              </div>
+            </div>
+
+            <div class="availability-options-grid">
+              <div class="availability-btn-card state-available active" data-state="available">
+                <div class="availability-radio-circle"></div>
+                <div>
+                  <h4>Available</h4>
+                  <p>Ready to receive notifications for urgent local transfusions and scheduled camps.</p>
+                </div>
+              </div>
+
+              <div class="availability-btn-card state-temporary" data-state="temporarily_unavailable">
+                <div class="availability-radio-circle"></div>
+                <div>
+                  <h4>Temporarily Unavailable</h4>
+                  <p>Traveling, recovering, or unwell. Emergency dispatches will skip your node for 14 days.</p>
+                </div>
+              </div>
+
+              <div class="availability-btn-card state-off" data-state="not_accepting_requests">
+                <div class="availability-radio-circle"></div>
+                <div>
+                  <h4>Not Accepting Requests</h4>
+                  <p>Pause all emergency blood request broadcasts. You can reactivate at any time.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="availability-footer-meta">
+              <div style="display: flex; align-items: center; gap: 0.6rem;">
+                <input type="checkbox" id="switch-discovery-consent" checked
+                  style="accent-color: var(--color-primary); width: 16px; height: 16px; cursor: pointer;">
+                <label for="switch-discovery-consent"
+                  style="cursor: pointer; font-weight: 600; color: var(--color-text);">
+                  Consent to Emergency Fuzzy Geo-Discovery (Protects exact address)
+                </label>
+              </div>
+              <div>
+                <span>Last updated: </span>
+                <strong id="availability-last-updated" style="color: var(--color-text);">Today</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 5: Profile Completion & Upcoming Appointment -->
+          <div
+            style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); margin-bottom: var(--space-6);">
+            <!-- Completion Card -->
+            <div class="profile-completion-box">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-weight: 700; font-size: 0.95rem;">Profile &amp; Health Readiness</span>
+                <span id="profile-completion-label"
+                  style="font-weight: 800; color: var(--color-primary); font-size: 0.85rem;">88% Complete</span>
+              </div>
+              <div class="completion-bar-outer">
+                <div class="completion-bar-inner" id="profile-completion-bar" style="width: 88%;"></div>
+              </div>
+              <p id="eligibility-banner-text"
+                style="font-size: 0.78rem; color: var(--color-text-secondary); margin: 0;">
+                You are clinically eligible to donate whole blood today.
+              </p>
+            </div>
+
+            <!-- Upcoming Appointment Banner -->
+            <div id="overview-upcoming-appointment-card" class="profile-completion-box"
+              style="display: none; border-color: var(--color-soft-red-border); background: var(--color-soft-red);">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ====================================================================
+             TAB 2: MY PROFILE MANAGEMENT
+             ==================================================================== -->
+        <div class="donor-tab-panel" id="tab-profile">
+          <div class="panel-header">
+            <div>
+              <h2 style="font-size: 1.6rem; font-weight: 800;">Donor Profile Management</h2>
+              <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Update your verified
+                clinical demographics, contact preferences, and emergency relations.</p>
+            </div>
+            <span class="badge-pill">Supabase Auth Connected</span>
+          </div>
+
+          <!-- Avatar Upload Card -->
+          <div
+            style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: var(--space-6); display: flex; align-items: center; gap: 1.5rem;">
+            <div class="user-avatar-circle" style="width: 72px; height: 72px; font-size: 1.5rem;">
+              <span>DR</span>
+            </div>
+            <div>
+              <h4 style="font-size: 1.05rem; margin-bottom: 2px;">Profile Picture</h4>
+              <p style="font-size: 0.75rem; color: var(--color-text-secondary); margin-bottom: 0.75rem;">Supported
+                formats: JPG, PNG, WebP. Maximum file size: 2 MB. Stored securely in Supabase Storage.</p>
+              <input type="file" id="avatar-file-input" accept="image/jpeg,image/png,image/webp" style="display: none;">
+              <button class="btn btn-secondary btn-sm" onclick="document.getElementById('avatar-file-input').click();">
+                Upload New Photo
+              </button>
+            </div>
+          </div>
+
+          <!-- Profile Form -->
+          <div
+            style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: clamp(1.5rem, 3vw, 2.25rem);">
+            <form id="donor-profile-form">
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem;">
+                <div class="form-group">
+                  <label class="form-label" for="form-full-name">Full Legal Name</label>
+                  <input type="text" id="form-full-name" class="form-input" style="padding-left: 1rem;" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="form-email">Email Address (Auth Protected)</label>
+                  <input type="email" id="form-email" class="form-input" style="padding-left: 1rem;" readonly disabled>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="form-phone">Contact Phone Number</label>
+                  <input type="tel" id="form-phone" class="form-input" style="padding-left: 1rem;"
+                    placeholder="+1 (555) 000-0000" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="form-blood-group">Verified Blood Group</label>
+                  <select id="form-blood-group" class="filter-select">
+                    <option value="O-">O- Negative (Universal Red Cell)</option>
+                    <option value="O+">O+ Positive</option>
+                    <option value="A-">A- Negative</option>
+                    <option value="A+">A+ Positive</option>
+                    <option value="B-">B- Negative</option>
+                    <option value="B+">B+ Positive</option>
+                    <option value="AB-">AB- Negative</option>
+                    <option value="AB+">AB+ Positive</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="form-dob">Date of Birth</label>
+                  <input type="date" id="form-dob" class="form-input" style="padding-left: 1rem;" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="form-gender">Gender Identity</label>
+                  <select id="form-gender" class="filter-select">
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
+                    <option value="other">Other</option>
+                    <option value="prefer_not_to_say">Prefer not to say</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="form-city">City / Municipality</label>
+                  <input type="text" id="form-city" class="form-input" style="padding-left: 1rem;" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="form-district">District / Sector</label>
+                  <input type="text" id="form-district" class="form-input" style="padding-left: 1rem;">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="form-postal-code">Postal / PIN Code</label>
+                  <input type="text" id="form-postal-code" class="form-input" style="padding-left: 1rem;">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="form-last-donation">Last Donation Date</label>
+                  <input type="date" id="form-last-donation" class="form-input" style="padding-left: 1rem;">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="form-preferred-contact">Preferred Communication Channel</label>
+                  <select id="form-preferred-contact" class="filter-select">
+                    <option value="email">Email</option>
+                    <option value="whatsapp">WhatsApp</option>
+                    <option value="sms">SMS Text</option>
+                    <option value="phone">Direct Phone Call</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="form-emergency-name">Emergency Contact Name</label>
+                  <input type="text" id="form-emergency-name" class="form-input" style="padding-left: 1rem;"
+                    placeholder="Next of kin">
+                </div>
+
+                <div class="form-group" style="grid-column: span 2;">
+                  <label class="form-label" for="form-emergency-phone">Emergency Contact Phone Number</label>
+                  <input type="tel" id="form-emergency-phone" class="form-input" style="padding-left: 1rem;"
+                    placeholder="+1 (555) 999-9999">
+                </div>
+              </div>
+
+              <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end;">
+                <button type="submit" class="btn btn-primary btn-lg">
+                  Save Verified Profile Changes &rarr;
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             TAB 3: DONATION HISTORY
+             ==================================================================== -->
+        <div class="donor-tab-panel" id="tab-history">
+          <div class="panel-header">
+            <div>
+              <h2 style="font-size: 1.6rem; font-weight: 800;">Donation History &amp; Clinical Records</h2>
+              <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">
+                Forensic record of your past transfusions. Only hospital-verified units count toward lives saved
+                statistics.
+              </p>
+            </div>
+            <span class="badge-pill">Immutable Ledger</span>
+          </div>
+
+          <div class="history-filters-bar">
+            <div style="display: flex; gap: 0.75rem; flex: 1; max-width: 450px;">
+              <input type="text" id="history-search-input" class="form-input"
+                placeholder="Search by hospital name or reference..." style="padding-left: 1rem;">
+            </div>
+            <div style="display: flex; gap: 0.75rem;">
+              <select id="history-type-filter" class="filter-select" style="width: auto;">
+                <option value="all">All Donation Types</option>
+                <option value="whole_blood">Whole Blood</option>
+                <option value="platelets">Platelets</option>
+                <option value="plasma">Plasma</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Donation Timeline Cards -->
+          <div class="donation-history-list" id="donations-timeline-container">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             TAB 4: APPOINTMENTS & CAMPS
+             ==================================================================== -->
+        <div class="donor-tab-panel" id="tab-appointments">
+          <div class="panel-header">
+            <div>
+              <h2 style="font-size: 1.6rem; font-weight: 800;">Appointments &amp; Donation Drives</h2>
+              <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Reserve an express slot at
+                accredited blood banks or nearby community donation drives.</p>
+            </div>
+            <span class="badge-pill">Cold-Chain Accredited</span>
+          </div>
+
+          <!-- Scheduled Appointments -->
+          <div style="margin-bottom: 2rem;">
+            <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.75rem;">Your Scheduled Appointments</h3>
+            <div id="my-appointments-list">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+
+          <!-- Available Camps Grid -->
+          <div>
+            <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem;">Available Upcoming Camps &amp;
+              Fixed Centers</h3>
+            <p style="font-size: 0.8rem; color: var(--color-text-secondary); margin-bottom: 1rem;">All sites adhere to
+              WHO and State Health Department hygiene protocols.</p>
+            <div class="camps-grid" id="available-camps-grid">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             TAB 5: EMERGENCY BROADCASTS & INVITATIONS
+             ==================================================================== -->
+        <div class="donor-tab-panel" id="tab-requests">
+          <div class="panel-header">
+            <div>
+              <h2 style="font-size: 1.6rem; font-weight: 800;">Emergency Broadcasts &amp; Invitations</h2>
+              <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Trauma alerts and surgical
+                transfusion broadcasts dispatched to your compatible donor profile.</p>
+            </div>
+            <button id="btn-refresh-donor-invitations" class="btn btn-secondary btn-sm"
+              style="display: flex; align-items: center; gap: 0.35rem;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                style="width: 14px; height: 14px;">
+                <polyline points="23 4 23 10 17 10"></polyline>
+                <polyline points="1 20 1 14 7 14"></polyline>
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+              </svg>
+              Refresh Broadcasts
+            </button>
+          </div>
+
+          <!-- Statutory Clinical Notice Banner -->
+          <div
+            style="background: rgba(199, 25, 50, 0.08); border-left: 4px solid var(--color-primary); padding: 0.85rem 1.25rem; border-radius: 6px; margin-bottom: 1.5rem; font-size: 0.825rem; color: var(--color-text); line-height: 1.45;">
+            <strong>Clinical Notice:</strong> BloodLink provides donor and inventory discovery support only.
+            Participation in emergency blood broadcasts is voluntary. Selecting a blood group or component does not
+            establish transfusion compatibility. Final blood component selection, compatibility verification, antibody
+            screening and crossmatching must be performed and authorized by qualified medical transfusion professionals.
+          </div>
+
+          <!-- Sub-section: Live Dispatched Invitations -->
+          <div style="margin-bottom: 2rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <h3 style="font-size: 1.15rem; font-weight: 700; margin: 0;">Active Emergency Broadcasts Dispatched to You
+              </h3>
+              <span class="badge-pill" id="donor-invitation-badge-count"
+                style="background: var(--color-soft-red); color: var(--color-primary);">1 Pending</span>
+            </div>
+            <div id="donor-invitations-list" style="display: flex; flex-direction: column; gap: 1rem;">
+              <!-- Populated by donor-command-center.js -->
+            </div>
+          </div>
+
+          <!-- Sub-section: My Active Commitments -->
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <h3 style="font-size: 1.15rem; font-weight: 700; margin: 0;">My Active Emergency Donation Commitments</h3>
+              <span class="badge-pill" id="donor-commitments-badge-count"
+                style="background: #ECFDF5; color: #059669; border: 1px solid #A7F3D0;">1 Active</span>
+            </div>
+            <div id="donor-commitments-list" style="display: flex; flex-direction: column; gap: 1rem;">
+              <!-- Populated by donor-command-center.js -->
+            </div>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             TAB 6: DIGITAL DONOR ID PASS
+             ==================================================================== -->
+        <div class="donor-tab-panel" id="tab-digital-id">
+          <div class="panel-header">
+            <div>
+              <h2 style="font-size: 1.6rem; font-weight: 800;">Digital Donor Identity Pass</h2>
+              <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Present your contactless QR
+                pass at any blood bank or camp for zero-paper check-in.</p>
+            </div>
+            <button class="btn btn-secondary btn-sm" onclick="window.print();">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                style="width: 14px; height: 14px;">
+                <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                <rect width="12" height="8" x="6" y="14"></rect>
+              </svg>
+              Print Pass
+            </button>
+          </div>
+
+          <div class="donor-pass-display-container">
+            <div class="digital-donor-pass" style="width: 100%; max-width: 440px;">
+              <div class="pass-glow"></div>
+              <div class="pass-header">
+                <div class="pass-logo">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#FF4D6D" stroke-width="2.5"
+                    style="width: 18px; height: 18px;">
+                    <path
+                      d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z">
+                    </path>
+                  </svg>
+                  <span>BloodLink Universal Pass</span>
+                </div>
+                <span class="pass-tier">Verified Hero</span>
+              </div>
+              <div class="pass-body">
+                <div>
+                  <div class="pass-donor-name" id="pass-card-name">Dr. Elena Rostova</div>
+                  <div class="pass-id" id="pass-card-id">ID: BL-AUTH-9041</div>
+                  <div id="pass-card-city" style="font-size: 0.75rem; color: rgba(255,255,255,0.7); margin-top: 4px;">
+                    Metro Central</div>
+                </div>
+                <div class="pass-blood-type" id="pass-card-blood">O-</div>
+              </div>
+              <div class="pass-footer">
+                <div class="pass-metric">
+                  <span class="pass-metric-label">Status</span>
+                  <span class="pass-metric-val">Eligible</span>
+                </div>
+                <div class="pass-metric">
+                  <span class="pass-metric-label">Transfusions</span>
+                  <span class="pass-metric-val">3 Recorded</span>
+                </div>
+                <div class="pass-qr-mock">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <div class="pass-actions-bar">
+              <button class="btn btn-primary"
+                onclick="window.BloodLinkToast?.success('Digital pass exported to Apple Wallet format.', 'Wallet Pass');">
+                Add to Apple Wallet / Google Wallet
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             TAB 7: CERTIFICATES OF APPRECIATION
+             ==================================================================== -->
+        <div class="donor-tab-panel" id="tab-certificates">
+          <div class="panel-header">
+            <div>
+              <h2 style="font-size: 1.6rem; font-weight: 800;">Certificates of Appreciation</h2>
+              <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Issued by authorized
+                transfusion hospitals in recognition of your voluntary life-saving units.</p>
+            </div>
+            <span class="badge-pill">Digitally Signed</span>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem;">
+            <div
+              style="padding: 1.5rem; background: var(--color-surface); border: 1.5px solid var(--color-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+                <div>
+                  <span class="badge-pill" style="font-size: 0.65rem; margin-bottom: 0.25rem;">Ref:
+                    BL-DON-2026-8941</span>
+                  <h4 style="font-size: 1.1rem; font-weight: 700;">Certificate of Life Giving</h4>
+                </div>
+                <div
+                  style="width: 36px; height: 36px; border-radius: 50%; background: var(--color-accent-gold); display: flex; align-items: center; justify-content: center; color: #fff;">
+                  ★
+                </div>
+              </div>
+              <p style="font-size: 0.8rem; color: var(--color-text-secondary); margin-bottom: 1rem;">
+                Issued by Metropolitan Central Blood Bank for donation on August 14, 2026.
+              </p>
+              <button class="btn btn-secondary btn-sm"
+                onclick="document.querySelector('.btn-view-certificate')?.click();">
+                View Official Certificate &rarr;
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             TAB 8: NOTIFICATIONS
+             ==================================================================== -->
+        <div class="donor-tab-panel" id="tab-notifications">
+          <div class="panel-header">
+            <div>
+              <h2 style="font-size: 1.6rem; font-weight: 800;">Notifications &amp; Clinical Alerts</h2>
+              <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Real-time notifications sent
+                via your preferred communication channel.</p>
+            </div>
+            <button class="btn btn-secondary btn-sm"
+              onclick="window.BloodLinkToast?.info('All alerts marked as read.', 'Cleaned');">Mark All as Read</button>
+          </div>
+
+          <div
+            style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); overflow: hidden;">
+            <div
+              style="padding: 1.25rem; border-bottom: 1px solid var(--color-border-subtle); display: flex; gap: 1rem; align-items: flex-start;">
+              <div
+                style="width: 36px; height: 36px; border-radius: var(--radius-sm); background: var(--color-soft-red); color: var(--color-primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  style="width: 18px; height: 18px;">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+              </div>
+              <div>
+                <div style="font-weight: 700; font-size: 0.95rem; margin-bottom: 2px;">Urgent O- Needed nearby</div>
+                <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0 0 0.5rem 0;">City Central
+                  Trauma Hub requires 2 units of O- Negative for acute surgical resuscitation.</p>
+                <span style="font-size: 0.75rem; color: var(--color-text-tertiary);">10 mins ago • High Priority</span>
+              </div>
+            </div>
+
+            <div
+              style="padding: 1.25rem; border-bottom: 1px solid var(--color-border-subtle); display: flex; gap: 1rem; align-items: flex-start;">
+              <div
+                style="width: 36px; height: 36px; border-radius: var(--radius-sm); background: var(--color-info-bg); color: var(--color-info); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  style="width: 18px; height: 18px;">
+                  <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+              </div>
+              <div>
+                <div style="font-weight: 700; font-size: 0.95rem; margin-bottom: 2px;">Upcoming Appointment Scheduled
+                </div>
+                <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0 0 0.5rem 0;">Your whole
+                  blood donation appointment at Metro Red Cross Annual Drive is scheduled for November 28, 2026.</p>
+                <span style="font-size: 0.75rem; color: var(--color-text-tertiary);">2 hours ago</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             TAB 9: PRIVACY & SETTINGS
+             ==================================================================== -->
+        <div class="donor-tab-panel" id="tab-settings">
+          <div class="panel-header">
+            <div>
+              <h2 style="font-size: 1.6rem; font-weight: 800;">Privacy &amp; Security Settings</h2>
+              <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Manage zero-trust data
+                consent, notification thresholds, and account lifecycle.</p>
+            </div>
+          </div>
+
+          <div
+            style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 2rem;">
+            <h4 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Discovery &amp; Anonymization</h4>
+            <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 1.5rem;">
+              When enabled, verified hospitals can match your blood type within a 15-30 km radius. Your telephone number
+              and address are NEVER displayed to third parties.
+            </p>
+
+            <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem;">
+              <label
+                style="display: flex; align-items: center; justify-content: space-between; padding: 1rem; background: var(--color-bg); border-radius: var(--radius-sm); border: 1px solid var(--color-border); cursor: pointer;">
+                <div>
+                  <div style="font-weight: 700; font-size: 0.9rem;">Broadcast Code-Red Push Alerts</div>
+                  <div style="font-size: 0.75rem; color: var(--color-text-secondary);">Receive high-urgency
+                    notifications for ICU transfusions.</div>
+                </div>
+                <input type="checkbox" checked style="accent-color: var(--color-primary); width: 18px; height: 18px;">
+              </label>
+
+              <label
+                style="display: flex; align-items: center; justify-content: space-between; padding: 1rem; background: var(--color-bg); border-radius: var(--radius-sm); border: 1px solid var(--color-border); cursor: pointer;">
+                <div>
+                  <div style="font-weight: 700; font-size: 0.9rem;">Monthly Blood Supply Digest</div>
+                  <div style="font-size: 0.75rem; color: var(--color-text-secondary);">Regional blood inventory
+                    stability updates and scheduled camp reminders.</div>
+                </div>
+                <input type="checkbox" style="accent-color: var(--color-primary); width: 18px; height: 18px;">
+              </label>
+            </div>
+
+            <h4 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--color-primary);">Data Portability &amp;
+              Account Control</h4>
+            <div style="display: flex; gap: 1rem;">
+              <button class="btn btn-secondary btn-sm"
+                onclick="window.BloodLinkToast?.success('Data export archive requested. Check your email shortly.', 'Export');">
+                Export My Transfusion Records (JSON)
+              </button>
+              <button class="btn btn-ghost btn-sm btn-donor-signout" style="color: var(--color-primary);">
+                Sign Out of Current Session
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODALS: BOOKING, DETAILS, CERTIFICATE
+       ======================================================================== -->
+
+  <!-- Modal 1: Appointment Booking -->
+  <div class="donor-modal-overlay" id="modal-book-appointment">
+    <div class="donor-modal-card">
+      <span class="modal-close-btn" onclick="closeDonorModal('modal-book-appointment')">&times;</span>
+      <h3 style="font-size: 1.35rem; margin-bottom: 0.25rem;">Reserve Donation Slot</h3>
+      <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 1.25rem;">Reserve your slot for
+        fast-track processing upon arrival.</p>
+
+      <form id="appointment-booking-form">
+        <input type="hidden" id="book-camp-id">
+        <div class="form-group">
+          <label class="form-label" for="book-facility-name">Facility / Camp Title</label>
+          <input type="text" id="book-facility-name" class="form-input" style="padding-left: 1rem;" readonly>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="form-group">
+            <label class="form-label" for="book-date">Appointment Date</label>
+            <input type="date" id="book-date" class="form-input" style="padding-left: 1rem;" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="book-time">Select Time Slot</label>
+            <select id="book-time" class="filter-select" required>
+              <option value="09:30 AM">09:30 AM</option>
+              <option value="11:00 AM">11:00 AM</option>
+              <option value="01:30 PM">01:30 PM</option>
+              <option value="03:00 PM">03:00 PM</option>
+              <option value="04:30 PM">04:30 PM</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="book-donation-type">Donation Type</label>
+          <select id="book-donation-type" class="filter-select">
+            <option value="whole_blood">Whole Blood (Standard 450 mL)</option>
+            <option value="platelets">Platelets (Apheresis)</option>
+            <option value="plasma">Plasma</option>
+          </select>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.25rem;">
+          <button type="button" class="btn btn-secondary btn-sm"
+            onclick="closeDonorModal('modal-book-appointment')">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Confirm Reservation</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 2: Donation Details -->
+  <div class="donor-modal-overlay" id="modal-donation-detail">
+    <div class="donor-modal-card">
+      <span class="modal-close-btn" onclick="closeDonorModal('modal-donation-detail')">&times;</span>
+      <h3 style="font-size: 1.35rem; margin-bottom: 0.25rem;">Donation Verification Detail</h3>
+      <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 1.25rem;">Cryptographically
+        verified hospital transfusion record.</p>
+
+      <div
+        style="background: var(--color-bg); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.85rem;">
+        <div><strong>Facility:</strong> <span id="modal-detail-facility">Metropolitan Central</span></div>
+        <div><strong>Donation Date:</strong> <span id="modal-detail-date">2026-08-14</span></div>
+        <div><strong>Type:</strong> <span id="modal-detail-type">Whole Blood</span></div>
+        <div><strong>Volume / Units:</strong> <span id="modal-detail-units">1 Unit (450 mL)</span></div>
+        <div><strong>Verification Reference:</strong> <code id="modal-detail-ref"
+            style="font-family: var(--font-family-mono); color: var(--color-primary);">BL-DON-2026-8941</code></div>
+        <div><strong>Clinical Notes:</strong>
+          <p id="modal-detail-notes"
+            style="margin: 0.25rem 0 0 0; color: var(--color-text-secondary); font-style: italic;">Verified safe
+            storage.</p>
+        </div>
+      </div>
+      <div style="margin-top: 1.25rem; display: flex; justify-content: flex-end;">
+        <button class="btn btn-secondary btn-sm" onclick="closeDonorModal('modal-donation-detail')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: Certificate Viewer -->
+  <div class="donor-modal-overlay" id="modal-certificate-viewer">
+    <div class="donor-modal-card" style="max-width: 650px; text-align: center;">
+      <span class="modal-close-btn" onclick="closeDonorModal('modal-certificate-viewer')">&times;</span>
+
+      <!-- Printable Certificate Container -->
+      <div id="printable-certificate"
+        style="border: 4px double #C71932; padding: 2.5rem; background: #FFFDF9; border-radius: 8px; color: #202124; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
+        <div
+          style="font-family: var(--font-family-display); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: #C71932; font-weight: 800; margin-bottom: 0.5rem;">
+          United Nations SDG 3 Healthcare Network
+        </div>
+        <h2
+          style="font-family: var(--font-family-display); font-size: 1.85rem; color: #8F1025; font-weight: 800; margin-bottom: 0.5rem;">
+          CERTIFICATE OF LIFE GIVING
+        </h2>
+        <p style="font-size: 0.85rem; color: #5F6368; font-style: italic; margin-bottom: 1.5rem;">
+          This official accreditation is gratefully presented to
+        </p>
+        <h3 id="cert-modal-donor-name"
+          style="font-size: 1.75rem; font-weight: 800; color: #202124; border-bottom: 1px solid #C71932; display: inline-block; padding-bottom: 4px; margin-bottom: 1rem;">
+          Dr. Elena Rostova
+        </h3>
+        <p style="font-size: 0.9rem; line-height: 1.6; color: #3C4043; max-width: 480px; margin: 0 auto 1.5rem auto;">
+          In profound appreciation of your voluntary blood donation (Blood Group: <strong
+            id="cert-modal-blood-group">O-</strong>) at <strong id="cert-modal-facility">Metropolitan Central Blood
+            Bank</strong> on <span id="cert-modal-date">2026-08-14</span>. Your contribution has helped save three
+          precious human lives.
+        </p>
+
+        <div
+          style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px dashed #E8E6E3; font-size: 0.75rem; color: #5F6368;">
+          <div>
+            <div style="font-family: var(--font-family-mono); font-weight: 700; color: #C71932;" id="cert-modal-number">
+              CERT-BL-2026-8941</div>
+            <div>Verification ID</div>
+          </div>
+          <div>
+            <!-- Seal Icon -->
+            <div
+              style="width: 50px; height: 50px; border-radius: 50%; border: 2px solid #C71932; display: flex; align-items: center; justify-content: center; margin: 0 auto 4px auto; color: #C71932; font-weight: 800;">
+              SEAL
+            </div>
+            <div>Clinical Registrar</div>
+          </div>
+          <div>
+            <div style="border-bottom: 1px solid #5F6368; width: 100px; margin-bottom: 4px;"></div>
+            <div>Authorized Signature</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 1.25rem; display: flex; justify-content: center; gap: 0.75rem;">
+        <button class="btn btn-secondary btn-sm" onclick="closeDonorModal('modal-certificate-viewer')">Close</button>
+        <button class="btn btn-primary btn-sm" onclick="window.print();">Print / Save PDF</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" aria-live="polite"></div>
+
+  <!-- ========================================================================
+       SCRIPTS: THREE.JS, SUPABASE & COMMAND CENTER MODULES
+       ======================================================================== -->
+  <!-- Official Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- Supabase Official JS SDK CDN (v2) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- BloodLink Core Services -->
+  <script src="js/theme.js"></script>
+  <script src="js/components/toast.js"></script>
+  <script src="js/api/config.js"></script>
+  <script src="js/api/supabase-client.js"></script>
+  <script src="js/api/session-manager.js"></script>
+  <script src="js/api/profile-service.js"></script>
+  <script src="js/api/api-client.js"></script>
+
+  <!-- Donor Command Center Modules -->
+  <script src="js/donor/donor-service.js"></script>
+  <script src="js/donor/donor-3d-cell.js"></script>
+  <script src="js/donor/donor-command-center.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      if (window.BloodLinkSession) {
+        await window.BloodLinkSession.requireAuth({ allowedRoles: ['donor'] });
+      }
+    });
+  </script>
+</body>
+
+</html>

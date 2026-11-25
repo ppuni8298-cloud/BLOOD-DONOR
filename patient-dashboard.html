@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BloodLink Patient & Guardian Command Center — Emergency blood request management, hospital crossmatching tracking, and nearby blood bank discovery.">
+  <title>Patient Emergency Portal — BloodLink</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- Core & Patient Command Center Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/patient-command-center.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23C71932'><path d='M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z'/></svg>">
+</head>
+<body>
+
+  <div class="patient-app-layout">
+
+    <!-- ========================================================================
+         1. COLLAPSIBLE PATIENT SAAS SIDEBAR
+         ======================================================================== -->
+    <aside class="patient-sidebar" aria-label="Patient Portal Navigation">
+      <div class="sidebar-header">
+        <a href="index.html" class="sidebar-brand">
+          <div class="brand-icon-wrapper" style="width: 36px; height: 36px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="width: 20px; height: 20px;">
+              <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+            </svg>
+          </div>
+          <span>Blood<span class="brand-highlight">Link</span></span>
+        </a>
+      </div>
+
+      <ul class="sidebar-nav-list">
+        <li class="sidebar-section-title">Emergency Command</li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn active" data-tab="tab-overview">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="7" height="9" x="3" y="3" rx="1"></rect><rect width="7" height="5" x="14" y="3" rx="1"></rect><rect width="7" height="9" x="14" y="12" rx="1"></rect><rect width="7" height="5" x="3" y="16" rx="1"></rect></svg>
+            <span>Emergency Overview</span>
+          </button>
+        </li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-create-request" style="color: var(--color-primary); font-weight: 700;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            <span>Create Blood Request</span>
+            <span class="sidebar-badge">SOS</span>
+          </button>
+        </li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-active-requests">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span>My Active Requests</span>
+          </button>
+        </li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-tracking">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+            <span>Request Tracking</span>
+          </button>
+        </li>
+
+        <li class="sidebar-section-title">Directory &amp; History</li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-facilities">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>
+            <span>Hospitals &amp; Blood Banks</span>
+          </button>
+        </li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-history">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            <span>Request History &amp; Reports</span>
+          </button>
+        </li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-notifications">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg>
+            <span>Notifications</span>
+            <span class="sidebar-badge" id="unread-notif-badge" style="display: none;">0</span>
+          </button>
+        </li>
+
+        <li class="sidebar-section-title">Patient Settings</li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-profile">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <span>Patient Profile</span>
+          </button>
+        </li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-settings">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            <span>Privacy &amp; Settings</span>
+          </button>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div style="display: flex; align-items: center; gap: 0.6rem;">
+          <div class="user-avatar-circle" style="width: 32px; height: 32px; font-size: 0.8rem;">
+            <span>PT</span>
+          </div>
+          <div>
+            <div class="dynamic-patient-name" style="font-size: 0.825rem; font-weight: 700;">Marcus Vance</div>
+            <div style="font-size: 0.7rem; color: var(--color-text-secondary);">Patient Account</div>
+          </div>
+        </div>
+        <button class="icon-action-btn btn-logout btn-patient-signout" title="Sign Out" aria-label="Sign Out" style="width: 32px; height: 32px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px;"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+        </button>
+      </div>
+    </aside>
+
+    <!-- ========================================================================
+         2. MAIN CONTAINER & TOP NAVIGATION
+         ======================================================================== -->
+    <div class="patient-main-container">
+
+      <header class="patient-top-nav">
+        <!-- Mobile hamburger -->
+        <button id="btn-mobile-patient-sidebar" class="icon-action-btn" aria-label="Toggle Navigation" style="display: none;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
+        </button>
+
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <div class="emergency-status-badge">
+            <span class="live-pulse-dot"></span>
+            <span>Emergency Transfusion Network Active</span>
+          </div>
+        </div>
+
+        <div class="top-nav-actions">
+          <!-- Light/Dark Mode Switcher -->
+          <button class="theme-toggle-btn" aria-label="Toggle Theme" title="Toggle Theme">
+            <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+            <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+          </button>
+
+          <!-- User Pill -->
+          <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.35rem 0.75rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-full);">
+            <div class="user-avatar-circle" style="width: 26px; height: 26px; font-size: 0.7rem;">
+              <span>PT</span>
+            </div>
+            <span class="dynamic-patient-name" style="font-size: 0.8rem; font-weight: 700;">Marcus Vance</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- ========================================================================
+           3. DYNAMIC TAB PANELS
+           ======================================================================== -->
+      <main class="patient-tab-content-wrapper">
+
+        <!-- ====================================================================
+             TAB 1: EMERGENCY OVERVIEW
+             ==================================================================== -->
+        <div class="patient-tab-panel active" id="tab-overview">
+
+          <!-- 3D Medical Pulse Hero Banner -->
+          <div class="emergency-overview-banner">
+            <div>
+              <div style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem;">
+                <span class="badge-pill" style="background: var(--color-soft-red); color: var(--color-primary); border-color: var(--color-soft-red-border);">
+                  Trauma &amp; Surgical Triage
+                </span>
+                <span class="badge-pill">
+                  Cold-Chain Verified
+                </span>
+              </div>
+              <h1 style="font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; margin-bottom: 0.5rem;">
+                Emergency Blood Request Portal
+              </h1>
+              <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: 1.5rem; max-width: 620px;">
+                Directly connect critical patient surgical cases with accredited hospital blood banks, trauma facilities, and consented universal donors across the regional network.
+              </p>
+              <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                <button class="btn btn-primary btn-sm" onclick="document.querySelector('.sidebar-nav-btn[data-tab=\'tab-create-request\']').click();">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 15px; height: 15px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                  Create Emergency Blood Request
+                </button>
+                <button class="btn btn-secondary btn-sm" onclick="document.querySelector('.sidebar-nav-btn[data-tab=\'tab-tracking\']').click();">
+                  Track Active Requests
+                </button>
+              </div>
+            </div>
+
+            <!-- Three.js Subtle Medical Pulse 3D Viewport -->
+            <div class="patient-3d-pulse-viewport" id="patient-3d-pulse-viewport">
+              <!-- Rendered by patient-3d-pulse.js -->
+            </div>
+          </div>
+
+          <!-- 4 Core Metrics -->
+          <div class="patient-metrics-grid">
+            <div class="patient-metric-card">
+              <span class="patient-metric-label">Active Requests</span>
+              <div class="patient-metric-val" id="dash-stat-active-count" style="color: var(--color-primary);">1</div>
+              <span style="font-size: 0.75rem; color: var(--color-text-secondary);">Currently in matching queue</span>
+            </div>
+
+            <div class="patient-metric-card">
+              <span class="patient-metric-label">Total Registered</span>
+              <div class="patient-metric-val" id="dash-stat-total-count">1</div>
+              <span style="font-size: 0.75rem; color: var(--color-text-secondary);">All-time patient records</span>
+            </div>
+
+            <div class="patient-metric-card">
+              <span class="patient-metric-label">Fulfilled</span>
+              <div class="patient-metric-val" id="dash-stat-fulfilled-count" style="color: #10B981;">0</div>
+              <span style="font-size: 0.75rem; color: var(--color-text-secondary);">Successfully transfused</span>
+            </div>
+
+            <div class="patient-metric-card">
+              <span class="patient-metric-label">Emergency Helpline</span>
+              <div class="patient-metric-val" style="font-size: 1.25rem;">1-800-BLOOD</div>
+              <span style="font-size: 0.75rem; color: var(--color-text-secondary);">24/7 Trauma Coordinator</span>
+            </div>
+          </div>
+
+          <!-- Clinical Disclaimer Notice -->
+          <div class="clinical-disclaimer-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            <div>
+              <strong style="font-size: 0.85rem; color: var(--color-primary); display: block; margin-bottom: 2px;">
+                CLINICAL BLOOD COMPATIBILITY NOTICE
+              </strong>
+              <p style="font-size: 0.8rem; color: var(--color-text-secondary); margin: 0; line-height: 1.4;">
+                Selecting a blood group or component does not establish transfusion compatibility. All blood group compatibility, component selection, antibody screening, and crossmatching must be strictly verified and authorized by qualified medical transfusion professionals at the treating hospital facility.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ====================================================================
+             TAB 2: CREATE EMERGENCY BLOOD REQUEST
+             ==================================================================== -->
+        <div class="patient-tab-panel" id="tab-create-request">
+          <div class="panel-header">
+            <div>
+              <h2 style="font-size: 1.6rem; font-weight: 800;">Emergency Blood Request Form</h2>
+              <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Register critical surgical or trauma requirements for immediate hospital crossmatching.</p>
+            </div>
+            <span class="badge-pill" style="background: var(--color-soft-red); color: var(--color-primary);">Trauma Priority</span>
+          </div>
+
+          <div class="emergency-form-container">
+            <form id="emergency-blood-request-form">
+
+              <!-- Priority Selector -->
+              <div style="margin-bottom: 1.5rem;">
+                <label class="form-label">Urgency Priority Level</label>
+                <div class="priority-selector-grid">
+                  <div class="priority-option-btn selected" data-priority="critical">
+                    <div style="font-weight: 800; font-size: 0.95rem;">CRITICAL</div>
+                    <div style="font-size: 0.75rem;">Immediate Trauma / OR Surgery (&lt; 2 Hours)</div>
+                  </div>
+                  <div class="priority-option-btn" data-priority="urgent">
+                    <div style="font-weight: 800; font-size: 0.95rem;">URGENT</div>
+                    <div style="font-size: 0.75rem;">Surgery Within 6–12 Hours</div>
+                  </div>
+                  <div class="priority-option-btn" data-priority="scheduled">
+                    <div style="font-weight: 800; font-size: 0.95rem;">SCHEDULED</div>
+                    <div style="font-size: 0.75rem;">Elective Procedure (&gt; 24 Hours)</div>
+                  </div>
+                </div>
+                <input type="hidden" id="form-urgency-priority" value="critical">
+              </div>
+
+              <!-- Patient & Blood Parameters -->
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin-bottom: 1.25rem;">
+                <div class="form-group">
+                  <label class="form-label" for="form-patient-name">Patient Full Legal Name *</label>
+                  <input type="text" id="form-patient-name" class="form-input" style="padding-left: 1rem;" placeholder="e.g., Eleanor Vance" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="form-blood-group">Required Blood Group *</label>
+                  <select id="form-blood-group" class="filter-select" required>
+                    <option value="O-">O- Negative (Universal Red Cell Donor)</option>
+                    <option value="O+">O+ Positive</option>
+                    <option value="A-">A- Negative</option>
+                    <option value="A+">A+ Positive</option>
+                    <option value="B-">B- Negative</option>
+                    <option value="B+">B+ Positive</option>
+                    <option value="AB-">AB- Negative</option>
+                    <option value="AB+">AB+ Positive (Universal Plasma)</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="form-blood-component">Required Blood Component *</label>
+                  <select id="form-blood-component" class="filter-select" required>
+                    <option value="packed_red_cells">Packed Red Blood Cells (PRBC)</option>
+                    <option value="whole_blood">Whole Blood (Standard)</option>
+                    <option value="platelets">Platelets (Apheresis)</option>
+                    <option value="plasma">Fresh Frozen Plasma (FFP)</option>
+                    <option value="cryoprecipitate">Cryoprecipitate</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="form-units-needed">Units Required (1–20) *</label>
+                  <input type="number" id="form-units-needed" class="form-input" style="padding-left: 1rem;" min="1" max="20" value="2" required>
+                </div>
+              </div>
+
+              <!-- Hospital Details -->
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin-bottom: 1.25rem;">
+                <div class="form-group">
+                  <label class="form-label" for="form-hospital-name">Treating Hospital Facility *</label>
+                  <input type="text" id="form-hospital-name" class="form-input" style="padding-left: 1rem;" placeholder="e.g., Metropolitan Central Trauma Care" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="form-hospital-city">Hospital City / Municipality *</label>
+                  <input type="text" id="form-hospital-city" class="form-input" style="padding-left: 1rem;" placeholder="e.g., Metro Central" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="form-hospital-district">Hospital District / Sector</label>
+                  <input type="text" id="form-hospital-district" class="form-input" style="padding-left: 1rem;" placeholder="e.g., Sector 4">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="form-required-datetime">Required By Date &amp; Time *</label>
+                  <input type="datetime-local" id="form-required-datetime" class="form-input" style="padding-left: 1rem;" required>
+                </div>
+
+                <div class="form-group" style="grid-column: 1/-1;">
+                  <label class="form-label" for="form-hospital-address">Exact Hospital Street Address *</label>
+                  <input type="text" id="form-hospital-address" class="form-input" style="padding-left: 1rem;" placeholder="e.g., 842 Medical Center Blvd, Floor 3, ICU Ward 4" required>
+                </div>
+              </div>
+
+              <!-- Clinical Indication & Verification Doctor -->
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin-bottom: 1.25rem;">
+                <div class="form-group" style="grid-column: 1/-1;">
+                  <label class="form-label" for="form-clinical-reason">Clinical Indication / Diagnosis *</label>
+                  <textarea id="form-clinical-reason" class="form-input" style="padding: 0.75rem 1rem; min-height: 80px;" placeholder="Describe diagnosis or surgical procedure (e.g., Acute hemorrhaging secondary to trauma surgery)" required></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="form-treating-doctor">Treating Doctor Name</label>
+                  <input type="text" id="form-treating-doctor" class="form-input" style="padding-left: 1rem;" placeholder="e.g., Dr. Sarah Chen">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="form-doctor-contact">Hospital / Doctor Contact Extension</label>
+                  <input type="tel" id="form-doctor-contact" class="form-input" style="padding-left: 1rem;" placeholder="e.g., +1 (555) 019-4400 Ext 402">
+                </div>
+              </div>
+
+              <!-- Requester Contact & Relationship -->
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-bottom: 1.5rem;">
+                <div class="form-group">
+                  <label class="form-label" for="form-requester-relationship">Relationship to Patient</label>
+                  <select id="form-requester-relationship" class="filter-select">
+                    <option value="Self">Self (Patient)</option>
+                    <option value="Parent" selected>Parent</option>
+                    <option value="Spouse">Spouse</option>
+                    <option value="Child">Child</option>
+                    <option value="Sibling">Sibling</option>
+                    <option value="Legal Guardian">Legal Guardian</option>
+                    <option value="Attending Medical Staff">Attending Medical Staff</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="form-requester-phone">Requester Phone Number *</label>
+                  <input type="tel" id="form-requester-phone" class="form-input" style="padding-left: 1rem;" placeholder="+1 (555) 019-8800" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="form-requester-email">Requester Email</label>
+                  <input type="email" id="form-requester-email" class="form-input" style="padding-left: 1rem;" placeholder="requester@example.com">
+                </div>
+              </div>
+
+              <!-- Consent & Declaration Checkbox -->
+              <div style="background: var(--color-bg); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); margin-bottom: 1.75rem;">
+                <label style="display: flex; gap: 0.75rem; align-items: flex-start; cursor: pointer;">
+                  <input type="checkbox" id="form-consent-check" checked style="accent-color: var(--color-primary); width: 18px; height: 18px; margin-top: 3px; cursor: pointer;">
+                  <span style="font-size: 0.8rem; color: var(--color-text-secondary); line-height: 1.45;">
+                    I declare that this emergency blood request corresponds to an active clinical admission. I understand that BloodLink facilitates communication with verified transfusion networks and does not independently authorize or conduct blood transfusions without qualified hospital medical staff crossmatching.
+                  </span>
+                </label>
+              </div>
+
+              <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+                <button type="button" class="btn btn-secondary" onclick="document.querySelector('.sidebar-nav-btn[data-tab=\'tab-overview\']').click();">Cancel</button>
+                <button type="submit" id="btn-submit-emergency-request" class="btn btn-primary">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                  Broadcast Emergency Blood Request
+                </button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             TAB 3: MY ACTIVE REQUESTS
+             ==================================================================== -->
+        <div class="patient-tab-panel" id="tab-active-requests">
+          <div class="panel-header">
+            <div>
+              <h2 style="font-size: 1.6rem; font-weight: 800;">My Active Emergency Requests</h2>
+              <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Currently circulating requests across regional transfusion triage desks.</p>
+            </div>
+            <button class="btn btn-primary btn-sm" onclick="document.querySelector('.sidebar-nav-btn[data-tab=\'tab-create-request\']').click();">
+              + New Request
+            </button>
+          </div>
+
+          <div class="facilities-grid" id="active-requests-grid">
+            <!-- Rendered by patient-command-center.js -->
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             TAB 4: REQUEST TRACKING TIMELINE
+             ==================================================================== -->
+        <div class="patient-tab-panel" id="tab-tracking">
+          <div class="panel-header">
+            <div>
+              <h2 style="font-size: 1.6rem; font-weight: 800;">Emergency Request Live Tracking</h2>
+              <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Real-time progress telemetry from hospital triage to cold-chain delivery.</p>
+            </div>
+            <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+              <button id="btn-view-matching-candidates" class="btn btn-primary btn-sm" style="display: flex; align-items: center; gap: 0.4rem;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 14px; height: 14px;"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                View Matching Candidates
+              </button>
+              <button id="btn-tracking-cancel-request" class="btn btn-ghost btn-sm" style="color: var(--color-primary);">
+                Cancel Request
+              </button>
+            </div>
+          </div>
+
+          <div class="request-tracking-card">
+            <!-- Header Meta -->
+            <div class="tracking-header-meta">
+              <div>
+                <span class="request-code-pill" id="tracking-request-code">REQ-2026-9042</span>
+                <h3 style="font-size: 1.35rem; font-weight: 800; margin: 0.5rem 0 0.2rem 0;" id="tracking-patient-name">Eleanor Vance</h3>
+                <div style="font-size: 0.85rem; color: var(--color-text-secondary);" id="tracking-hospital-name">Metropolitan Central Trauma Care</div>
+              </div>
+              <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+                <span class="badge-pill" id="tracking-blood-badge">O- • Packed Red Blood Cells</span>
+                <span class="badge-pill" id="tracking-priority-badge">CRITICAL</span>
+                <span class="badge-pill" id="tracking-units-summary" style="background: var(--color-surface); border: 1px solid var(--color-border);">1 / 2 Units Fulfilled</span>
+              </div>
+            </div>
+
+            <!-- Visual 7-Node Stepper Progress -->
+            <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem;">Transfusion Fulfilment Stages</h4>
+            <div class="tracking-stepper" id="tracking-stepper-container">
+              <!-- Rendered by patient-command-center.js -->
+            </div>
+
+            <!-- Audit Timeline Event Log -->
+            <h4 style="font-size: 0.95rem; font-weight: 700; margin-top: 2rem; margin-bottom: 0.75rem;">Verified Clinical Audit Events</h4>
+            <div class="timeline-event-list" id="tracking-timeline-events">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             TAB 5: NEARBY HOSPITALS & BLOOD BANKS DIRECTORY
+             ==================================================================== -->
+        <div class="patient-tab-panel" id="tab-facilities">
+          <div class="panel-header">
+            <div>
+              <h2 style="font-size: 1.6rem; font-weight: 800;">Nearby Hospitals &amp; Blood Banks</h2>
+              <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Verified medical institutions and cold-chain blood banks with certified reserves.</p>
+            </div>
+          </div>
+
+          <!-- Search & Filter Controls -->
+          <div class="facility-search-bar">
+            <div style="flex: 1; min-width: 240px; position: relative;">
+              <input type="text" id="facility-city-search" class="form-input" style="padding-left: 2.25rem;" placeholder="Search by city, sector, or postal code...">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="position: absolute; left: 0.85rem; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: var(--color-text-tertiary);"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </div>
+
+            <div style="display: flex; gap: 0.5rem;">
+              <button class="btn btn-secondary btn-sm facility-type-filter-btn active" data-type="all">All Facilities</button>
+              <button class="btn btn-secondary btn-sm facility-type-filter-btn" data-type="hospital">Trauma Hospitals</button>
+              <button class="btn btn-secondary btn-sm facility-type-filter-btn" data-type="blood_bank">Blood Banks</button>
+            </div>
+          </div>
+
+          <div class="facilities-grid" id="facilities-display-grid">
+            <!-- Rendered by patient-command-center.js -->
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             TAB 6: REQUEST HISTORY & REPORTS
+             ==================================================================== -->
+        <div class="patient-tab-panel" id="tab-history">
+          <div class="panel-header">
+            <div>
+              <h2 style="font-size: 1.6rem; font-weight: 800;">Request History &amp; Reports</h2>
+              <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Complete historical archive of blood requests with downloadable clinical summaries.</p>
+            </div>
+          </div>
+
+          <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 1.5rem; margin-bottom: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 220px;">
+              <input type="text" id="history-search-input" class="form-input" style="padding-left: 1rem;" placeholder="Search by Request Code, Patient, or Hospital...">
+            </div>
+            <select id="history-status-filter" class="filter-select" style="width: auto;">
+              <option value="all">All Statuses</option>
+              <option value="submitted">Submitted</option>
+              <option value="verified">Verified</option>
+              <option value="matching_in_progress">Matching In Progress</option>
+              <option value="fulfilled">Fulfilled</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+          </div>
+
+          <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; text-align: left;">
+              <thead>
+                <tr style="border-bottom: 1px solid var(--color-border); background: var(--color-bg);">
+                  <th style="padding: 1rem;">Code</th>
+                  <th style="padding: 1rem;">Patient</th>
+                  <th style="padding: 1rem;">Blood Group</th>
+                  <th style="padding: 1rem;">Units</th>
+                  <th style="padding: 1rem;">Hospital</th>
+                  <th style="padding: 1rem;">Status</th>
+                  <th style="padding: 1rem;">Action</th>
+                </tr>
+              </thead>
+              <tbody id="history-requests-table-body">
+                <!-- Rendered dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             TAB 7: NOTIFICATIONS CENTER
+             ==================================================================== -->
+        <div class="patient-tab-panel" id="tab-notifications">
+          <div class="panel-header">
+            <div>
+              <h2 style="font-size: 1.6rem; font-weight: 800;">Notifications &amp; Clinical Alerts</h2>
+              <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Real-time updates regarding hospital crossmatching, donor matches, and cold-chain transit.</p>
+            </div>
+            <button class="btn btn-secondary btn-sm" onclick="window.BloodLinkToast?.info('All alerts marked read.', 'Notifications');">Mark All as Read</button>
+          </div>
+
+          <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); overflow: hidden;" id="patient-notifications-list">
+            <!-- Rendered by patient-command-center.js -->
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             TAB 8: PATIENT PROFILE
+             ==================================================================== -->
+        <div class="patient-tab-panel" id="tab-profile">
+          <div class="panel-header">
+            <div>
+              <h2 style="font-size: 1.6rem; font-weight: 800;">Patient / Guardian Profile</h2>
+              <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Manage contact channels and default medical details.</p>
+            </div>
+          </div>
+
+          <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 2rem; max-width: 700px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;">
+              <div class="form-group">
+                <label class="form-label">Full Legal Name</label>
+                <input type="text" class="form-input dynamic-patient-name-input" style="padding-left: 1rem;" value="Marcus Vance" readonly disabled>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email Address (Auth Protected)</label>
+                <input type="email" class="form-input" style="padding-left: 1rem;" value="marcus.vance@example.com" readonly disabled>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Default City</label>
+                <input type="text" class="form-input" style="padding-left: 1rem;" value="Metro Central">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Primary Telephone</label>
+                <input type="tel" class="form-input" style="padding-left: 1rem;" value="+1 (555) 019-8800">
+              </div>
+            </div>
+            <div style="margin-top: 1.5rem;">
+              <button class="btn btn-primary btn-sm" onclick="window.BloodLinkToast?.success('Patient preferences saved.', 'Profile Updated');">Save Changes</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             TAB 9: PRIVACY & SETTINGS
+             ==================================================================== -->
+        <div class="patient-tab-panel" id="tab-settings">
+          <div class="panel-header">
+            <div>
+              <h2 style="font-size: 1.6rem; font-weight: 800;">Privacy &amp; Security Settings</h2>
+              <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Zero-trust medical privacy controls and emergency alert preferences.</p>
+            </div>
+          </div>
+
+          <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 2rem; max-width: 700px;">
+            <h4 style="font-size: 1.05rem; margin-bottom: 0.5rem;">Medical Data Isolation</h4>
+            <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 1.5rem;">
+              Emergency requests broadcast blood requirements, hospital address, and clinical indication strictly to verified trauma centers and consented universal donor nodes. Your private residential address is never shared.
+            </p>
+
+            <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem;">
+              <label style="display: flex; align-items: center; justify-content: space-between; padding: 1rem; background: var(--color-bg); border-radius: var(--radius-sm); border: 1px solid var(--color-border); cursor: pointer;">
+                <div>
+                  <div style="font-weight: 700; font-size: 0.9rem;">SMS &amp; Email Dispatch Updates</div>
+                  <div style="font-size: 0.75rem; color: var(--color-text-secondary);">Receive real-time milestone alerts as responses arrive.</div>
+                </div>
+                <input type="checkbox" checked style="accent-color: var(--color-primary); width: 18px; height: 18px;">
+              </label>
+            </div>
+
+            <div style="display: flex; gap: 1rem;">
+              <button class="btn btn-secondary btn-sm" onclick="window.BloodLinkToast?.success('Emergency archive generated.', 'Export Complete');">
+                Export Clinical Records (JSON)
+              </button>
+              <button class="btn btn-ghost btn-sm btn-patient-signout" style="color: var(--color-primary);">
+                Sign Out
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODALS: CANCELLATION & PRINTABLE SUMMARY REPORT
+       ======================================================================== -->
+
+  <!-- Modal 1: Cancel Blood Request -->
+  <div class="donor-modal-overlay" id="modal-cancel-request">
+    <div class="donor-modal-card">
+      <span class="modal-close-btn" onclick="closeModal('modal-cancel-request')">&times;</span>
+      <h3 style="font-size: 1.35rem; margin-bottom: 0.25rem;">Cancel Emergency Request</h3>
+      <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 1.25rem;">
+        Are you sure you want to cancel request <strong id="cancel-modal-code-label">REQ</strong>? This will notify treating hospital desks.
+      </p>
+
+      <input type="hidden" id="cancel-modal-request-id">
+      <div class="form-group" style="margin-bottom: 1.25rem;">
+        <label class="form-label" for="cancel-modal-reason">Reason for Cancellation *</label>
+        <textarea id="cancel-modal-reason" class="form-input" style="padding: 0.75rem; min-height: 70px;" placeholder="e.g., Blood requirement fulfilled by family donor, or procedure rescheduled."></textarea>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+        <button type="button" class="btn btn-secondary btn-sm" onclick="closeModal('modal-cancel-request')">Back</button>
+        <button type="button" id="btn-confirm-cancel-request" class="btn btn-danger btn-sm">Confirm Cancellation</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Printable Clinical Request Report -->
+  <div class="donor-modal-overlay" id="modal-request-report">
+    <div class="donor-modal-card" style="max-width: 650px;">
+      <span class="modal-close-btn" onclick="closeModal('modal-request-report')">&times;</span>
+
+      <!-- Printable Report Container -->
+      <div id="printable-request-summary" style="border: 2px solid #C71932; padding: 2rem; border-radius: 8px; background: #FFFDF9; color: #202124;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid #C71932; padding-bottom: 0.75rem; margin-bottom: 1.25rem;">
+          <div>
+            <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: #C71932; font-weight: 800;">
+              BloodLink Emergency Transfusion Network
+            </div>
+            <h2 style="font-size: 1.5rem; font-weight: 800; color: #8F1025; margin: 0.2rem 0;">
+              EMERGENCY BLOOD REQUISITION REPORT
+            </h2>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-family: var(--font-family-mono); font-size: 0.9rem; font-weight: 700; color: #C71932;" id="report-modal-code">REQ-2026-9042</div>
+            <div style="font-size: 0.72rem; color: #5F6368;" id="report-modal-date">Date</div>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; font-size: 0.85rem; margin-bottom: 1.25rem;">
+          <div><strong>Patient Name:</strong> <span id="report-modal-patient">Eleanor Vance</span></div>
+          <div><strong>Blood Component:</strong> <span id="report-modal-blood">O- (PRBC)</span></div>
+          <div><strong>Units Requisitioned:</strong> <span id="report-modal-units">2 Units</span></div>
+          <div><strong>Priority Level:</strong> <span id="report-modal-priority">CRITICAL</span></div>
+          <div><strong>Hospital Facility:</strong> <span id="report-modal-hospital">City Central Trauma</span></div>
+          <div><strong>Status:</strong> <span id="report-modal-status">MATCHING IN PROGRESS</span></div>
+          <div style="grid-column: 1/-1;"><strong>Facility Address:</strong> <span id="report-modal-address">842 Medical Center Blvd</span></div>
+          <div style="grid-column: 1/-1;"><strong>Clinical Indication:</strong> <p id="report-modal-reason" style="margin: 0.25rem 0 0 0; color: #5F6368;">Cardiovascular surgery prep</p></div>
+        </div>
+
+        <div style="border-top: 1px dashed #C71932; padding-top: 0.75rem; font-size: 0.75rem; color: #5F6368;">
+          <strong>Clinical Verification Policy:</strong> All blood units supplied through BloodLink must undergo pre-transfusion ABO/Rh confirmation and crossmatching by certified hospital medical laboratory technicians.
+        </div>
+      </div>
+
+      <div style="margin-top: 1.25rem; display: flex; justify-content: flex-end; gap: 0.75rem;">
+        <button class="btn btn-secondary btn-sm" onclick="closeModal('modal-request-report')">Close</button>
+        <button class="btn btn-primary btn-sm" onclick="window.print();">Print / Save PDF</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: Intelligent Matching Candidates & Discovery Drawer -->
+  <div class="donor-modal-overlay" id="modal-matching-candidates">
+    <div class="donor-modal-card" style="max-width: 820px; max-height: 90vh; display: flex; flex-direction: column;">
+      <span class="modal-close-btn" onclick="closeModal('modal-matching-candidates')">&times;</span>
+
+      <!-- Modal Header -->
+      <div style="padding-bottom: 0.75rem; border-bottom: 1px solid var(--color-border); margin-bottom: 0.75rem;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
+              <span class="badge-pill" style="background: var(--color-soft-red); color: var(--color-primary); font-size: 0.7rem; font-weight: 700;">ALGORITHMIC DISCOVERY ENGINE</span>
+              <span class="request-code-pill" id="matching-modal-request-code">REQ-2026-9042</span>
+            </div>
+            <h3 style="font-size: 1.4rem; font-weight: 800; margin: 0.2rem 0;">Intelligent Matching &amp; Donor Discovery</h3>
+            <p style="font-size: 0.825rem; color: var(--color-text-secondary); margin: 0;">Multi-factor evaluation across consenting donors, hospital inventory, and verified blood banks.</p>
+          </div>
+          <button id="btn-rerun-matching" class="btn btn-secondary btn-sm" style="display: flex; align-items: center; gap: 0.35rem;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 14px; height: 14px;"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+            Re-run Discovery
+          </button>
+        </div>
+
+        <!-- Statutory Clinical Disclaimer Banner -->
+        <div style="background: rgba(199, 25, 50, 0.08); border-left: 4px solid var(--color-primary); padding: 0.75rem 1rem; border-radius: 6px; margin-top: 0.75rem; font-size: 0.8rem; color: var(--color-text); line-height: 1.45;">
+          <strong>Clinical Notice:</strong> BloodLink provides donor and inventory discovery support only. Selecting a blood group or component does not establish transfusion compatibility. All compatibility, component selection, and crossmatching must be strictly verified by qualified medical transfusion professionals.
+        </div>
+      </div>
+
+      <!-- Discovery Metric Counters -->
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin-bottom: 1rem;" id="matching-summary-metrics">
+        <div style="background: var(--color-bg); padding: 0.75rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); text-align: center;">
+          <div style="font-size: 0.7rem; color: var(--color-text-secondary); font-weight: 600; text-transform: uppercase;">Potential Donors</div>
+          <div style="font-size: 1.4rem; font-weight: 800; color: var(--color-primary);" id="matching-stat-donors">0</div>
+        </div>
+        <div style="background: var(--color-bg); padding: 0.75rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); text-align: center;">
+          <div style="font-size: 0.7rem; color: var(--color-text-secondary); font-weight: 600; text-transform: uppercase;">Facility Stock</div>
+          <div style="font-size: 1.4rem; font-weight: 800; color: var(--color-secondary);" id="matching-stat-inventory">0</div>
+        </div>
+        <div style="background: var(--color-bg); padding: 0.75rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); text-align: center;">
+          <div style="font-size: 0.7rem; color: var(--color-text-secondary); font-weight: 600; text-transform: uppercase;">Awaiting Reps</div>
+          <div style="font-size: 1.4rem; font-weight: 800; color: #D97706;" id="matching-stat-awaiting">0</div>
+        </div>
+        <div style="background: var(--color-bg); padding: 0.75rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); text-align: center;">
+          <div style="font-size: 0.7rem; color: var(--color-text-secondary); font-weight: 600; text-transform: uppercase;">Confirmed</div>
+          <div style="font-size: 1.4rem; font-weight: 800; color: #059669;" id="matching-stat-confirmed">0</div>
+        </div>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem; border-bottom: 1px solid var(--color-border-subtle); padding-bottom: 0.5rem; flex-wrap: wrap;">
+        <button class="btn btn-secondary btn-sm matching-category-filter active" data-category="all">All Options</button>
+        <button class="btn btn-secondary btn-sm matching-category-filter" data-category="donors">Potential Donors</button>
+        <button class="btn btn-secondary btn-sm matching-category-filter" data-category="inventory">Facility Stock</button>
+        <button class="btn btn-secondary btn-sm matching-category-filter" data-category="responses">Live Responses</button>
+        <button class="btn btn-secondary btn-sm matching-category-filter" data-category="unavailable">Unavailable / Filtered</button>
+      </div>
+
+      <!-- Candidates Scrollable List -->
+      <div id="matching-candidates-container" style="overflow-y: auto; flex: 1; min-height: 250px; display: flex; flex-direction: column; gap: 0.75rem; padding-right: 4px;">
+        <!-- Rendered by patient-command-center.js -->
+      </div>
+
+      <div style="margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--color-border); display: flex; justify-content: space-between; align-items: center;">
+        <span style="font-size: 0.725rem; color: var(--color-text-tertiary);">Donor privacy protocol active: personal phone numbers, email, and home addresses are never exposed to requesters.</span>
+        <button class="btn btn-secondary btn-sm" onclick="closeModal('modal-matching-candidates')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" aria-live="polite"></div>
+
+  <!-- ========================================================================
+       SCRIPTS: THREE.JS, SUPABASE & PATIENT COMMAND CENTER MODULES
+       ======================================================================== -->
+  <!-- Official Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- Supabase Official JS SDK CDN (v2) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- BloodLink Core Services -->
+  <script src="js/theme.js"></script>
+  <script src="js/components/toast.js"></script>
+  <script src="js/api/config.js"></script>
+  <script src="js/api/supabase-client.js"></script>
+  <script src="js/api/session-manager.js"></script>
+  <script src="js/api/profile-service.js"></script>
+  <script src="js/api/api-client.js"></script>
+
+  <!-- Patient Command Center Modules -->
+  <script src="js/patient/patient-3d-pulse.js"></script>
+  <script src="js/patient/patient-service.js"></script>
+  <script src="js/patient/patient-command-center.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      if (window.BloodLinkSession) {
+        await window.BloodLinkSession.requireAuth({ allowedRoles: ['patient'] });
+      }
+    });
+  </script>
+</body>
+</html>

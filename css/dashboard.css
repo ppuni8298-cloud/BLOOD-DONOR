@@ -1,0 +1,189 @@
+/* ==========================================================================
+   BLOODLINK - DASHBOARD SHELLS STYLING (dashboard.css)
+   ========================================================================== */
+
+.dashboard-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg);
+}
+
+.dashboard-nav {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.85rem 0;
+}
+
+.dashboard-nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-profile-menu {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-badge-role {
+  font-size: 0.7rem;
+  font-weight: var(--font-weight-bold);
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.user-badge-role.donor {
+  background: var(--color-soft-red);
+  color: var(--color-primary);
+  border: 1px solid var(--color-soft-red-border);
+}
+
+.user-badge-role.patient {
+  background: var(--color-info-bg);
+  color: var(--color-info);
+  border: 1px solid rgba(2, 132, 199, 0.2);
+}
+
+.user-badge-role.hospital {
+  background: rgba(143, 16, 37, 0.12);
+  color: var(--color-secondary);
+  border: 1px solid rgba(143, 16, 37, 0.25);
+}
+
+.user-badge-role.blood_bank {
+  background: var(--color-warning-bg);
+  color: var(--color-warning);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+.dashboard-main {
+  flex: 1;
+  padding: clamp(2rem, 4vw, 3.5rem) 0;
+}
+
+.dashboard-header-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: var(--space-8);
+}
+
+.dashboard-welcome h1 {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  margin-bottom: 0.35rem;
+}
+
+.dashboard-welcome p {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.dashboard-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+
+.dash-stat-box {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.dash-stat-label {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 0.35rem;
+}
+
+.dash-stat-value {
+  font-family: var(--font-family-display);
+  font-size: 1.75rem;
+  font-weight: var(--font-weight-extrabold);
+  color: var(--color-text);
+}
+
+.dashboard-content-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--space-6);
+}
+
+.dashboard-panel-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: clamp(1.5rem, 2.5vw, 2rem);
+  box-shadow: var(--shadow-sm);
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-5);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.verification-banner {
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-6);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.verification-banner.pending {
+  background: var(--color-warning-bg);
+  border: 1.5px solid rgba(245, 158, 11, 0.4);
+  color: var(--color-warning);
+}
+
+.verification-banner.verified {
+  background: var(--color-success-bg);
+  border: 1.5px solid rgba(16, 185, 129, 0.4);
+  color: var(--color-success);
+}
+
+@media (max-width: 1024px) {
+  .dashboard-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dashboard-content-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .dashboard-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-header-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

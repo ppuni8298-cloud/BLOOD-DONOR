@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BloodLink Hospital Command Center — Emergency surgery, clinical verification, trauma reserve inventory, and transfusion crossmatch coordination.">
+  <title>Hospital Command Center — BloodLink</title>
+
+  <!-- Google Fonts: Outfit, Plus Jakarta Sans, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Core & Command Center Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/hospital-command-center.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23C71932'><path d='M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z'/></svg>">
+</head>
+<body>
+
+  <div class="hospital-app-layout">
+
+    <!-- ========================================================================
+         1. HOSPITAL SAAS SIDEBAR
+         ======================================================================== -->
+    <aside class="hospital-sidebar" aria-label="Hospital Operations Navigation">
+      <div class="sidebar-header">
+        <a href="index.html" class="sidebar-brand">
+          <div class="brand-icon-wrapper" style="width: 36px; height: 36px; border-radius: var(--radius-sm); background: var(--color-primary); color: #fff; display: flex; align-items: center; justify-content: center;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="width: 20px; height: 20px;">
+              <path d="M12 6v12"></path><path d="M6 12h12"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect>
+            </svg>
+          </div>
+          <span>Blood<span class="brand-highlight" style="color: var(--color-primary);">Link</span></span>
+        </a>
+      </div>
+
+      <ul class="sidebar-nav-list">
+        <li class="sidebar-section-title">Emergency Operations</li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn active" data-tab="tab-overview">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="7" height="9" x="3" y="3" rx="1"></rect><rect width="7" height="5" x="14" y="3" rx="1"></rect><rect width="7" height="9" x="14" y="12" rx="1"></rect><rect width="7" height="5" x="3" y="16" rx="1"></rect></svg>
+            <span>Hospital Overview</span>
+          </button>
+        </li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-requests" style="color: var(--color-primary); font-weight: 700;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            <span>Emergency Requests</span>
+            <span class="sidebar-badge" id="sidebar-active-badge">4</span>
+          </button>
+        </li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-inventory">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path><path d="m3.3 7 8.7 5 8.7-5"></path><path d="M12 22V12"></path></svg>
+            <span>Trauma Blood Reserve</span>
+          </button>
+        </li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-matching">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="m4.93 4.93 4.24 4.24"></path><path d="m14.83 9.17 4.24-4.24"></path><path d="m14.83 14.83 4.24 4.24"></path><path d="m9.17 14.83-4.24 4.24"></path></svg>
+            <span>Matching Results</span>
+          </button>
+        </li>
+
+        <li class="sidebar-section-title">Logistics &amp; Coordination</li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-bloodbanks">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path></svg>
+            <span>Blood Bank Network</span>
+          </button>
+        </li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-donors">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>
+            <span>Donor Coordination</span>
+          </button>
+        </li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-donations">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+            <span>Donation Records</span>
+          </button>
+        </li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-fulfilment">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            <span>Transfusion Fulfilment</span>
+          </button>
+        </li>
+
+        <li class="sidebar-section-title">Administration</li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-staff">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <span>Medical Staff</span>
+          </button>
+        </li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-reports">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            <span>Reports &amp; Analytics</span>
+          </button>
+        </li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-notifications">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg>
+            <span>Alerts &amp; Beacons</span>
+            <span class="sidebar-badge warning" id="sidebar-alerts-badge">2</span>
+          </button>
+        </li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-settings">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            <span>Facility Settings</span>
+          </button>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="user-avatar" id="sidebar-user-avatar">HT</div>
+        <div style="flex: 1; min-width: 0;">
+          <div style="font-weight: 700; font-size: 0.85rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" id="sidebar-hospital-name">Metropolitan Trauma</div>
+          <div style="font-size: 0.72rem; color: var(--color-text-tertiary);">Hospital Facility</div>
+        </div>
+        <button id="btn-sidebar-logout" class="btn btn-secondary btn-sm btn-logout" style="padding: 0.35rem 0.5rem;" title="Sign Out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 15px; height: 15px;"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+        </button>
+      </div>
+    </aside>
+
+    <!-- ========================================================================
+         2. MAIN CONTENT AREA & TOPBAR
+         ======================================================================== -->
+    <div class="hospital-content-area">
+      <header class="hospital-topbar">
+        <div class="topbar-left">
+          <button id="hospital-menu-toggle" class="btn btn-secondary btn-sm" style="display: none; padding: 0.4rem;" aria-label="Toggle Menu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 18px; height: 18px;"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+          <div>
+            <div class="trauma-level-badge">
+              <span class="pulse-dot"></span>
+              Level 1 Trauma Center • Active Triage
+            </div>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <button class="btn btn-danger btn-sm" onclick="window.BloodLinkToast?.warning('Code-Red trauma broadcast activated. Notifying connected blood banks.', 'Trauma Alert');">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 14px; height: 14px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            Broadcast Code-Red
+          </button>
+
+          <button class="theme-toggle-btn" aria-label="Toggle Theme">
+            <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+            <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+          </button>
+
+          <div style="font-size: 0.82rem; font-weight: 700; color: var(--color-text);" id="topbar-user-display">
+            Dr. Evelyn Reed
+          </div>
+        </div>
+      </header>
+
+      <main class="hospital-view-container">
+
+        <!-- ====================================================================
+             MODULE 1: HOSPITAL OVERVIEW
+             ==================================================================== -->
+        <div class="hospital-tab-pane active" id="tab-overview">
+
+          <!-- Welcome Card with 3D Simulation -->
+          <div class="hospital-welcome-card">
+            <div>
+              <div style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem;">
+                <span class="badge-pill" style="background: var(--color-soft-red); color: var(--color-primary); font-weight: 700;">
+                  Emergency Trauma Surgery
+                </span>
+                <span class="badge-pill">
+                  Cold-Chain 4.1°C Active
+                </span>
+              </div>
+              <h1 style="font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; margin-bottom: 0.4rem;">
+                Hospital Operations Command
+              </h1>
+              <p style="font-size: 0.95rem; color: var(--color-text-secondary); max-width: 650px; margin-bottom: 1.25rem;">
+                Clinical verification portal for surgical admissions, immediate trauma blood reserve monitoring, cross-match authorization, and regional blood bank coordination.
+              </p>
+              <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                <button class="btn btn-primary btn-sm" onclick="document.querySelector('.sidebar-nav-btn[data-tab=\'tab-requests\']').click();">
+                  Review Emergency Requests
+                </button>
+                <button class="btn btn-secondary btn-sm" onclick="document.querySelector('.sidebar-nav-btn[data-tab=\'tab-inventory\']').click();">
+                  Trauma Reserve Stock
+                </button>
+              </div>
+            </div>
+
+            <!-- Micro 3D Erythrocyte Engine -->
+            <div class="hospital-3d-cell-viewport" id="hospital-3d-cell-viewport"></div>
+          </div>
+
+          <!-- Statutory Clinical Blood Compatibility Notice -->
+          <div class="clinical-disclaimer-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            <div>
+              <strong style="font-size: 0.85rem; color: var(--color-primary); display: block; margin-bottom: 2px;">
+                CLINICAL BLOOD COMPATIBILITY &amp; CROSSMATCHING NOTICE
+              </strong>
+              <p style="font-size: 0.8rem; color: var(--color-text-secondary); margin: 0; line-height: 1.45;">
+                Selecting a blood group or component does not establish transfusion compatibility. BloodLink facilitates logistics, inventory discovery, and donor communications. All clinical compatibility, antibody screening, and crossmatching must be verified and authorized by qualified medical transfusion professionals at this hospital facility.
+              </p>
+            </div>
+          </div>
+
+          <!-- 8 Operational Database Metrics -->
+          <div class="hospital-metrics-grid">
+            <div class="hospital-metric-card">
+              <div class="metric-label">
+                <span>Active Emergency Requests</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 14px; height: 14px; color: var(--color-primary);"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+              </div>
+              <div class="metric-val" id="stat-active-requests" style="color: var(--color-primary);">4</div>
+              <div class="metric-sub">Pending or matching in network</div>
+            </div>
+
+            <div class="hospital-metric-card">
+              <div class="metric-label">
+                <span>Critical Awaiting Review</span>
+                <span class="badge-pill" style="font-size: 0.65rem; background: rgba(199,25,50,0.15); color: var(--color-primary);">Urgent</span>
+              </div>
+              <div class="metric-val" id="stat-critical-review" style="color: var(--color-warning);">2</div>
+              <div class="metric-sub">Requires physician authorization</div>
+            </div>
+
+            <div class="hospital-metric-card">
+              <div class="metric-label">Verified Requests</div>
+              <div class="metric-val" id="stat-verified-requests" style="color: var(--color-success);">5</div>
+              <div class="metric-sub">Clinical indication approved</div>
+            </div>
+
+            <div class="hospital-metric-card">
+              <div class="metric-label">Awaiting Blood Supply</div>
+              <div class="metric-val" id="stat-awaiting-blood">2</div>
+              <div class="metric-sub">Matching runs in progress</div>
+            </div>
+
+            <div class="hospital-metric-card">
+              <div class="metric-label">Confirmed Fulfilments</div>
+              <div class="metric-val" id="stat-confirmed-fulfilments" style="color: var(--color-success);">11</div>
+              <div class="metric-sub">Transfusions administered</div>
+            </div>
+
+            <div class="hospital-metric-card">
+              <div class="metric-label">Trauma Reserve Stock</div>
+              <div class="metric-val" id="stat-trauma-units">32 Units</div>
+              <div class="metric-sub">Refrigerated at 4.1°C</div>
+            </div>
+
+            <div class="hospital-metric-card">
+              <div class="metric-label">Pending Inbound Dispatches</div>
+              <div class="metric-val" id="stat-pending-reservations">2</div>
+              <div class="metric-sub">Cold-chain couriers en route</div>
+            </div>
+
+            <div class="hospital-metric-card">
+              <div class="metric-label">Active Clinical Alerts</div>
+              <div class="metric-val" id="stat-active-alerts" style="color: var(--color-primary);">2</div>
+              <div class="metric-sub">Stock shortages or near-expiry</div>
+            </div>
+          </div>
+
+          <!-- Recent Requests Table Panel -->
+          <div class="hospital-panel">
+            <div class="hospital-panel-header">
+              <div>
+                <h3 style="font-size: 1.15rem; font-weight: 800;">Urgent Patient Cases Under Triage</h3>
+                <p style="font-size: 0.82rem; color: var(--color-text-secondary); margin: 0;">Surgical and trauma blood requests currently active.</p>
+              </div>
+              <button class="btn btn-secondary btn-sm" onclick="document.querySelector('.sidebar-nav-btn[data-tab=\'tab-requests\']').click();">
+                View All Emergency Requests
+              </button>
+            </div>
+
+            <div class="hospital-table-wrapper">
+              <table class="hospital-table">
+                <thead>
+                  <tr>
+                    <th>Patient Case</th>
+                    <th>Blood Group</th>
+                    <th>Quantity</th>
+                    <th>Priority</th>
+                    <th>Verification</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="overview-requests-tbody">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ====================================================================
+             MODULE 2: EMERGENCY REQUEST MANAGEMENT
+             ==================================================================== -->
+        <div class="hospital-tab-pane" id="tab-requests">
+          <div class="hospital-panel">
+            <div class="hospital-panel-header">
+              <div>
+                <h2 style="font-size: 1.4rem; font-weight: 800;">Emergency Blood Request Management</h2>
+                <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Comprehensive clinical review, crossmatching verification, and administration pipeline.</p>
+              </div>
+            </div>
+
+            <!-- Search & Filters -->
+            <div class="filter-bar">
+              <input type="text" id="requests-search-input" placeholder="Search by patient, ID, or blood group..." style="padding: 0.45rem 0.85rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); font-size: 0.85rem; width: 280px; background: var(--color-bg);">
+              <select id="requests-priority-filter" style="padding: 0.45rem 0.85rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); font-size: 0.85rem; background: var(--color-bg);">
+                <option value="">All Priorities</option>
+                <option value="critical">Critical</option>
+                <option value="urgent">Urgent</option>
+                <option value="standard">Standard</option>
+              </select>
+            </div>
+
+            <div class="hospital-table-wrapper">
+              <table class="hospital-table">
+                <thead>
+                  <tr>
+                    <th>Patient Case</th>
+                    <th>Blood Product</th>
+                    <th>Required</th>
+                    <th>Priority</th>
+                    <th>Clinical Status</th>
+                    <th>Network Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="requests-table-tbody">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             MODULE 4: TRAUMA BLOOD RESERVES INVENTORY
+             ==================================================================== -->
+        <div class="hospital-tab-pane" id="tab-inventory">
+          <div class="hospital-panel">
+            <div class="hospital-panel-header">
+              <div>
+                <h2 style="font-size: 1.4rem; font-weight: 800;">Trauma Blood Reserves (Hospital Cold Storage)</h2>
+                <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Physical inventory stored in hospital trauma refrigeration unit (Target: 4.0°C ± 1.0°C).</p>
+              </div>
+              <span class="badge-pill" style="background: rgba(16,185,129,0.15); color: var(--color-success); font-weight: 700;">
+                Sensor Active: 4.1°C
+              </span>
+            </div>
+
+            <!-- Group Stock Summary -->
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem;" id="trauma-inventory-grid">
+              <!-- Rendered dynamically -->
+            </div>
+
+            <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 1rem;">Traceable Component Batches in Cold Vault</h3>
+            <div class="hospital-table-wrapper">
+              <table class="hospital-table">
+                <thead>
+                  <tr>
+                    <th>Batch ID</th>
+                    <th>Blood Group</th>
+                    <th>Component</th>
+                    <th>Quantity</th>
+                    <th>Vault Location</th>
+                    <th>QC Status</th>
+                    <th>Expiry Date</th>
+                  </tr>
+                </thead>
+                <tbody id="inventory-table-tbody">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             MODULE 5: MATCHING RESULTS
+             ==================================================================== -->
+        <div class="hospital-tab-pane" id="tab-matching">
+          <div class="hospital-panel">
+            <div class="hospital-panel-header">
+              <div>
+                <h2 style="font-size: 1.4rem; font-weight: 800;">Intelligent Matching Engine Telemetry</h2>
+                <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Multi-tiered algorithmic matching connecting trauma cases to compatible donors and blood bank reserves.</p>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-bottom: 2rem;">
+              <div style="padding: 1.5rem; background: var(--color-bg); border-radius: var(--radius-lg); border: 1px solid var(--color-border);">
+                <div style="font-size: 0.75rem; color: var(--color-text-tertiary); font-weight: 700; text-transform: uppercase;">Compatibility Ruleset</div>
+                <div style="font-size: 1.25rem; font-weight: 800; color: var(--color-primary); margin: 0.35rem 0;">AABB / WHO Standard</div>
+                <div style="font-size: 0.8rem; color: var(--color-text-secondary);">Red cell &amp; plasma reverse matching active</div>
+              </div>
+              <div style="padding: 1.5rem; background: var(--color-bg); border-radius: var(--radius-lg); border: 1px solid var(--color-border);">
+                <div style="font-size: 0.75rem; color: var(--color-text-tertiary); font-weight: 700; text-transform: uppercase;">Match Discovery Rate</div>
+                <div style="font-size: 1.25rem; font-weight: 800; color: var(--color-success); margin: 0.35rem 0;">94.2%</div>
+                <div style="font-size: 0.8rem; color: var(--color-text-secondary);">Average 3.2 candidates discovered per run</div>
+              </div>
+              <div style="padding: 1.5rem; background: var(--color-bg); border-radius: var(--radius-lg); border: 1px solid var(--color-border);">
+                <div style="font-size: 0.75rem; color: var(--color-text-tertiary); font-weight: 700; text-transform: uppercase;">Execution Latency</div>
+                <div style="font-size: 1.25rem; font-weight: 800; color: var(--color-text); margin: 0.35rem 0;">142 ms</div>
+                <div style="font-size: 0.8rem; color: var(--color-text-secondary);">Indexed spatial postGIS matching</div>
+              </div>
+            </div>
+
+            <div style="background: var(--color-surface); padding: 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--color-border);">
+              <h4 style="margin-bottom: 0.75rem;">Active Matching Queue</h4>
+              <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 1rem;">Requests currently being evaluated against active donor availability and connected blood bank stock.</p>
+              <div style="display: flex; gap: 0.5rem;">
+                <span class="badge-pill" style="background: var(--color-soft-red); color: var(--color-primary); font-weight: 700;">REQ-TRM-8910: 5 Donors Invited (O-)</span>
+                <span class="badge-pill" style="background: rgba(16,185,129,0.15); color: var(--color-success); font-weight: 700;">REQ-SRG-9104: 1 Reservation Reserved (B-)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             MODULE 6: DONOR COORDINATION
+             ==================================================================== -->
+        <div class="hospital-tab-pane" id="tab-donors">
+          <div class="hospital-panel">
+            <div class="hospital-panel-header">
+              <div>
+                <h2 style="font-size: 1.4rem; font-weight: 800;">Donor Direct Coordination</h2>
+                <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Consented universal and compatible donors dispatched to hospital phlebotomy intake.</p>
+              </div>
+            </div>
+            <div class="hospital-table-wrapper">
+              <table class="hospital-table">
+                <thead>
+                  <tr>
+                    <th>Donor Alias</th>
+                    <th>Blood Group</th>
+                    <th>Proximity</th>
+                    <th>Commitment Status</th>
+                    <th>ETA</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Donor #DK-491</strong></td>
+                    <td><span class="badge-pill" style="color: var(--color-primary); font-weight: 800;">O- Universal</span></td>
+                    <td>2.4 km (North Metro)</td>
+                    <td><span class="badge-pill" style="background: rgba(16,185,129,0.15); color: var(--color-success);">ACCEPTED INVITATION</span></td>
+                    <td>~18 mins</td>
+                    <td>
+                      <button class="btn btn-secondary btn-sm" onclick="window.BloodLinkToast?.info('Phlebotomy slot reserved in Trauma Donor Bay.', 'Slot Reserved');">
+                        Confirm Phlebotomy
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Donor #DK-812</strong></td>
+                    <td><span class="badge-pill" style="font-weight: 800;">A+</span></td>
+                    <td>4.1 km (West Sector)</td>
+                    <td><span class="badge-pill" style="background: rgba(245,158,11,0.15); color: var(--color-warning);">EN ROUTE</span></td>
+                    <td>~32 mins</td>
+                    <td>
+                      <button class="btn btn-secondary btn-sm" onclick="window.BloodLinkToast?.info('Coordinator notified donor.', 'Status Logged');">
+                        Track Arrival
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             MODULE 7: BLOOD BANK COORDINATION & COLD-CHAIN DISPATCHES
+             ==================================================================== -->
+        <div class="hospital-tab-pane" id="tab-bloodbanks">
+          <div class="hospital-panel">
+            <div class="hospital-panel-header">
+              <div>
+                <h2 style="font-size: 1.4rem; font-weight: 800;">Blood Bank Coordination &amp; Transit Intake</h2>
+                <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Inbound units from regional blood bank cold vaults with temperature logger verification.</p>
+              </div>
+            </div>
+
+            <div class="hospital-table-wrapper">
+              <table class="hospital-table">
+                <thead>
+                  <tr>
+                    <th>Dispatch Code</th>
+                    <th>Origin Blood Bank</th>
+                    <th>Units &amp; Group</th>
+                    <th>Courier</th>
+                    <th>Departure Temp</th>
+                    <th>Status</th>
+                    <th>Intake Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="font-family: monospace; font-weight: 700;">DSP-2026-00412</td>
+                    <td>Red Cross Regional Transfusion Center</td>
+                    <td><strong>4 Units O- PRBC</strong></td>
+                    <td>Emergency LifeFlight Courier</td>
+                    <td>3.8°C</td>
+                    <td><span class="badge-pill" style="background: rgba(2,132,199,0.15); color: var(--color-info);">IN TRANSIT</span></td>
+                    <td>
+                      <button class="btn btn-primary btn-sm" onclick="window.BloodLinkHospitalService.receiveDispatch('DSP-2026-00412', 4.1, 'Verified intact').then(() => window.BloodLinkToast?.success('Cold-chain shipment confirmed into trauma intake.', 'Intake Logged'));">
+                        Confirm Delivery Intake
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             MODULE 8: DONATION RECORDS
+             ==================================================================== -->
+        <div class="hospital-tab-pane" id="tab-donations">
+          <div class="hospital-panel">
+            <div class="hospital-panel-header">
+              <div>
+                <h2 style="font-size: 1.4rem; font-weight: 800;">Hospital Donation Collection Records</h2>
+                <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Direct whole blood and apheresis phlebotomy sessions conducted at this facility.</p>
+              </div>
+            </div>
+
+            <div class="hospital-table-wrapper">
+              <table class="hospital-table">
+                <thead>
+                  <tr>
+                    <th>Record ID</th>
+                    <th>Blood Group</th>
+                    <th>Donation Type</th>
+                    <th>Quantity</th>
+                    <th>Collection Date</th>
+                    <th>Screening Status</th>
+                    <th>Clinical Notes</th>
+                  </tr>
+                </thead>
+                <tbody id="donations-table-tbody">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             MODULE 9: TRANSFUSION FULFILMENT TRACKING
+             ==================================================================== -->
+        <div class="hospital-tab-pane" id="tab-fulfilment">
+          <div class="hospital-panel">
+            <div class="hospital-panel-header">
+              <div>
+                <h2 style="font-size: 1.4rem; font-weight: 800;">Transfusion Crossmatch &amp; Administration Log</h2>
+                <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Regulatory compliance records of patient crossmatches, unit barcodes, and transfusion outcomes.</p>
+              </div>
+            </div>
+
+            <div class="hospital-table-wrapper">
+              <table class="hospital-table">
+                <thead>
+                  <tr>
+                    <th>Fulfilment ID</th>
+                    <th>Request Ref</th>
+                    <th>Administering Physician</th>
+                    <th>Crossmatch Result</th>
+                    <th>Transfusion Outcome</th>
+                    <th>Timestamp</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="font-family: monospace; font-weight: 700;">FUL-2026-0912</td>
+                    <td>REQ-CRD-9150</td>
+                    <td>Dr. Evelyn Reed (MD-NY-90214)</td>
+                    <td><span class="badge-pill" style="background: rgba(16,185,129,0.15); color: var(--color-success); font-weight: 700;">COMPATIBLE</span></td>
+                    <td><span class="badge-pill" style="background: rgba(16,185,129,0.15); color: var(--color-success);">SUCCESSFUL</span></td>
+                    <td>Today, 14:15 UTC</td>
+                  </tr>
+                  <tr>
+                    <td style="font-family: monospace; font-weight: 700;">FUL-2026-0881</td>
+                    <td>REQ-OBG-8801</td>
+                    <td>Dr. Patel, MD</td>
+                    <td><span class="badge-pill" style="background: rgba(16,185,129,0.15); color: var(--color-success); font-weight: 700;">COMPATIBLE</span></td>
+                    <td><span class="badge-pill" style="background: rgba(16,185,129,0.15); color: var(--color-success);">SUCCESSFUL</span></td>
+                    <td>Yesterday, 19:40 UTC</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             MODULE 10: STAFF MANAGEMENT
+             ==================================================================== -->
+        <div class="hospital-tab-pane" id="tab-staff">
+          <div class="hospital-panel">
+            <div class="hospital-panel-header">
+              <div>
+                <h2 style="font-size: 1.4rem; font-weight: 800;">Medical &amp; Transfusion Staff Directory</h2>
+                <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Authorized medical officers, transfusion technicians, and clinical coordinators.</p>
+              </div>
+              <button class="btn btn-primary btn-sm" onclick="window.openStaffModal();">
+                + Provision Staff Member
+              </button>
+            </div>
+
+            <div class="hospital-table-wrapper">
+              <table class="hospital-table">
+                <thead>
+                  <tr>
+                    <th>Staff Name &amp; Email</th>
+                    <th>Facility Role</th>
+                    <th>Department</th>
+                    <th>License Number</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="staff-table-tbody">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             MODULE 11: REPORTS & ANALYTICS
+             ==================================================================== -->
+        <div class="hospital-tab-pane" id="tab-reports">
+          <div class="hospital-panel">
+            <div class="hospital-panel-header">
+              <div>
+                <h2 style="font-size: 1.4rem; font-weight: 800;">Transfusion &amp; Inventory Clinical Analytics</h2>
+                <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Aggregated regulatory compliance, crossmatch safety, and emergency response performance (Last 30 Days).</p>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-bottom: 2rem;">
+              <div class="hospital-metric-card">
+                <div class="metric-label">Units Transfused</div>
+                <div class="metric-val" id="rep-transfused">146</div>
+                <div class="metric-sub">Across 58 emergency surgeries</div>
+              </div>
+              <div class="metric-card hospital-metric-card">
+                <div class="metric-label">Testing Pass Rate</div>
+                <div class="metric-val" id="rep-pass-rate" style="color: var(--color-success);">98.4%</div>
+                <div class="metric-sub">Chemiluminescent non-reactive</div>
+              </div>
+              <div class="metric-card hospital-metric-card">
+                <div class="metric-label">Crossmatch Compatibility</div>
+                <div class="metric-val" id="rep-compatibility" style="color: var(--color-success);">99.6%</div>
+                <div class="metric-sub">Zero adverse hemolytic events</div>
+              </div>
+              <div class="metric-card hospital-metric-card">
+                <div class="metric-label">Avg Transit Time</div>
+                <div class="metric-val" id="rep-transit-time">24.2m</div>
+                <div class="metric-sub">Blood bank to surgical bay</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             MODULE 12: NOTIFICATIONS & ALERTS
+             ==================================================================== -->
+        <div class="hospital-tab-pane" id="tab-notifications">
+          <div class="hospital-panel">
+            <div class="hospital-panel-header">
+              <div>
+                <h2 style="font-size: 1.4rem; font-weight: 800;">Hospital Clinical Alerts &amp; Code-Red Log</h2>
+                <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Automated triggers for near-expiry units, inventory thresholds, and regional requests.</p>
+              </div>
+            </div>
+
+            <div id="alerts-feed-container">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             MODULE 13: FACILITY SETTINGS
+             ==================================================================== -->
+        <div class="hospital-tab-pane" id="tab-settings">
+          <div class="hospital-panel">
+            <div class="hospital-panel-header">
+              <div>
+                <h2 style="font-size: 1.4rem; font-weight: 800;">Hospital Facility Accreditation &amp; Configuration</h2>
+                <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Regulatory licenses, trauma tiering, and operational notification rules.</p>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 800px;">
+              <div>
+                <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem;">Facility Official Name</label>
+                <input type="text" value="Metropolitan Trauma & Surgical Center" disabled style="width: 100%; padding: 0.6rem 0.85rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); background: var(--color-bg);">
+              </div>
+              <div>
+                <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem;">Trauma Designation</label>
+                <input type="text" value="Level 1 Regional Trauma Center" disabled style="width: 100%; padding: 0.6rem 0.85rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); background: var(--color-bg);">
+              </div>
+              <div>
+                <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem;">State Medical Board License</label>
+                <input type="text" value="HOSP-LIC-NY-99214-A" disabled style="width: 100%; padding: 0.6rem 0.85rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); background: var(--color-bg);">
+              </div>
+              <div>
+                <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem;">Blood Bank Cold-Chain Agreement</label>
+                <input type="text" value="Active Regional Network Synchronization" disabled style="width: 100%; padding: 0.6rem 0.85rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); background: var(--color-bg);">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+
+  </div>
+
+  <!-- ========================================================================
+       MODAL 1: REQUEST VERIFICATION DRAWER / MODAL
+       ======================================================================== -->
+  <div class="hospital-modal-overlay" id="verification-modal">
+    <div class="hospital-modal-card">
+      <div class="hospital-modal-header">
+        <div>
+          <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 2px;">Clinical Request Verification</h3>
+          <span style="font-size: 0.78rem; color: var(--color-text-secondary);">Physician authorization for trauma surgery blood release</span>
+        </div>
+        <button class="hospital-close-btn" aria-label="Close modal">&times;</button>
+      </div>
+
+      <div style="background: var(--color-bg); padding: 1rem; border-radius: var(--radius-md); margin-bottom: 1.25rem;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+          <span style="font-size: 0.82rem; color: var(--color-text-tertiary);">Patient Case:</span>
+          <strong id="verify-patient-label" style="font-size: 0.85rem;">Marcus Vance (REQ-001)</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+          <span style="font-size: 0.82rem; color: var(--color-text-tertiary);">Required Group:</span>
+          <strong id="verify-group-label" style="font-size: 0.85rem; color: var(--color-primary);">O- • 4 Units PRBC</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <span style="font-size: 0.82rem; color: var(--color-text-tertiary);">Clinical Indication:</span>
+          <span id="verify-indication-label" style="font-size: 0.82rem; max-width: 60%; text-align: right;">Polytrauma Hemorrhagic Shock</span>
+        </div>
+      </div>
+
+      <form id="verification-form">
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem;">Verification Action</label>
+          <select id="verify-action-select" required style="width: 100%; padding: 0.6rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); background: var(--color-surface); font-size: 0.85rem;">
+            <option value="verified">Verify &amp; Advance to Matching (Clinical Need Confirmed)</option>
+            <option value="pending_info">Pending Additional Lab / Crossmatch Information</option>
+            <option value="rejected">Reject Request (Clinical Indication Not Met)</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem;">Physician Clinical Notes</label>
+          <textarea id="verify-notes-input" rows="3" placeholder="Enter clinical assessment, admission bay, hemoglobin verification..." required style="width: 100%; padding: 0.6rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); background: var(--color-surface); font-size: 0.85rem; font-family: inherit;"></textarea>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+          <button type="button" class="btn btn-secondary btn-sm hospital-close-btn">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Confirm Verification</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 2: TRANSFUSION FULFILMENT MODAL
+       ======================================================================== -->
+  <div class="hospital-modal-overlay" id="fulfilment-modal">
+    <div class="hospital-modal-card">
+      <div class="hospital-modal-header">
+        <div>
+          <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 2px;">Record Transfusion Administration</h3>
+          <span style="font-size: 0.78rem; color: var(--color-text-secondary);">Confirm crossmatching and log transfusion completion</span>
+        </div>
+        <button class="hospital-close-btn" aria-label="Close modal">&times;</button>
+      </div>
+
+      <p id="fulfil-req-label" style="font-size: 0.85rem; color: var(--color-primary); font-weight: 700; margin-bottom: 1rem;"></p>
+
+      <form id="fulfilment-form">
+        <input type="hidden" id="fulfil-request-id">
+
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem;">Component Batch Barcode</label>
+          <input type="text" id="fulfil-batch-id" placeholder="e.g. PRBC-2026-004812" value="PRBC-2026-004812" required style="width: 100%; padding: 0.6rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); font-size: 0.85rem; font-family: monospace;">
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem;">Major &amp; Minor Crossmatch Result</label>
+          <select id="fulfil-crossmatch-select" required style="width: 100%; padding: 0.6rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); font-size: 0.85rem;">
+            <option value="compatible">Compatible (Non-Agglutinating / Negative AHG)</option>
+            <option value="incompatible">Incompatible (Do Not Infuse)</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem;">Administering Physician / License</label>
+          <input type="text" id="fulfil-doctor-input" value="Dr. Evelyn Reed (MD-NY-90214)" required style="width: 100%; padding: 0.6rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); font-size: 0.85rem;">
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem;">Administration &amp; Patient Observation Notes</label>
+          <textarea id="fulfil-notes-input" rows="2" placeholder="Infusion initiated at 14:10, vital signs stable, zero adverse reactions." style="width: 100%; padding: 0.6rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); font-size: 0.85rem; font-family: inherit;"></textarea>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+          <button type="button" class="btn btn-secondary btn-sm hospital-close-btn">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Complete Transfusion</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 3: PROVISION STAFF MODAL
+       ======================================================================== -->
+  <div class="hospital-modal-overlay" id="staff-modal">
+    <div class="hospital-modal-card">
+      <div class="hospital-modal-header">
+        <div>
+          <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 2px;">Provision Medical Staff Credential</h3>
+          <span style="font-size: 0.78rem; color: var(--color-text-secondary);">Assign institutional role and permissions</span>
+        </div>
+        <button class="hospital-close-btn" aria-label="Close modal">&times;</button>
+      </div>
+
+      <form id="provision-staff-form">
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem;">Official Email</label>
+          <input type="email" id="staff-email-input" placeholder="colleague@hospital.org" required style="width: 100%; padding: 0.6rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); font-size: 0.85rem;">
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem;">Institutional Role</label>
+          <select id="staff-role-select" required style="width: 100%; padding: 0.6rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); font-size: 0.85rem;">
+            <option value="hospital_doctor">Attending Physician / Surgeon</option>
+            <option value="transfusion_officer">Transfusion Medicine Officer</option>
+            <option value="hospital_operations">Hospital Intake &amp; Logistics</option>
+            <option value="hospital_admin">Facility Administrator</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem;">Department</label>
+          <input type="text" id="staff-dept-input" value="Emergency Medicine & Trauma" required style="width: 100%; padding: 0.6rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); font-size: 0.85rem;">
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem;">Medical Board License Number</label>
+          <input type="text" id="staff-license-input" placeholder="e.g. MD-NY-90214" required style="width: 100%; padding: 0.6rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); font-size: 0.85rem;">
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+          <button type="button" class="btn btn-secondary btn-sm hospital-close-btn">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Issue Staff Authorization</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast-container" aria-live="polite"></div>
+
+  <!-- External Libraries & Three.js -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- Core Scripts -->
+  <script src="js/theme.js"></script>
+  <script src="js/components/toast.js"></script>
+  <script src="js/api/config.js"></script>
+  <script src="js/api/supabase-client.js"></script>
+  <script src="js/api/session-manager.js"></script>
+  <script src="js/api/profile-service.js"></script>
+  <script src="js/api/api-client.js"></script>
+
+  <!-- Hospital Command Center Scripts -->
+  <script src="js/hospital/hospital-service.js"></script>
+  <script src="js/hospital/hospital-3d-cell.js"></script>
+  <script src="js/hospital/hospital-command-center.js"></script>
+
+  <script>
+    (async function() {
+      // Role enforcement: hospital or admin
+      if (window.BloodLinkSession) {
+        const isAuthorized = await window.BloodLinkSession.requireAuth({
+          allowedRoles: ['hospital', 'admin']
+        });
+        if (!isAuthorized) return;
+
+        const profile = window.BloodLinkSession.getProfile();
+        const user = window.BloodLinkSession.getUser();
+        const name = profile?.full_name || user?.user_metadata?.full_name || 'Metropolitan Trauma';
+
+        const nameEl = document.getElementById('sidebar-hospital-name');
+        if (nameEl) nameEl.textContent = name;
+        const topName = document.getElementById('topbar-user-display');
+        if (topName) topName.textContent = name;
+
+        const logoutBtn = document.getElementById('btn-sidebar-logout');
+        if (logoutBtn) {
+          logoutBtn.addEventListener('click', () => {
+            window.BloodLinkSession.signOut();
+          });
+        }
+      }
+    })();
+  </script>
+</body>
+</html>

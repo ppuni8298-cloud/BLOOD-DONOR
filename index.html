@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BloodLink - Intelligent Blood Donation & Emergency Network. Connecting donors, hospitals, and blood banks in real time. Aligned with SDG 3: Good Health and Well-being.">
+  <title>BloodLink — Intelligent Blood Donation & Emergency Network</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- Core CSS Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/hero-3d.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- Favicon placeholder with SVG droplet -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23C71932'><path d='M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z'/></svg>">
+</head>
+<body>
+
+  <!-- ========================================================================
+       1. STICKY FROSTED GLASS NAVIGATION BAR
+       ======================================================================== -->
+  <header class="navbar-wrapper" id="main-navbar">
+    <div class="container nav-container">
+
+      <!-- Brand Logo -->
+      <a href="index.html" class="brand-logo" aria-label="BloodLink Home">
+        <div class="brand-icon-wrapper">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+          </svg>
+        </div>
+        <div class="brand-name">
+          <span class="brand-title">Blood<span class="brand-highlight">Link</span></span>
+          <span class="brand-tagline-micro">Intelligent Network</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="nav-menu" aria-label="Primary Navigation">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="find-blood.html" class="nav-link">Find Blood</a>
+        <a href="auth.html?role=donor" class="nav-link">Become a Donor</a>
+        <a href="#blood-banks" class="nav-link">Blood Banks</a>
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#sdg3" class="nav-link">SDG 3 Impact</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+      </nav>
+
+      <!-- Right Actions: Live Pulse, Theme Toggle, Auth Buttons -->
+      <div class="nav-actions">
+        <!-- Live Regional Telemetry Indicator -->
+        <div class="live-pill" title="Network status: Active and responsive across regional nodes">
+          <span class="live-dot"></span>
+          <span>42 Nodes Active</span>
+        </div>
+
+        <!-- Light / Dark Mode Switcher -->
+        <button class="theme-toggle-btn" aria-label="Toggle Light and Dark Mode" title="Toggle Theme">
+          <!-- Sun Icon (shown in dark mode) -->
+          <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path>
+            <path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path>
+            <path d="m19.07 4.93-1.41 1.41"></path>
+          </svg>
+          <!-- Moon Icon (shown in light mode) -->
+          <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+
+        <!-- Auth CTAs -->
+        <a href="auth.html" class="btn btn-secondary btn-sm">Login</a>
+        <a href="auth.html?tab=signup" class="btn btn-primary btn-sm">Get Started</a>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-toggle-btn" aria-label="Open Mobile Navigation Menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" x2="20" y1="12" y2="12"></line>
+            <line x1="4" x2="20" y1="6" y2="6"></line>
+            <line x1="4" x2="20" y1="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-drawer" id="mobile-drawer" aria-label="Mobile Navigation">
+      <a href="#home" class="mobile-nav-link active">Home</a>
+      <a href="find-blood.html" class="mobile-nav-link">Find Blood</a>
+      <a href="auth.html?role=donor" class="mobile-nav-link">Become a Donor</a>
+      <a href="#blood-banks" class="mobile-nav-link">Blood Banks</a>
+      <a href="#features" class="mobile-nav-link">Features</a>
+      <a href="#sdg3" class="mobile-nav-link">SDG 3 Impact</a>
+      <a href="#faq" class="mobile-nav-link">FAQ</a>
+      <div class="mobile-nav-actions">
+        <a href="auth.html" class="btn btn-secondary btn-sm" style="width: 100%;">Login</a>
+        <a href="auth.html?tab=signup" class="btn btn-primary btn-sm" style="width: 100%;">Get Started</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       2. ADVANCED 3D HERO SECTION (Three.js Erythrocyte Engine)
+       ======================================================================== -->
+  <section class="hero-section" id="home">
+
+    <!-- 3D Canvas Viewport -->
+    <div class="hero-canvas-container" id="hero-canvas-container">
+      <!-- Fallback visual if WebGL is unavailable -->
+      <div class="hero-fallback-visual"></div>
+    </div>
+
+    <!-- Ambient Glow Orbs -->
+    <div class="hero-glow-orb hero-glow-1"></div>
+    <div class="hero-glow-orb hero-glow-2"></div>
+
+    <!-- Hero Content Container -->
+    <div class="container hero-grid">
+
+      <!-- Left Text & Actions -->
+      <div class="hero-content">
+
+        <!-- Live Network Telemetry Pill -->
+        <div class="hero-live-badge">
+          <span class="pulse-orb"></span>
+          <span>Regional Network Live</span>
+          <span class="badge-subtext">• 42 Verified Hubs</span>
+        </div>
+
+        <!-- Headline & Tagline -->
+        <h1 class="hero-headline">
+          Every Drop Matters.<br>
+          <span class="highlight text-gradient">Every Life Counts.</span>
+        </h1>
+
+        <p class="hero-description">
+          Connecting blood donors, hospitals, blood banks and people in need through an intelligent, real-time blood donation network.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="hero-cta-group">
+          <a href="find-blood.html" class="btn btn-primary btn-lg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            Find Blood
+          </a>
+          <a href="auth.html?role=donor" class="btn btn-secondary btn-lg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+            </svg>
+            Become a Donor
+          </a>
+          <a href="#how-it-works" class="btn btn-ghost btn-lg">
+            Explore BloodLink &darr;
+          </a>
+        </div>
+
+        <!-- Micro Trust Metrics -->
+        <div class="hero-trust-metrics">
+          <div class="trust-metric-item">
+            <span class="trust-metric-value">SDG 3</span>
+            <span class="trust-metric-label">Good Health & Well-being</span>
+          </div>
+          <div class="trust-metric-item">
+            <span class="trust-metric-value">&lt; 15 min</span>
+            <span class="trust-metric-label">Avg. Emergency Response</span>
+          </div>
+          <div class="trust-metric-item">
+            <span class="trust-metric-value">100% Cold Chain</span>
+            <span class="trust-metric-label">Verified Storage Integrity</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Floating Glassmorphism Telemetry Over 3D Scene -->
+      <div class="hero-telemetry-panel">
+
+        <!-- Floating Card 1: Urgent Emergency Beacon -->
+        <div class="floating-telemetry-card card-pos-top-right">
+          <div class="card-icon-badge danger">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </div>
+          <div class="telemetry-meta">
+            <span class="telemetry-tag">Urgent Beacon Match</span>
+            <span class="telemetry-value">O- Negative Needed</span>
+            <span class="telemetry-subtext">St. Jude Trauma Care • 3.2 km</span>
+          </div>
+        </div>
+
+        <!-- Floating Card 2: Reserve Index -->
+        <div class="floating-telemetry-card card-pos-center-edge">
+          <div class="card-icon-badge success">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+            </svg>
+          </div>
+          <div class="telemetry-meta">
+            <span class="telemetry-tag">Intelligent Reserve Index</span>
+            <span class="telemetry-value">Optimal In 8 Hubs</span>
+            <span class="telemetry-subtext">98.4% Supply Stability</span>
+          </div>
+        </div>
+
+        <!-- Floating Card 3: Donor Verification -->
+        <div class="floating-telemetry-card card-pos-bottom-left">
+          <div class="card-icon-badge info">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
+            </svg>
+          </div>
+          <div class="telemetry-meta">
+            <span class="telemetry-tag">Digital Donor Identity</span>
+            <span class="telemetry-value">Verified Safe Transfusion</span>
+            <span class="telemetry-subtext">Zero-Trust Screening</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- 3D Interactivity Hint Pill -->
+    <div class="hero-3d-hint">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 14px; height: 14px;">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="M12 8v8"></path>
+        <path d="m8 12 4 4 4-4"></path>
+      </svg>
+      <span>Interactive 3D Erythrocyte Engine • Move cursor to explore</span>
+    </div>
+
+  </section>
+
+  <!-- ========================================================================
+       3. PLATFORM STATISTICS (Demonstration Data Section)
+       ======================================================================== -->
+  <section class="section section-alt" id="stats-section">
+    <div class="container">
+
+      <div class="section-header">
+        <span class="badge-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          Demonstration Telemetry
+        </span>
+        <h2 class="section-title">A Fast, Resilient Emergency Infrastructure</h2>
+        <p class="section-subtitle">
+          Designed for seamless scalability. Platform metrics dynamically calibrate as regional blood hubs and authorized hospitals join the network.
+        </p>
+      </div>
+
+      <div class="stats-grid">
+
+        <!-- Stat 1: Registered Donors -->
+        <div class="stat-card">
+          <div class="stat-header">
+            <div class="stat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <span class="stat-trend">+14% MoM</span>
+          </div>
+          <div class="stat-number" data-target="48250" data-suffix="+">48,250+</div>
+          <div class="stat-label">Registered Donors</div>
+          <div class="stat-subtext">Active voluntary donors across 12 sectors</div>
+        </div>
+
+        <!-- Stat 2: Verified Blood Banks -->
+        <div class="stat-card">
+          <div class="stat-header">
+            <div class="stat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="18" height="18" x="3" y="3" rx="2"></rect>
+                <path d="M3 9h18"></path>
+                <path d="M9 21V9"></path>
+              </svg>
+            </div>
+            <span class="stat-trend">+6 Hubs</span>
+          </div>
+          <div class="stat-number" data-target="1280" data-suffix="">1,280</div>
+          <div class="stat-label">Verified Blood Banks</div>
+          <div class="stat-subtext">Accredited cold-chain certified centers</div>
+        </div>
+
+        <!-- Stat 3: Partner Hospitals -->
+        <div class="stat-card">
+          <div class="stat-header">
+            <div class="stat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 6v12"></path>
+                <path d="M6 12h12"></path>
+                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+              </svg>
+            </div>
+            <span class="stat-trend">24/7 Sync</span>
+          </div>
+          <div class="stat-number" data-target="340" data-suffix="+">340+</div>
+          <div class="stat-label">Partner Hospitals</div>
+          <div class="stat-subtext">Connected emergency & trauma departments</div>
+        </div>
+
+        <!-- Stat 4: Fulfilled Requests -->
+        <div class="stat-card">
+          <div class="stat-header">
+            <div class="stat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+            <span class="stat-trend">99.4% Match</span>
+          </div>
+          <div class="stat-number" data-target="99" data-suffix=".4%">99.4%</div>
+          <div class="stat-label">Fulfillment Rate</div>
+          <div class="stat-subtext">Emergency blood requests matched in &lt; 30 mins</div>
+        </div>
+
+      </div>
+
+      <!-- Clear Identification Disclaimer -->
+      <div class="demo-data-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 14px; height: 14px;">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="16" x2="12" y2="12"></line>
+          <line x1="12" y1="8" x2="12.01" y2="8"></line>
+        </svg>
+        <span>Demonstration Telemetry: Sample statistics shown. Live database connectivity will stream from Supabase PostgreSQL & Python Flask endpoints.</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       4. HOW IT WORKS (3 Premium Cards)
+       ======================================================================== -->
+  <section class="section" id="how-it-works">
+    <div class="container">
+
+      <div class="section-header">
+        <span class="badge-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 11 12 14 22 4"></polyline>
+            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+          </svg>
+          Simple, Secure & Transparent
+        </span>
+        <h2 class="section-title">How BloodLink Saves Lives in 3 Steps</h2>
+        <p class="section-subtitle">
+          Every second counts during emergency surgery and trauma care. Our intelligent routing minimizes transit lag and eliminates administrative friction.
+        </p>
+      </div>
+
+      <div class="how-it-works-grid">
+
+        <!-- Card 1: Register as a Donor -->
+        <div class="step-card">
+          <div class="step-badge-number">01</div>
+          <div class="step-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M19 8v6"></path>
+              <path d="M22 11h-6"></path>
+            </svg>
+          </div>
+          <h3 class="step-title">Register as a Donor</h3>
+          <p class="step-desc">
+            Create your confidential profile in under 2 minutes. Enter your verified blood group, health readiness status, and geo-availability radius.
+          </p>
+          <ul class="step-features-list">
+            <li class="step-feature-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Instant Digital Donor Card & QR ID</span>
+            </li>
+            <li class="step-feature-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Smart notification scheduling</span>
+            </li>
+            <li class="step-feature-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Zero-knowledge privacy protection</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Card 2: Find Compatible Blood -->
+        <div class="step-card">
+          <div class="step-badge-number">02</div>
+          <div class="step-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              <path d="m11 8 3 3-3 3"></path>
+            </svg>
+          </div>
+          <h3 class="step-title">Find Compatible Blood</h3>
+          <p class="step-desc">
+            Search live inventory across verified blood banks or activate an emergency broadcast that alerts nearby matching donors and trauma centers.
+          </p>
+          <ul class="step-features-list">
+            <li class="step-feature-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>ABO & Rh biological compatibility validation</span>
+            </li>
+            <li class="step-feature-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Real-time cold-chain stock transparency</span>
+            </li>
+            <li class="step-feature-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Proximity-ranked hospital routing</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Card 3: Connect and Save Lives -->
+        <div class="step-card">
+          <div class="step-badge-number">03</div>
+          <div class="step-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+            </svg>
+          </div>
+          <h3 class="step-title">Connect & Save Lives</h3>
+          <p class="step-desc">
+            Direct coordination between donors, hospitals, and dispatch couriers ensures safe transfusion with complete chain-of-custody tracking.
+          </p>
+          <ul class="step-features-list">
+            <li class="step-feature-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Rapid dispatch authorization</span>
+            </li>
+            <li class="step-feature-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Transfusion impact confirmation report</span>
+            </li>
+            <li class="step-feature-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Donor tier progression & recognition</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       5. FEATURE SHOWCASE (Varied Visual Layouts)
+       ======================================================================== -->
+  <section class="section section-alt" id="features">
+    <div class="container">
+
+      <div class="section-header">
+        <span class="badge-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+          Intelligent Architecture
+        </span>
+        <h2 class="section-title">Built for Critical Speed & Clinical Precision</h2>
+        <p class="section-subtitle">
+          Explore the algorithmic core of BloodLink. Every component is designed to eliminate human delay and ensure equitable blood accessibility.
+        </p>
+      </div>
+
+      <!-- Feature Row 1: Smart Blood Matching (Interactive Compatibility Matrix) -->
+      <div class="feature-row">
+        <div class="feature-text">
+          <span class="feature-tag">Feature 01 • Biological Intelligence</span>
+          <h3 class="feature-title">Smart Blood Matching Engine</h3>
+          <p class="feature-desc">
+            Instantly computes erythrocyte antigens and plasma antibodies across all major ABO and Rh(D) permutations to prevent acute hemolytic transfusion reactions.
+          </p>
+          <ul class="feature-bullets">
+            <li class="bullet-item">
+              <span class="bullet-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </span>
+              <div>
+                <strong>Automatic Rh factor safety filters:</strong> Ensures Rh-negative recipients only receive Rh-negative blood to prevent alloimmunization.
+              </div>
+            </li>
+            <li class="bullet-item">
+              <span class="bullet-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </span>
+              <div>
+                <strong>Alternative compatible suggestions:</strong> Recommends safe clinical substitutes when exact blood matches are low in reserve.
+              </div>
+            </li>
+          </ul>
+          <a href="find-blood.html" class="btn btn-primary btn-sm">Explore Match Matrix &rarr;</a>
+        </div>
+
+        <!-- Interactive Widget Visual -->
+        <div class="compatibility-widget-card">
+          <div class="widget-header">
+            <span class="widget-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px; color: var(--color-primary);">
+                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+              </svg>
+              Interactive Transfusion Matrix
+            </span>
+            <span class="badge-pill" id="compat-badge">Universal Red Cell Donor</span>
+          </div>
+
+          <p style="font-size: 0.8rem; margin-bottom: 0.75rem; color: var(--color-text-secondary);">
+            Select a blood type to inspect clinical red blood cell compatibility:
+          </p>
+
+          <div class="blood-group-selector">
+            <button class="blood-btn active" data-type="O-">O-</button>
+            <button class="blood-btn" data-type="O+">O+</button>
+            <button class="blood-btn" data-type="A-">A-</button>
+            <button class="blood-btn" data-type="A+">A+</button>
+            <button class="blood-btn" data-type="B-">B-</button>
+            <button class="blood-btn" data-type="B+">B+</button>
+            <button class="blood-btn" data-type="AB-">AB-</button>
+            <button class="blood-btn" data-type="AB+">AB+</button>
+          </div>
+
+          <div class="compatibility-results">
+            <div class="compat-group">
+              <span class="compat-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 14px; height: 14px;"><polyline points="7 10 12 15 17 10"></polyline></svg>
+                Can Donate Red Cells To:
+              </span>
+              <div class="compat-tags" id="compat-donate-tags">
+                <!-- Dynamically populated by compatibility.js -->
+              </div>
+            </div>
+
+            <div class="compat-group">
+              <span class="compat-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 14px; height: 14px;"><polyline points="17 14 12 9 7 14"></polyline></svg>
+                Can Receive Red Cells From:
+              </span>
+              <div class="compat-tags" id="compat-receive-tags">
+                <!-- Dynamically populated by compatibility.js -->
+              </div>
+            </div>
+
+            <p id="compat-note" style="font-size: 0.75rem; color: var(--color-text-tertiary); font-style: italic; border-top: 1px solid var(--color-border); padding-top: 0.5rem; margin: 0;">
+              Crucial in trauma emergencies when the patient blood type is unknown.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature Row 2: Emergency Blood Requests & Beacon UI (Reversed layout) -->
+      <div class="feature-row reverse" id="blood-banks">
+        <div class="feature-text">
+          <span class="feature-tag">Feature 02 • High-Urgency Triage</span>
+          <h3 class="feature-title">Emergency Blood Requests & SOS Beacons</h3>
+          <p class="feature-desc">
+            When minutes matter, trauma surgical teams can trigger prioritized SOS beacons that bypass normal queues, alerting vetted donors within a calibrated geo-fence.
+          </p>
+          <ul class="feature-bullets">
+            <li class="bullet-item">
+              <span class="bullet-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </span>
+              <div>
+                <strong>Prioritized hospital verification:</strong> Only verified ICUs and blood bank directors can initiate Code-Red beacons.
+              </div>
+            </li>
+            <li class="bullet-item">
+              <span class="bullet-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </span>
+              <div>
+                <strong>Real-time donor acceptance tracking:</strong> Continuous telemetry provides surgical teams with live ETA updates on incoming blood units.
+              </div>
+            </li>
+          </ul>
+          <button class="btn btn-danger btn-sm" id="trigger-emergency-modal-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            Trigger Emergency Triage Modal
+          </button>
+        </div>
+
+        <!-- Emergency Beacon Widget Visual -->
+        <div class="emergency-beacon-widget">
+          <div class="beacon-pulse-wrapper">
+            <div class="beacon-transmitter">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px;">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+            </div>
+            <div class="beacon-meta">
+              <h4>CODE RED: Regional Trauma Alert</h4>
+              <p style="font-size: 0.8rem; color: var(--color-text-secondary); margin: 0;">
+                Autonomous dispatch protocol active • 8 nearby donors responding
+              </p>
+            </div>
+          </div>
+
+          <div class="emergency-queue-list">
+            <div class="queue-item">
+              <div class="queue-left">
+                <span class="queue-badge">O-</span>
+                <div>
+                  <div class="queue-hospital">City Central Trauma Care</div>
+                  <div class="queue-distance">2.4 km • Surgery Room 04</div>
+                </div>
+              </div>
+              <span class="queue-time">ETA: 8 mins</span>
+            </div>
+
+            <div class="queue-item">
+              <div class="queue-left">
+                <span class="queue-badge">B+</span>
+                <div>
+                  <div class="queue-hospital">Metropolitan Children's Hospital</div>
+                  <div class="queue-distance">5.1 km • Pediatric ICU</div>
+                </div>
+              </div>
+              <span class="queue-time">ETA: 14 mins</span>
+            </div>
+
+            <div class="queue-item">
+              <div class="queue-left">
+                <span class="queue-badge">A-</span>
+                <div>
+                  <div class="queue-hospital">Apex Oncology & Hematology Hub</div>
+                  <div class="queue-distance">7.8 km • Platelet Unit</div>
+                </div>
+              </div>
+              <span class="queue-time">ETA: 22 mins</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature Row 3: Blood Bank Inventory & Live Chart.js -->
+      <div class="feature-row">
+        <div class="feature-text">
+          <span class="feature-tag">Feature 03 • Supply Chain Visibility</span>
+          <h3 class="feature-title">Real-Time Blood Bank Inventory</h3>
+          <p class="feature-desc">
+            Eliminate phone chains and blind searching. BloodLink aggregates unit inventories from licensed blood banks, categorizing stock into Optimal, Moderate, and Critical reserves.
+          </p>
+          <ul class="feature-bullets">
+            <li class="bullet-item">
+              <span class="bullet-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </span>
+              <div>
+                <strong>Automated stock alerts:</strong> Triggers preemptive donor campaigns when rare blood types fall below safe reserve levels.
+              </div>
+            </li>
+            <li class="bullet-item">
+              <span class="bullet-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </span>
+              <div>
+                <strong>Cold-chain monitoring:</strong> Tracks temperature logs to ensure zero wastage of precious donated units.
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Chart.js Inventory Card -->
+        <div class="analytics-preview-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <div>
+              <h4 style="font-size: 1.1rem; margin-bottom: 2px;">Regional Inventory Reserves</h4>
+              <p style="font-size: 0.75rem; color: var(--color-text-tertiary); margin: 0;">Units Available across 42 Connected Hubs</p>
+            </div>
+            <span class="badge-pill" style="font-size: 0.7rem;">Live Chart.js</span>
+          </div>
+          <div class="chart-container-rel">
+            <canvas id="inventory-chart-canvas"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature Row 4: Digital Donor Identity & Wallet Pass (Reversed layout) -->
+      <div class="feature-row reverse">
+        <div class="feature-text">
+          <span class="feature-tag">Feature 04 • Donor Empowerment</span>
+          <h3 class="feature-title">Digital Donor Identity & Health Pass</h3>
+          <p class="feature-desc">
+            Every registered donor receives an encrypted digital pass. Store your verified blood type, past donation milestones, hemoglobin eligibility metrics, and fast-track check-in QR codes.
+          </p>
+          <ul class="feature-bullets">
+            <li class="bullet-item">
+              <span class="bullet-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </span>
+              <div>
+                <strong>Rapid verification at blood drives:</strong> Scan and donate without redundant paper forms.
+              </div>
+            </li>
+            <li class="bullet-item">
+              <span class="bullet-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </span>
+              <div>
+                <strong>Impact milestone tracking:</strong> Track the estimated lives saved and receive priority emergency health credits for your family.
+              </div>
+            </li>
+          </ul>
+          <a href="auth.html?role=donor" class="btn btn-primary btn-sm">Claim Your Digital Donor Card &rarr;</a>
+        </div>
+
+        <!-- Digital ID Card Preview -->
+        <div class="digital-id-card-wrapper">
+          <div class="digital-donor-pass">
+            <div class="pass-glow"></div>
+
+            <div class="pass-header">
+              <div class="pass-logo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#FF4D6D" stroke-width="2.5" style="width: 18px; height: 18px;">
+                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+                </svg>
+                <span>BloodLink Pass</span>
+              </div>
+              <span class="pass-tier">★ Platinum Hero</span>
+            </div>
+
+            <div class="pass-body">
+              <div>
+                <div class="pass-donor-name">Dr. Elena Rostova</div>
+                <div class="pass-id">ID: BL-8942-ELN</div>
+                <div style="font-size: 0.75rem; color: rgba(255, 255, 255, 0.7); margin-top: 4px;">Next Eligible: Ready Now</div>
+              </div>
+              <div class="pass-blood-type">O-</div>
+            </div>
+
+            <div class="pass-footer">
+              <div class="pass-metric">
+                <span class="pass-metric-label">Donations</span>
+                <span class="pass-metric-val">14 Units</span>
+              </div>
+              <div class="pass-metric">
+                <span class="pass-metric-label">Lives Saved</span>
+                <span class="pass-metric-val">42 Potential</span>
+              </div>
+              <div class="pass-qr-mock">
+                <!-- QR Code SVG Icon -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="7" height="7"></rect>
+                  <rect x="14" y="3" width="7" height="7"></rect>
+                  <rect x="14" y="14" width="7" height="7"></rect>
+                  <rect x="3" y="14" width="7" height="7"></rect>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature Row 5: Blood Donation Analytics Trends -->
+      <div class="feature-row">
+        <div class="feature-text">
+          <span class="feature-tag">Feature 05 • Predictive Analytics</span>
+          <h3 class="feature-title">Blood Donation Analytics & Trend Insights</h3>
+          <p class="feature-desc">
+            Health ministries and hospital administrators gain macro-level visibility into seasonal blood demand, seasonal shortages, and emergency fulfillment velocity.
+          </p>
+          <ul class="feature-bullets">
+            <li class="bullet-item">
+              <span class="bullet-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </span>
+              <div>
+                <strong>Machine-learning deficit forecasts:</strong> Predicts local blood shortages up to 14 days in advance based on hospital surgical schedules.
+              </div>
+            </li>
+            <li class="bullet-item">
+              <span class="bullet-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </span>
+              <div>
+                <strong>Donor retention analytics:</strong> Tracks return rates to ensure sustainable blood supply cycles.
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Line Chart Container -->
+        <div class="analytics-preview-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <div>
+              <h4 style="font-size: 1.1rem; margin-bottom: 2px;">Donation & Emergency Trends</h4>
+              <p style="font-size: 0.75rem; color: var(--color-text-tertiary); margin: 0;">Completed Donations vs. Emergency Matches (Last 6 Months)</p>
+            </div>
+            <span class="badge-pill" style="font-size: 0.7rem;">Chart.js Live</span>
+          </div>
+          <div class="chart-container-rel">
+            <canvas id="trends-chart-canvas"></canvas>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       6. SDG 3 IMPACT SECTION (Good Health & Well-Being)
+       ======================================================================== -->
+  <section class="section sdg-section" id="sdg3">
+    <div class="container">
+
+      <div class="sdg-banner">
+        <div class="sdg-content">
+          <span class="badge-pill" style="background: rgba(199, 25, 50, 0.3); border-color: rgba(255, 255, 255, 0.2); color: #FFFFFF; margin-bottom: 1rem;">
+            United Nations SDG 3
+          </span>
+          <h2>Advancing Global Health & Universal Emergency Equity</h2>
+          <p>
+            BloodLink is engineered in direct alignment with United Nations Sustainable Development Goal 3:
+            Ensure healthy lives and promote well-being for all at all ages. Lack of safe, timely blood remains a leading cause of preventable mortality in road injuries and maternal hemorrhages worldwide.
+          </p>
+
+          <div class="sdg-target-badges">
+            <div class="sdg-target-card">
+              <span class="sdg-number-badge">Target 3.6</span>
+              <div>
+                <div class="sdg-target-title">Halve Global Road Traffic Deaths & Injuries</div>
+                <div class="sdg-target-desc">Rapid trauma blood delivery drastically reduces hemorrhagic death rates during the critical golden hour.</div>
+              </div>
+            </div>
+
+            <div class="sdg-target-card">
+              <span class="sdg-number-badge">Target 3.8</span>
+              <div>
+                <div class="sdg-target-title">Achieve Universal Health Coverage & Essential Services</div>
+                <div class="sdg-target-desc">Equalizing access to verified, screened blood across underserved rural clinics and metropolitan centers.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SDG 3 Visual Emblem -->
+        <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+          <div style="width: 140px; height: 140px; border-radius: 50%; background: #4C9F38; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 40px rgba(76, 159, 56, 0.4); margin-bottom: 1.5rem;">
+            <!-- Heart with pulse icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width: 72px; height: 72px;">
+              <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+            </svg>
+          </div>
+          <h3 style="color: #FFFFFF; font-size: 1.5rem; margin-bottom: 0.25rem;">UN SDG 3</h3>
+          <span style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem;">Good Health and Well-Being</span>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       7. DONATION PROCESS EXPLANATION (4-Step Timeline)
+       ======================================================================== -->
+  <section class="section" id="process">
+    <div class="container">
+
+      <div class="section-header">
+        <span class="badge-pill">Clinical Safety Protocol</span>
+        <h2 class="section-title">The Blood Donation Journey</h2>
+        <p class="section-subtitle">
+          Donating blood takes under an hour from start to finish, while the actual blood draw takes only 8-10 minutes.
+        </p>
+      </div>
+
+      <div class="timeline-wrapper">
+
+        <!-- Step 1 -->
+        <div class="timeline-step">
+          <div class="timeline-step-header">
+            <div class="timeline-node">1</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-step-body">
+            <h4 class="timeline-title">Quick Registration</h4>
+            <p class="timeline-desc">
+              Scan your digital donor pass or present photo identification. Fill a brief confidential lifestyle questionnaire on the tablet.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="timeline-step">
+          <div class="timeline-step-header">
+            <div class="timeline-node">2</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-step-body">
+            <h4 class="timeline-title">Health Screening</h4>
+            <p class="timeline-desc">
+              A trained nurse checks your temperature, pulse, blood pressure, and tests a small droplet for safe hemoglobin levels (≥ 12.5 g/dL).
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="timeline-step">
+          <div class="timeline-step-header">
+            <div class="timeline-node">3</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-step-body">
+            <h4 class="timeline-title">The Donation</h4>
+            <p class="timeline-desc">
+              Relax in a comfortable ergonomic recliner. Sterile, single-use equipment collects roughly 450 mL of whole blood in approximately 10 minutes.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="timeline-step">
+          <div class="timeline-step-header">
+            <div class="timeline-node">4</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-step-body">
+            <h4 class="timeline-title">Recovery & Refreshment</h4>
+            <p class="timeline-desc">
+              Enjoy light refreshments, juice, and rest for 15 minutes. Receive an instant update when your unit is dispatched to save a patient.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       8. EMERGENCY BLOOD REQUEST CTA BANNER
+       ======================================================================== -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="emergency-cta-banner">
+        <span class="badge-pill" style="background: rgba(255, 255, 255, 0.2); color: #FFFFFF; border: 1px solid rgba(255, 255, 255, 0.3); margin-bottom: 1rem;">
+          24/7 Emergency Transfusion Dispatch
+        </span>
+        <h2>Need Urgent Blood for a Patient or Loved One?</h2>
+        <p>
+          Our real-time network routes emergency requests to verified blood banks, authorized hospital blood reserves, and pre-screened on-call donors within minutes.
+        </p>
+        <div class="emergency-btn-group">
+          <a href="find-blood.html" class="btn btn-white btn-lg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="width: 18px; height: 18px;">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            Search Live Blood Reserves
+          </a>
+          <button class="btn btn-secondary btn-lg" id="banner-emergency-modal-btn" style="background: rgba(0, 0, 0, 0.25); color: #FFFFFF; border-color: rgba(255, 255, 255, 0.3);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="width: 18px; height: 18px;">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+            Broadcast Emergency SOS Beacon
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       9. FAQ ACCORDION SECTION
+       ======================================================================== -->
+  <section class="section section-alt" id="faq">
+    <div class="container">
+
+      <div class="section-header">
+        <span class="badge-pill">Clear Answers</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle">
+          Everything you need to know about blood donation eligibility, clinical safety protocols, and how BloodLink coordinates emergency requests.
+        </p>
+      </div>
+
+      <div class="faq-accordion">
+
+        <!-- Question 1 -->
+        <div class="faq-item active">
+          <button class="faq-question" aria-expanded="true">
+            <span>Who is eligible to donate blood through BloodLink?</span>
+            <svg class="faq-icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Most healthy individuals between 18 and 65 years old weighing at least 50 kg (110 lbs) with a hemoglobin level of ≥ 12.5 g/dL can donate. You should not have active infectious diseases, recent tattoos or piercings within the last 3-6 months depending on jurisdiction, or untreated hypertension.
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>How does the BloodLink matching engine verify donor compatibility?</span>
+            <svg class="faq-icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              BloodLink cross-checks the international ABO and Rh(D) antigen rules before matching requests. For instance, O- units are prioritized for acute trauma where cross-matching isn't completed yet, while AB+ recipients are safely matched across all compatible donor pools. Cross-match verification at the receiving blood bank remains mandatory before physical transfusion.
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>How does BloodLink prevent fake or fraudulent emergency requests?</span>
+            <svg class="faq-icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Emergency Code-Red beacons require hospital confirmation or authorized doctor credentials. Public emergency requests undergo algorithmic verification and telephone triage before notification broadcasts are dispatched to registered donors.
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>How often can a healthy person donate whole blood?</span>
+            <svg class="faq-icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Whole blood donation requires a minimum waiting period of 56 days (8 weeks) for men and 84 days (12 weeks) for women to allow the bone marrow to replenish red blood cells and iron stores. Platelet donations can be made more frequently (every 7 to 14 days).
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Is my personal health data and location private?</span>
+            <svg class="faq-icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Yes. BloodLink employs end-to-end encryption and row-level security (prepared for Supabase RLS). Donors' exact locations are never broadcast publicly; notifications calculate proximity using fuzzy geo-hashing so your exact address remains strictly confidential.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       10. PROFESSIONAL FOOTER
+       ======================================================================== -->
+  <footer class="footer">
+    <div class="container">
+
+      <div class="footer-top">
+
+        <!-- Column 1: Brand & Tagline -->
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo" aria-label="BloodLink Home">
+            <div class="brand-icon-wrapper">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+              </svg>
+            </div>
+            <div class="brand-name">
+              <span class="brand-title">Blood<span class="brand-highlight">Link</span></span>
+            </div>
+          </a>
+          <p class="footer-desc">
+            "One Donation. Three Lives. One Connected Network."<br>
+            Next-generation healthcare technology unifying voluntary donors, blood banks, and critical trauma centers.
+          </p>
+          <div class="sdg-badge-footer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
+            </svg>
+            <span>Aligned with UN SDG 3: Good Health & Well-being</span>
+          </div>
+        </div>
+
+        <!-- Column 2: Platform -->
+        <div>
+          <h4 class="footer-col-title">Platform</h4>
+          <ul class="footer-links">
+            <li><a href="find-blood.html" class="footer-link">Find Blood Now</a></li>
+            <li><a href="auth.html?role=donor" class="footer-link">Become a Donor</a></li>
+            <li><a href="#blood-banks" class="footer-link">Verified Blood Banks</a></li>
+            <li><a href="#features" class="footer-link">Hospital Network</a></li>
+            <li><a href="find-blood.html" class="footer-link">Live Reserve Tracker</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Clinical & Safety -->
+        <div>
+          <h4 class="footer-col-title">Clinical Standards</h4>
+          <ul class="footer-links">
+            <li><a href="#how-it-works" class="footer-link">Transfusion Guidelines</a></li>
+            <li><a href="#features" class="footer-link">ABO / Rh Compatibility</a></li>
+            <li><a href="#process" class="footer-link">Cold-Chain Assurance</a></li>
+            <li><a href="#sdg3" class="footer-link">SDG 3 Health Equity</a></li>
+            <li><a href="#faq" class="footer-link">Donor Eligibility FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Architecture -->
+        <div>
+          <h4 class="footer-col-title">Technology</h4>
+          <ul class="footer-links">
+            <li><a href="auth.html" class="footer-link">Supabase Auth Layer</a></li>
+            <li><a href="#stats-section" class="footer-link">Realtime PostgREST</a></li>
+            <li><a href="#features" class="footer-link">Flask REST Matching API</a></li>
+            <li><a href="#home" class="footer-link">Three.js 3D Simulation</a></li>
+            <li><a href="auth.html" class="footer-link">Developer Docs</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 5: Emergency Hotline Card -->
+        <div>
+          <div class="emergency-hotline-card">
+            <div class="hotline-label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 14px; height: 14px;">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+              Emergency Helpline
+            </div>
+            <div class="hotline-number">1-800-BLOOD-LINK</div>
+            <p class="hotline-note">
+              Toll-free 24/7 clinical dispatch coordinator on standby for critical trauma transfusions.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 BloodLink Healthcare Technologies. All rights reserved.
+        </div>
+        <div class="footer-legal-links">
+          <a href="#faq" class="footer-link">Privacy Policy</a>
+          <a href="#faq" class="footer-link">Terms of Service</a>
+          <a href="#faq" class="footer-link">HIPAA / GDPR Compliance</a>
+          <a href="#faq" class="footer-link">System Status: All Nodes Optimal</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       11. EMERGENCY REQUEST TRIAGE MODAL DIALOG
+       ======================================================================== -->
+  <div id="emergency-modal" class="modal-backdrop" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); backdrop-filter: blur(8px); z-index: var(--z-modal); align-items: center; justify-content: center; padding: 1rem;">
+    <div class="modal-card" style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); max-width: 540px; width: 100%; padding: 2rem; box-shadow: var(--shadow-xl); position: relative;">
+
+      <button id="close-emergency-modal" aria-label="Close modal" style="position: absolute; top: 1.25rem; right: 1.25rem; font-size: 1.5rem; color: var(--color-text-tertiary);">&times;</button>
+
+      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+        <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: var(--color-soft-red); color: var(--color-primary); display: flex; align-items: center; justify-content: center;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="width: 22px; height: 22px;">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+        </div>
+        <div>
+          <h3 style="font-size: 1.25rem; margin: 0;">Initiate Emergency Blood SOS</h3>
+          <p style="font-size: 0.75rem; color: var(--color-text-secondary); margin: 0;">Priority broadcast to authorized local blood banks & nearby donors</p>
+        </div>
+      </div>
+
+      <form id="emergency-sos-form" style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1.25rem;">
+        <div>
+          <label style="font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 0.35rem;">Required Blood Group</label>
+          <select id="sos-blood-type" class="filter-select" required>
+            <option value="O-">O Negative (Universal Red Cell)</option>
+            <option value="O+">O Positive</option>
+            <option value="A-">A Negative</option>
+            <option value="A+">A Positive</option>
+            <option value="B-">B Negative</option>
+            <option value="B+">B Positive</option>
+            <option value="AB-">AB Negative</option>
+            <option value="AB+">AB Positive</option>
+          </select>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div>
+            <label style="font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 0.35rem;">Units Needed</label>
+            <input type="number" id="sos-units" class="form-input" value="2" min="1" max="10" style="padding-left: 1rem;" required>
+          </div>
+          <div>
+            <label style="font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 0.35rem;">Urgency Tier</label>
+            <select id="sos-urgency" class="filter-select" required>
+              <option value="CRITICAL">Immediate (Trauma / OR)</option>
+              <option value="URGENT">Within 2 Hours</option>
+              <option value="SAME_DAY">Within 6 Hours</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label style="font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 0.35rem;">Hospital or Facility Name</label>
+          <input type="text" id="sos-hospital" class="form-input" placeholder="e.g. City General Trauma Ward" style="padding-left: 1rem;" required>
+        </div>
+
+        <div>
+          <label style="font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 0.35rem;">Physician / Attending Contact Phone</label>
+          <input type="tel" id="sos-phone" class="form-input" placeholder="+1 (555) 019-2834" style="padding-left: 1rem;" required>
+        </div>
+
+        <div style="display: flex; gap: 0.75rem; margin-top: 0.75rem;">
+          <button type="button" id="cancel-emergency-sos" class="btn btn-secondary" style="flex: 1;">Cancel</button>
+          <button type="submit" class="btn btn-danger" style="flex: 1.5;">Broadcast SOS Beacon</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" aria-live="polite"></div>
+
+  <!-- ========================================================================
+       SCRIPTS & THREE.JS ENGINE
+       ======================================================================== -->
+  <!-- Three.js (r128) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Supabase Official JS SDK CDN (v2) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- BloodLink Core & Component Scripts -->
+  <script src="js/theme.js"></script>
+  <script src="js/hero-scene.js"></script>
+  <script src="js/components/toast.js"></script>
+  <script src="js/components/navbar.js"></script>
+  <script src="js/components/stats-counter.js"></script>
+  <script src="js/components/compatibility.js"></script>
+  <script src="js/components/faq-accordion.js"></script>
+  <script src="js/components/inventory-chart.js"></script>
+  <script src="js/api/config.js"></script>
+  <script src="js/api/supabase-client.js"></script>
+  <script src="js/api/session-manager.js"></script>
+  <script src="js/api/profile-service.js"></script>
+  <script src="js/api/api-client.js"></script>
+
+  <!-- Modal Script Controller -->
+  <script>
+    (function() {
+      const modal = document.getElementById('emergency-modal');
+      const triggers = [
+        document.getElementById('trigger-emergency-modal-btn'),
+        document.getElementById('banner-emergency-modal-btn')
+      ];
+      const closeBtn = document.getElementById('close-emergency-modal');
+      const cancelBtn = document.getElementById('cancel-emergency-sos');
+      const form = document.getElementById('emergency-sos-form');
+
+      function openModal() {
+        if (modal) modal.style.display = 'flex';
+      }
+
+      function closeModal() {
+        if (modal) modal.style.display = 'none';
+      }
+
+      triggers.forEach(t => {
+        if (t) t.addEventListener('click', openModal);
+      });
+
+      if (closeBtn) closeBtn.addEventListener('click', closeModal);
+      if (cancelBtn) cancelBtn.addEventListener('click', closeModal);
+
+      if (modal) {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) closeModal();
+        });
+      }
+
+      if (form) {
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const bloodType = document.getElementById('sos-blood-type').value;
+          const units = document.getElementById('sos-units').value;
+          const hospital = document.getElementById('sos-hospital').value;
+
+          closeModal();
+
+          if (window.BloodLinkToast) {
+            window.BloodLinkToast.warning(
+              `Emergency beacon broadcast for ${units} units of ${bloodType} at ${hospital}. Dispatch engine alerted!`,
+              'Emergency SOS Broadcast'
+            );
+          }
+
+          if (window.BloodLinkApi) {
+            await window.BloodLinkApi.dispatchEmergencyBeacon({
+              bloodType,
+              units,
+              hospital
+            });
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

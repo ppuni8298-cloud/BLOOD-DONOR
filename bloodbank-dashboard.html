@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BloodLink Blood Bank Command Center — Cold-chain storage management, component batch traceability, laboratory screening, and regional distribution.">
+  <title>Blood Bank Command Center — BloodLink</title>
+
+  <!-- Google Fonts: Outfit, Plus Jakarta Sans, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Core & Command Center Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/hospital-command-center.css">
+  <link rel="stylesheet" href="css/bloodbank-command-center.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23C71932'><path d='M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z'/></svg>">
+</head>
+<body>
+
+  <div class="bloodbank-app-layout">
+
+    <!-- ========================================================================
+         1. BLOOD BANK SAAS SIDEBAR
+         ======================================================================== -->
+    <aside class="bloodbank-sidebar" aria-label="Blood Bank Operations Navigation">
+      <div class="sidebar-header">
+        <a href="index.html" class="sidebar-brand">
+          <div class="brand-icon-wrapper" style="width: 36px; height: 36px; border-radius: var(--radius-sm); background: #B45309; color: #fff; display: flex; align-items: center; justify-content: center;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="width: 20px; height: 20px;">
+              <rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path>
+            </svg>
+          </div>
+          <span>Blood<span class="brand-highlight" style="color: var(--color-primary);">Link</span></span>
+        </a>
+      </div>
+
+      <ul class="sidebar-nav-list">
+        <li class="sidebar-section-title">Storage &amp; Inventory</li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn active" data-tab="tab-overview">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="7" height="9" x="3" y="3" rx="1"></rect><rect width="7" height="5" x="14" y="3" rx="1"></rect><rect width="7" height="9" x="14" y="12" rx="1"></rect><rect width="7" height="5" x="3" y="16" rx="1"></rect></svg>
+            <span>Inventory Matrix</span>
+          </button>
+        </li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-components" style="color: #B45309; font-weight: 700;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path><path d="m3.3 7 8.7 5 8.7-5"></path><path d="M12 22V12"></path></svg>
+            <span>Batch Registration</span>
+            <span class="sidebar-badge">INTAKE</span>
+          </button>
+        </li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-shelflife">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2v6h6"></path><path d="M4 12a8 8 0 0 1 14.93-4"></path><path d="M20 12a8 8 0 0 1-14.93 4"></path></svg>
+            <span>Cold-Chain Vaults</span>
+          </button>
+        </li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-qc">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            <span>Laboratory QC</span>
+          </button>
+        </li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-expiry">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+            <span>Expiry Monitoring</span>
+          </button>
+        </li>
+
+        <li class="sidebar-section-title">Processing &amp; Logistics</li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-requests">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            <span>Incoming Emergency</span>
+            <span class="sidebar-badge" id="bb-sidebar-req-badge">2</span>
+          </button>
+        </li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-processing">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="m4.93 4.93 4.24 4.24"></path><path d="m14.83 9.17 4.24-4.24"></path><path d="m14.83 14.83 4.24 4.24"></path><path d="m9.17 14.83-4.24 4.24"></path></svg>
+            <span>Component Separation</span>
+          </button>
+        </li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-dispatches">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="m9 12 2 2 4-4"></path></svg>
+            <span>Cold-Chain Dispatches</span>
+          </button>
+        </li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-reservations">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span>Active Reservations</span>
+          </button>
+        </li>
+
+        <li class="sidebar-section-title">Facility Administration</li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-staff">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <span>Lab &amp; Cold Vault Staff</span>
+          </button>
+        </li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-reports">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            <span>Regulatory Reports</span>
+          </button>
+        </li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-notifications">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg>
+            <span>Shortage Alerts</span>
+            <span class="sidebar-badge" style="background: var(--color-primary);" id="bb-sidebar-alerts-badge">2</span>
+          </button>
+        </li>
+        <li class="sidebar-nav-item">
+          <button class="sidebar-nav-btn" data-tab="tab-settings">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            <span>Vault Sensor Settings</span>
+          </button>
+        </li>
+      </ul>
+
+      <div class="bloodbank-sidebar .sidebar-footer" style="padding: 1rem 1.25rem; border-top: 1px solid var(--color-border-subtle); display: flex; align-items: center; gap: 0.75rem;">
+        <div class="user-avatar" style="background: rgba(245,158,11,0.15); color: #B45309;">RC</div>
+        <div style="flex: 1; min-width: 0;">
+          <div style="font-weight: 700; font-size: 0.85rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" id="bb-sidebar-name">Red Cross Regional Hub</div>
+          <div style="font-size: 0.72rem; color: var(--color-text-tertiary);">Blood Bank Center</div>
+        </div>
+        <button id="bb-btn-logout" class="btn btn-secondary btn-sm" style="padding: 0.35rem 0.5rem;" title="Sign Out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 15px; height: 15px;"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+        </button>
+      </div>
+    </aside>
+
+    <!-- ========================================================================
+         2. MAIN CONTENT AREA & TOPBAR
+         ======================================================================== -->
+    <div class="bloodbank-content-area">
+      <header class="bloodbank-topbar">
+        <div class="topbar-left">
+          <button id="bloodbank-menu-toggle" class="btn btn-secondary btn-sm" style="display: none; padding: 0.4rem;" aria-label="Toggle Menu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 18px; height: 18px;"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+          <div class="cold-chain-indicator">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 14px; height: 14px;"><path d="M14 2v6h6"></path><path d="M4 12a8 8 0 0 1 14.93-4"></path><path d="M20 12a8 8 0 0 1-14.93 4"></path></svg>
+            Cold Vault Optimal: 3.8°C • Sensors Verified
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <button class="btn btn-primary btn-sm" onclick="window.openRegisterBatchModal();">
+            + Register New Batch
+          </button>
+
+          <button class="theme-toggle-btn" aria-label="Toggle Theme">
+            <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+            <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+          </button>
+
+          <div style="font-size: 0.82rem; font-weight: 700; color: var(--color-text);" id="bb-topbar-user">
+            Blood Bank Manager
+          </div>
+        </div>
+      </header>
+
+      <main class="bloodbank-view-container">
+
+        <!-- ====================================================================
+             MODULE 1: INVENTORY MATRIX & DASHBOARD
+             ==================================================================== -->
+        <div class="bloodbank-tab-pane active" id="tab-overview">
+
+          <!-- Welcome Card with 3D Simulation -->
+          <div class="hospital-welcome-card">
+            <div>
+              <div style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem;">
+                <span class="badge-pill" style="background: rgba(245,158,11,0.15); color: #B45309; font-weight: 700;">
+                  Regional Transfusion Hub
+                </span>
+                <span class="badge-pill">
+                  Cold-Chain Traceability Active
+                </span>
+              </div>
+              <h1 style="font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; margin-bottom: 0.4rem;">
+                Blood Bank Operations Command
+              </h1>
+              <p style="font-size: 0.95rem; color: var(--color-text-secondary); max-width: 650px; margin-bottom: 1.25rem;">
+                Full-lifecycle cold-chain management across all 8 blood groups and 5 separated components: collection intake, automated shelf-life calculation, laboratory infection screening, and cold-chain dispatches.
+              </p>
+              <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                <button class="btn btn-primary btn-sm" onclick="window.openRegisterBatchModal();">
+                  Register Component Batch
+                </button>
+                <button class="btn btn-secondary btn-sm" onclick="document.querySelector('.sidebar-nav-btn[data-tab=\'tab-shelflife\']').click();">
+                  Monitor Vault Temperatures
+                </button>
+              </div>
+            </div>
+
+            <!-- Micro 3D Erythrocyte Engine -->
+            <div class="hospital-3d-cell-viewport" id="bloodbank-3d-cell-viewport"></div>
+          </div>
+
+          <!-- Statutory Clinical Disclaimer -->
+          <div class="clinical-disclaimer-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            <div>
+              <strong style="font-size: 0.85rem; color: var(--color-primary); display: block; margin-bottom: 2px;">
+                CLINICAL BLOOD COMPATIBILITY &amp; COLD-CHAIN NOTICE
+              </strong>
+              <p style="font-size: 0.8rem; color: var(--color-text-secondary); margin: 0; line-height: 1.45;">
+                Selecting a blood group or component does not establish transfusion compatibility. BloodLink facilitates logistics, inventory discovery, and donor communications. Final compatibility, component testing, antibody screening, and crossmatching must be performed by qualified medical transfusion professionals.
+              </p>
+            </div>
+          </div>
+
+          <!-- 4 Core Vault Temperature Sensors -->
+          <div class="cold-vaults-grid">
+            <div class="vault-card">
+              <div>
+                <div style="font-size: 0.75rem; color: var(--color-text-tertiary); font-weight: 700; text-transform: uppercase;">Main Cold Vault A (PRBC &amp; Whole Blood)</div>
+                <div class="vault-temp optimal">3.8°C</div>
+                <div style="font-size: 0.75rem; color: var(--color-text-secondary);">Target: 2.0°C – 6.0°C (Viability guaranteed)</div>
+              </div>
+              <span class="badge-pill" style="background: rgba(16,185,129,0.15); color: var(--color-success); font-weight: 700;">OPTIMAL</span>
+            </div>
+
+            <div class="vault-card">
+              <div>
+                <div style="font-size: 0.75rem; color: var(--color-text-tertiary); font-weight: 700; text-transform: uppercase;">Platelet Incubator B (Continuous Agitation)</div>
+                <div class="vault-temp optimal">22.0°C</div>
+                <div style="font-size: 0.75rem; color: var(--color-text-secondary);">Target: 20.0°C – 24.0°C (5-day acute life)</div>
+              </div>
+              <span class="badge-pill" style="background: rgba(16,185,129,0.15); color: var(--color-success); font-weight: 700;">AGITATING</span>
+            </div>
+
+            <div class="vault-card">
+              <div>
+                <div style="font-size: 0.75rem; color: var(--color-text-tertiary); font-weight: 700; text-transform: uppercase;">Deep Freeze C (Plasma &amp; Cryo)</div>
+                <div class="vault-temp optimal">-22.4°C</div>
+                <div style="font-size: 0.75rem; color: var(--color-text-secondary);">Target: ≤ -18.0°C (365-day shelf life)</div>
+              </div>
+              <span class="badge-pill" style="background: rgba(16,185,129,0.15); color: var(--color-success); font-weight: 700;">FROZEN</span>
+            </div>
+          </div>
+
+          <!-- Operational Metrics -->
+          <div class="hospital-metrics-grid">
+            <div class="hospital-metric-card">
+              <div class="metric-label">Total Reserve Units</div>
+              <div class="metric-val" id="bb-stat-total-units" style="color: var(--color-primary);">148 Units</div>
+              <div class="metric-sub">Across 8 blood groups</div>
+            </div>
+            <div class="hospital-metric-card">
+              <div class="metric-label">Under Testing / Quarantine</div>
+              <div class="metric-val" id="bb-stat-under-testing" style="color: var(--color-warning);">18 Units</div>
+              <div class="metric-sub">Chemiluminescent screening</div>
+            </div>
+            <div class="hospital-metric-card">
+              <div class="metric-label">Critical Shortages</div>
+              <div class="metric-val" id="bb-stat-shortages" style="color: var(--color-primary); font-size: 1.4rem;">O-, AB-</div>
+              <div class="metric-sub">Below safety reserve threshold</div>
+            </div>
+            <div class="hospital-metric-card">
+              <div class="metric-label">Near-Expiry Units (&lt;7d)</div>
+              <div class="metric-val" id="bb-stat-near-expiry" style="color: var(--color-warning);">6 Units</div>
+              <div class="metric-sub">Prioritize for surgical allocation</div>
+            </div>
+          </div>
+
+          <!-- LIVE INVENTORY MATRIX (8 groups x 5 components) -->
+          <div class="inventory-matrix-card">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
+              <div>
+                <h3 style="font-size: 1.25rem; font-weight: 800;">Real-Time Blood Component Inventory Matrix</h3>
+                <p style="font-size: 0.82rem; color: var(--color-text-secondary); margin: 0;">Component distribution breakdown across all 8 ABO/RhD blood groups.</p>
+              </div>
+              <button class="btn btn-secondary btn-sm" onclick="window.openRegisterBatchModal();">
+                + Register New Intake
+              </button>
+            </div>
+
+            <div class="matrix-grid" id="inventory-matrix-grid">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- Recent Batches Table -->
+          <div class="hospital-panel">
+            <div class="hospital-panel-header">
+              <div>
+                <h3 style="font-size: 1.15rem; font-weight: 800;">Recently Registered Units in Cold Vault</h3>
+                <p style="font-size: 0.82rem; color: var(--color-text-secondary); margin: 0;">Traceable units currently held in quarantine or available stock.</p>
+              </div>
+              <button class="btn btn-secondary btn-sm" onclick="document.querySelector('.sidebar-nav-btn[data-tab=\'tab-components\']').click();">
+                View All Batches
+              </button>
+            </div>
+
+            <div class="hospital-table-wrapper">
+              <table class="hospital-table">
+                <thead>
+                  <tr>
+                    <th>Batch Code</th>
+                    <th>Blood Group</th>
+                    <th>Component</th>
+                    <th>Quantity</th>
+                    <th>Storage Location</th>
+                    <th>QC Status</th>
+                  </tr>
+                </thead>
+                <tbody id="recent-batches-tbody">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ====================================================================
+             MODULE 2: BATCH REGISTRATION & TRACEABILITY
+             ==================================================================== -->
+        <div class="bloodbank-tab-pane" id="tab-components">
+          <div class="hospital-panel">
+            <div class="hospital-panel-header">
+              <div>
+                <h2 style="font-size: 1.4rem; font-weight: 800;">Traceable Blood Component Batches</h2>
+                <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Search, inspect, laboratory-screen, and manage component batches.</p>
+              </div>
+              <button class="btn btn-primary btn-sm" onclick="window.openRegisterBatchModal();">
+                + Register Batch
+              </button>
+            </div>
+
+            <div class="filter-bar">
+              <input type="text" id="batches-search-input" placeholder="Search batch number, group, component..." style="padding: 0.45rem 0.85rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); font-size: 0.85rem; width: 280px; background: var(--color-bg);">
+              <select id="batches-group-filter" style="padding: 0.45rem 0.85rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); font-size: 0.85rem; background: var(--color-bg);">
+                <option value="">All Blood Groups</option>
+                <option value="O-">O-</option>
+                <option value="O+">O+</option>
+                <option value="A-">A-</option>
+                <option value="A+">A+</option>
+                <option value="B-">B-</option>
+                <option value="B+">B+</option>
+                <option value="AB-">AB-</option>
+                <option value="AB+">AB+</option>
+              </select>
+            </div>
+
+            <div class="hospital-table-wrapper">
+              <table class="hospital-table">
+                <thead>
+                  <tr>
+                    <th>Batch Code</th>
+                    <th>Group</th>
+                    <th>Component</th>
+                    <th>Volume</th>
+                    <th>Vault Location</th>
+                    <th>Expiry Risk</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="batches-table-tbody">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             MODULE 3: COMPONENT SHELF LIFE & VAULTS
+             ==================================================================== -->
+        <div class="bloodbank-tab-pane" id="tab-shelflife">
+          <div class="hospital-panel">
+            <div class="hospital-panel-header">
+              <div>
+                <h2 style="font-size: 1.4rem; font-weight: 800;">Component Shelf-Life &amp; Storage Conditions</h2>
+                <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Clinical regulatory specifications for viability preservation.</p>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;">
+              <div style="padding: 1.5rem; background: var(--color-bg); border-radius: var(--radius-lg); border: 1px solid var(--color-border);">
+                <div style="font-weight: 800; font-size: 1.1rem; color: var(--color-primary); margin-bottom: 0.5rem;">Platelets (PLTS)</div>
+                <div style="font-size: 0.85rem; color: var(--color-text-secondary); line-height: 1.5;">
+                  <strong>Shelf Life:</strong> 5 Days acute viability<br>
+                  <strong>Storage:</strong> 20.0°C – 24.0°C with continuous agitation<br>
+                  <strong>Risk:</strong> High bacterial proliferation risk if unmonitored.
+                </div>
+              </div>
+
+              <div style="padding: 1.5rem; background: var(--color-bg); border-radius: var(--radius-lg); border: 1px solid var(--color-border);">
+                <div style="font-weight: 800; font-size: 1.1rem; color: var(--color-text); margin-bottom: 0.5rem;">Packed Red Blood Cells (PRBC)</div>
+                <div style="font-size: 0.85rem; color: var(--color-text-secondary); line-height: 1.5;">
+                  <strong>Shelf Life:</strong> 42 Days (in SAGM additive)<br>
+                  <strong>Storage:</strong> 2.0°C – 6.0°C refrigeration<br>
+                  <strong>Purpose:</strong> Primary trauma oxygenation carrier.
+                </div>
+              </div>
+
+              <div style="padding: 1.5rem; background: var(--color-bg); border-radius: var(--radius-lg); border: 1px solid var(--color-border);">
+                <div style="font-weight: 800; font-size: 1.1rem; color: #0284C7; margin-bottom: 0.5rem;">Fresh Frozen Plasma (FFP)</div>
+                <div style="font-size: 0.85rem; color: var(--color-text-secondary); line-height: 1.5;">
+                  <strong>Shelf Life:</strong> 365 Days (1 Year)<br>
+                  <strong>Storage:</strong> ≤ -18.0°C deep freeze<br>
+                  <strong>Purpose:</strong> Coagulation factor deficit correction.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             MODULE 4: LABORATORY QC SCREENING
+             ==================================================================== -->
+        <div class="bloodbank-tab-pane" id="tab-qc">
+          <div class="hospital-panel">
+            <div class="hospital-panel-header">
+              <div>
+                <h2 style="font-size: 1.4rem; font-weight: 800;">Laboratory Infection Screening &amp; Quality Control</h2>
+                <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Chemiluminescent immunoassays: HIV 1/2, Hepatitis B (HBsAg), Hepatitis C, Syphilis, and Malaria.</p>
+              </div>
+            </div>
+
+            <div class="hospital-table-wrapper">
+              <table class="hospital-table">
+                <thead>
+                  <tr>
+                    <th>Batch Code</th>
+                    <th>Group &amp; Product</th>
+                    <th>HIV / HBV / HCV</th>
+                    <th>Syphilis / Malaria</th>
+                    <th>Lab Notes</th>
+                    <th>Overall QC</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="font-family: monospace; font-weight: 700;">PRBC-2026-004812</td>
+                    <td><span class="badge-pill" style="font-weight: 800; color: var(--color-primary);">O- PRBC</span></td>
+                    <td>Non-Reactive / Non-Reactive / Non-Reactive</td>
+                    <td>Non-Reactive / Non-Reactive</td>
+                    <td>Full panel clear. Passed release criteria.</td>
+                    <td><span class="badge-pill" style="background: rgba(16,185,129,0.15); color: var(--color-success); font-weight: 700;">PASSED</span></td>
+                    <td>
+                      <button class="btn btn-secondary btn-sm" onclick="window.openQCModal('b-01', 'PRBC-2026-004812');">Re-Test</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="font-family: monospace; font-weight: 700;">WBLD-2026-002140</td>
+                    <td><span class="badge-pill" style="font-weight: 800;">O+ Whole Blood</span></td>
+                    <td>Under Assay Processing</td>
+                    <td>Pending Specimen Run</td>
+                    <td>Awaiting ELISA optical density reading.</td>
+                    <td><span class="badge-pill" style="background: rgba(245,158,11,0.15); color: var(--color-warning); font-weight: 700;">PENDING</span></td>
+                    <td>
+                      <button class="btn btn-primary btn-sm" onclick="window.openQCModal('b-04', 'WBLD-2026-002140');">Record QC</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             MODULE 5: EXPIRY MONITORING & WASTE MINIMIZATION
+             ==================================================================== -->
+        <div class="bloodbank-tab-pane" id="tab-expiry">
+          <div class="hospital-panel">
+            <div class="hospital-panel-header">
+              <div>
+                <h2 style="font-size: 1.4rem; font-weight: 800;">Component Expiry Monitoring &amp; Prioritization</h2>
+                <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">FEFO (First Expired, First Out) inventory management to eliminate valuable component discard.</p>
+              </div>
+            </div>
+
+            <div class="hospital-table-wrapper">
+              <table class="hospital-table">
+                <thead>
+                  <tr>
+                    <th>Batch Code</th>
+                    <th>Blood Group</th>
+                    <th>Component</th>
+                    <th>Storage Temp</th>
+                    <th>Days Remaining</th>
+                    <th>Allocation Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="font-family: monospace; font-weight: 700;">PLTS-2026-001094</td>
+                    <td><span class="badge-pill" style="font-weight: 800; color: var(--color-primary);">A+</span></td>
+                    <td>Platelets</td>
+                    <td>22.0°C (Agitated)</td>
+                    <td><span class="expiry-badge risk-critical">3 Days Remaining</span></td>
+                    <td><span class="badge-pill" style="background: var(--color-soft-red); color: var(--color-primary);">PRIORITY SURGICAL ALLOCATION</span></td>
+                    <td>
+                      <button class="btn btn-secondary btn-sm" onclick="window.openDiscardModal('b-02', 'PLTS-2026-001094');">Discard</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="font-family: monospace; font-weight: 700;">PRBC-2026-003991</td>
+                    <td><span class="badge-pill" style="font-weight: 800;">B+</span></td>
+                    <td>Packed Red Cells</td>
+                    <td>4.0°C</td>
+                    <td><span class="expiry-badge risk-warning">7 Days Remaining</span></td>
+                    <td><span class="badge-pill">Offered to Metropolitan Trauma</span></td>
+                    <td>
+                      <button class="btn btn-secondary btn-sm" onclick="window.openDiscardModal('b-03', 'PRBC-2026-003991');">Discard</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             MODULE 6: ACTIVE RESERVATIONS
+             ==================================================================== -->
+        <div class="bloodbank-tab-pane" id="tab-reservations">
+          <div class="hospital-panel">
+            <div class="hospital-panel-header">
+              <div>
+                <h2 style="font-size: 1.4rem; font-weight: 800;">Hospital Inventory Reservations</h2>
+                <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Units electronically reserved by matching engine for confirmed emergency surgeries.</p>
+              </div>
+            </div>
+
+            <div class="hospital-table-wrapper">
+              <table class="hospital-table">
+                <thead>
+                  <tr>
+                    <th>Reservation Code</th>
+                    <th>Request Ref</th>
+                    <th>Hospital Client</th>
+                    <th>Units &amp; Group</th>
+                    <th>Hold Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="font-family: monospace; font-weight: 700;">RSV-2026-00184</td>
+                    <td>REQ-TRM-8910</td>
+                    <td>Metropolitan Trauma &amp; Surgical Center</td>
+                    <td><strong>4 Units O- PRBC</strong></td>
+                    <td><span class="badge-pill" style="background: rgba(16,185,129,0.15); color: var(--color-success); font-weight: 700;">RESERVED (Locked)</span></td>
+                    <td>
+                      <button class="btn btn-primary btn-sm" onclick="window.openDispatchModal('RSV-2026-00184', 'Metropolitan Trauma Center', 'O- PRBC', 4);">
+                        Dispatch Now
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             MODULE 7: INCOMING EMERGENCY REQUESTS
+             ==================================================================== -->
+        <div class="bloodbank-tab-pane" id="tab-requests">
+          <div class="hospital-panel">
+            <div class="hospital-panel-header">
+              <div>
+                <h2 style="font-size: 1.4rem; font-weight: 800;">Incoming Emergency Requests from Hospitals</h2>
+                <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Verified hospital trauma cases requiring cold-chain unit dispatch.</p>
+              </div>
+            </div>
+
+            <div class="hospital-table-wrapper">
+              <table class="hospital-table">
+                <thead>
+                  <tr>
+                    <th>Patient Case</th>
+                    <th>Hospital Facility</th>
+                    <th>Blood Group</th>
+                    <th>Quantity</th>
+                    <th>Priority</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="incoming-requests-tbody">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             MODULE 10: COMPONENT PROCESSING & SEPARATION
+             ==================================================================== -->
+        <div class="bloodbank-tab-pane" id="tab-processing">
+          <div class="hospital-panel">
+            <div class="hospital-panel-header">
+              <div>
+                <h2 style="font-size: 1.4rem; font-weight: 800;">Component Processing &amp; Separation Log</h2>
+                <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Parent-child separation events: Whole Blood centrifuged into PRBC, Plasma, and Platelets.</p>
+              </div>
+            </div>
+
+            <div class="hospital-table-wrapper">
+              <table class="hospital-table">
+                <thead>
+                  <tr>
+                    <th>Event ID</th>
+                    <th>Processing Type</th>
+                    <th>Source Batch</th>
+                    <th>Products Produced</th>
+                    <th>Technician</th>
+                    <th>Time</th>
+                  </tr>
+                </thead>
+                <tbody id="processing-table-tbody">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             MODULE 11: COLD-CHAIN DISPATCHES
+             ==================================================================== -->
+        <div class="bloodbank-tab-pane" id="tab-dispatches">
+          <div class="hospital-panel">
+            <div class="hospital-panel-header">
+              <div>
+                <h2 style="font-size: 1.4rem; font-weight: 800;">Cold-Chain Dispatches &amp; Transit Log</h2>
+                <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Traceable outbound units with calibrated cold-box temperature loggers.</p>
+              </div>
+            </div>
+
+            <div class="hospital-table-wrapper">
+              <table class="hospital-table">
+                <thead>
+                  <tr>
+                    <th>Dispatch Code</th>
+                    <th>Destination Hospital</th>
+                    <th>Blood Cargo</th>
+                    <th>Courier</th>
+                    <th>Departure Temp</th>
+                    <th>Transit Status</th>
+                  </tr>
+                </thead>
+                <tbody id="dispatches-table-tbody">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             MODULE 12: STAFF MANAGEMENT
+             ==================================================================== -->
+        <div class="bloodbank-tab-pane" id="tab-staff">
+          <div class="hospital-panel">
+            <div class="hospital-panel-header">
+              <div>
+                <h2 style="font-size: 1.4rem; font-weight: 800;">Laboratory &amp; Cold Vault Personnel</h2>
+                <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Certified laboratory technicians, phlebotomists, and inventory managers.</p>
+              </div>
+              <button class="btn btn-primary btn-sm" onclick="window.openBBStaffModal();">
+                + Provision Staff
+              </button>
+            </div>
+
+            <div class="hospital-table-wrapper">
+              <table class="hospital-table">
+                <thead>
+                  <tr>
+                    <th>Staff Member</th>
+                    <th>Institutional Role</th>
+                    <th>Department</th>
+                    <th>License Number</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="bb-staff-tbody">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             MODULE 13: REPORTS & ANALYTICS
+             ==================================================================== -->
+        <div class="bloodbank-tab-pane" id="tab-reports">
+          <div class="hospital-panel">
+            <div class="hospital-panel-header">
+              <div>
+                <h2 style="font-size: 1.4rem; font-weight: 800;">Blood Bank Regulatory Compliance Reports</h2>
+                <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Aggregated collection, testing, dispatch, and discard analytics for audit submission.</p>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem;">
+              <div class="hospital-metric-card">
+                <div class="metric-label">Units Collected</div>
+                <div class="metric-val" id="bb-rep-collected">248</div>
+                <div class="metric-sub">Phlebotomy sessions</div>
+              </div>
+              <div class="hospital-metric-card">
+                <div class="metric-label">Units Tested</div>
+                <div class="metric-val" id="bb-rep-tested">240</div>
+                <div class="metric-sub">Infection screening</div>
+              </div>
+              <div class="hospital-metric-card">
+                <div class="metric-label">Screening Pass Rate</div>
+                <div class="metric-val" id="bb-rep-passrate" style="color: var(--color-success);">98.8%</div>
+                <div class="metric-sub">Non-reactive threshold</div>
+              </div>
+              <div class="hospital-metric-card">
+                <div class="metric-label">Units Dispatched</div>
+                <div class="metric-val" id="bb-rep-dispatched">182</div>
+                <div class="metric-sub">Hospital trauma centers</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             MODULE 14: SHORTAGE ALERTS
+             ==================================================================== -->
+        <div class="bloodbank-tab-pane" id="tab-notifications">
+          <div class="hospital-panel">
+            <div class="hospital-panel-header">
+              <div>
+                <h2 style="font-size: 1.4rem; font-weight: 800;">Inventory Shortage &amp; Expiry Feed</h2>
+                <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Live notifications when specific blood components drop below critical safety levels.</p>
+              </div>
+            </div>
+
+            <div id="bb-alerts-feed">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             MODULE 15: SENSOR SETTINGS
+             ==================================================================== -->
+        <div class="bloodbank-tab-pane" id="tab-settings">
+          <div class="hospital-panel">
+            <div class="hospital-panel-header">
+              <div>
+                <h2 style="font-size: 1.4rem; font-weight: 800;">Facility Cold-Chain Accreditation &amp; Sensors</h2>
+                <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Automated thermal telemetry alert triggers and regulatory licensing.</p>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 800px;">
+              <div>
+                <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem;">Facility Name</label>
+                <input type="text" value="Red Cross Regional Blood Transfusion Center" disabled style="width: 100%; padding: 0.6rem 0.85rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); background: var(--color-bg);">
+              </div>
+              <div>
+                <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem;">Regulatory Accreditation</label>
+                <input type="text" value="AABB Accredited / FDA Registered Hub #BB-994" disabled style="width: 100%; padding: 0.6rem 0.85rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); background: var(--color-bg);">
+              </div>
+              <div>
+                <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem;">Automated Expiry Warning Window</label>
+                <input type="text" value="7 Days Prior to Viability Expiration" disabled style="width: 100%; padding: 0.6rem 0.85rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); background: var(--color-bg);">
+              </div>
+              <div>
+                <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem;">Thermal Logger Telemetry Interval</label>
+                <input type="text" value="Continuous / 15-Minute Sync" disabled style="width: 100%; padding: 0.6rem 0.85rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); background: var(--color-bg);">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+
+  </div>
+
+  <!-- ========================================================================
+       MODAL 1: REGISTER BATCH MODAL
+       ======================================================================== -->
+  <div class="hospital-modal-overlay" id="register-batch-modal">
+    <div class="hospital-modal-card">
+      <div class="hospital-modal-header">
+        <div>
+          <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 2px;">Register Component Batch</h3>
+          <span style="font-size: 0.78rem; color: var(--color-text-secondary);">Intake into cold storage with automatic shelf-life calculation</span>
+        </div>
+        <button class="hospital-close-btn" aria-label="Close modal">&times;</button>
+      </div>
+
+      <form id="register-batch-form">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+          <div>
+            <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem;">Blood Group</label>
+            <select id="reg-blood-group" required style="width: 100%; padding: 0.6rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); font-size: 0.85rem;">
+              <option value="O-">O- Negative (Universal PRBC)</option>
+              <option value="O+">O+ Positive</option>
+              <option value="A-">A- Negative</option>
+              <option value="A+">A+ Positive</option>
+              <option value="B-">B- Negative</option>
+              <option value="B+">B+ Positive</option>
+              <option value="AB-">AB- Negative</option>
+              <option value="AB+">AB+ Positive (Universal Plasma)</option>
+            </select>
+          </div>
+          <div>
+            <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem;">Component Type</label>
+            <select id="reg-component" required style="width: 100%; padding: 0.6rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); font-size: 0.85rem;">
+              <option value="packed_red_cells">Packed Red Blood Cells (42 Days @ 4°C)</option>
+              <option value="platelets">Platelets (5 Days @ 22°C Agitated)</option>
+              <option value="plasma">Fresh Frozen Plasma (365 Days @ -20°C)</option>
+              <option value="whole_blood">Whole Blood (35 Days @ 4°C)</option>
+              <option value="cryoprecipitate">Cryoprecipitate (365 Days @ -20°C)</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+          <div>
+            <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem;">Volume (mL)</label>
+            <input type="number" id="reg-volume" value="450" min="50" max="1000" required style="width: 100%; padding: 0.6rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); font-size: 0.85rem;">
+          </div>
+          <div>
+            <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem;">Units Count</label>
+            <input type="number" id="reg-units" value="1.0" step="0.5" min="0.5" max="20" required style="width: 100%; padding: 0.6rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); font-size: 0.85rem;">
+          </div>
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem;">Storage Location</label>
+          <input type="text" id="reg-location" value="Cold Vault A - Rack 2, Shelf 1" required style="width: 100%; padding: 0.6rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); font-size: 0.85rem;">
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem;">Collection Date</label>
+          <input type="date" id="reg-coll-date" style="width: 100%; padding: 0.6rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); font-size: 0.85rem;">
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+          <button type="button" class="btn btn-secondary btn-sm hospital-close-btn">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Confirm Intake Registration</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 2: LABORATORY QC SCREENING MODAL
+       ======================================================================== -->
+  <div class="hospital-modal-overlay" id="qc-modal">
+    <div class="hospital-modal-card">
+      <div class="hospital-modal-header">
+        <div>
+          <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 2px;">Infectious Disease QC Screening</h3>
+          <span style="font-size: 0.78rem; color: var(--color-text-secondary);" id="qc-batch-label">Batch: PRBC-2026-004812</span>
+        </div>
+        <button class="hospital-close-btn" aria-label="Close modal">&times;</button>
+      </div>
+
+      <form id="qc-form">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem;">
+          <div>
+            <label style="display: block; font-size: 0.78rem; font-weight: 700; margin-bottom: 0.2rem;">HIV 1/2 Screen</label>
+            <select id="qc-hiv" style="width: 100%; padding: 0.5rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); font-size: 0.82rem;">
+              <option value="negative">Negative / Non-Reactive</option>
+              <option value="positive">Positive / Reactive</option>
+            </select>
+          </div>
+          <div>
+            <label style="display: block; font-size: 0.78rem; font-weight: 700; margin-bottom: 0.2rem;">Hepatitis B (HBsAg)</label>
+            <select id="qc-hbv" style="width: 100%; padding: 0.5rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); font-size: 0.82rem;">
+              <option value="negative">Negative / Non-Reactive</option>
+              <option value="positive">Positive / Reactive</option>
+            </select>
+          </div>
+          <div>
+            <label style="display: block; font-size: 0.78rem; font-weight: 700; margin-bottom: 0.2rem;">Hepatitis C (Anti-HCV)</label>
+            <select id="qc-hcv" style="width: 100%; padding: 0.5rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); font-size: 0.82rem;">
+              <option value="negative">Negative / Non-Reactive</option>
+              <option value="positive">Positive / Reactive</option>
+            </select>
+          </div>
+          <div>
+            <label style="display: block; font-size: 0.78rem; font-weight: 700; margin-bottom: 0.2rem;">Syphilis (VDRL / RPR)</label>
+            <select id="qc-syphilis" style="width: 100%; padding: 0.5rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); font-size: 0.82rem;">
+              <option value="negative">Negative / Non-Reactive</option>
+              <option value="positive">Positive / Reactive</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.78rem; font-weight: 700; margin-bottom: 0.2rem;">Malaria Parasite Screen</label>
+          <select id="qc-malaria" style="width: 100%; padding: 0.5rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); font-size: 0.82rem;">
+            <option value="negative">Negative / Not Detected</option>
+            <option value="positive">Positive / Parasites Detected</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.2rem;">Overall QC Result</label>
+          <select id="qc-overall" required style="width: 100%; padding: 0.6rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); font-size: 0.85rem;">
+            <option value="passed">Passed — Release to Active Inventory</option>
+            <option value="failed">Failed — Quarantine Immediately for Destruction</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.2rem;">Laboratory Technician Notes</label>
+          <textarea id="qc-notes" rows="2" placeholder="Chemiluminescent immunoassay non-reactive. Hemoglobin verified." style="width: 100%; padding: 0.6rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); font-size: 0.85rem; font-family: inherit;"></textarea>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+          <button type="button" class="btn btn-secondary btn-sm hospital-close-btn">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Confirm QC Record</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 3: DISCARD BATCH MODAL
+       ======================================================================== -->
+  <div class="hospital-modal-overlay" id="discard-modal">
+    <div class="hospital-modal-card">
+      <div class="hospital-modal-header">
+        <div>
+          <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--color-primary); margin-bottom: 2px;">Discard Blood Unit</h3>
+          <span style="font-size: 0.78rem; color: var(--color-text-secondary);" id="discard-batch-label">Batch: PRBC-2026-004812</span>
+        </div>
+        <button class="hospital-close-btn" aria-label="Close modal">&times;</button>
+      </div>
+
+      <form id="discard-form">
+        <div style="margin-bottom: 1.5rem;">
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem;">Reason for Discard / Biohazard Disposal</label>
+          <select id="discard-reason-input" required style="width: 100%; padding: 0.6rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); font-size: 0.85rem;">
+            <option value="Exceeded shelf-life viability limit">Exceeded shelf-life viability limit</option>
+            <option value="Reactive infection screening result">Reactive infection screening result</option>
+            <option value="Cold-chain temperature excursion breach">Cold-chain temperature excursion breach</option>
+            <option value="Bag leak or integrity compromised during processing">Bag leak or integrity compromised during processing</option>
+          </select>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+          <button type="button" class="btn btn-secondary btn-sm hospital-close-btn">Cancel</button>
+          <button type="submit" class="btn btn-danger btn-sm">Confirm Discard</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 4: DISPATCH GENERATOR MODAL
+       ======================================================================== -->
+  <div class="hospital-modal-overlay" id="dispatch-modal">
+    <div class="hospital-modal-card">
+      <div class="hospital-modal-header">
+        <div>
+          <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 2px;">Initiate Cold-Chain Dispatch</h3>
+          <span style="font-size: 0.78rem; color: var(--color-text-secondary);" id="dsp-dest-label">Destination Hospital</span>
+        </div>
+        <button class="hospital-close-btn" aria-label="Close modal">&times;</button>
+      </div>
+
+      <form id="dispatch-form">
+        <input type="hidden" id="dsp-reservation-id">
+
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem;">Emergency Medical Courier</label>
+          <input type="text" id="dsp-courier-input" value="LifeFlight Emergency Medical Courier" required style="width: 100%; padding: 0.6rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); font-size: 0.85rem;">
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem;">Calibrated Transport Box ID</label>
+          <input type="text" id="dsp-box-input" value="COLDBOX-TX-841" required style="width: 100%; padding: 0.6rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); font-size: 0.85rem;">
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem;">Departure Temperature (°C)</label>
+          <input type="number" id="dsp-temp-input" value="3.8" step="0.1" required style="width: 100%; padding: 0.6rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); font-size: 0.85rem;">
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+          <button type="button" class="btn btn-secondary btn-sm hospital-close-btn">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Generate Dispatch Code &amp; Ship</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 5: PROVISION BLOOD BANK STAFF
+       ======================================================================== -->
+  <div class="hospital-modal-overlay" id="bb-staff-modal">
+    <div class="hospital-modal-card">
+      <div class="hospital-modal-header">
+        <div>
+          <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 2px;">Provision Blood Bank Personnel</h3>
+          <span style="font-size: 0.78rem; color: var(--color-text-secondary);">Assign laboratory, intake, or logistics role</span>
+        </div>
+        <button class="hospital-close-btn" aria-label="Close modal">&times;</button>
+      </div>
+
+      <form id="bb-staff-form">
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem;">Staff Email</label>
+          <input type="email" id="bb-staff-email" placeholder="technician@bloodlink.org" required style="width: 100%; padding: 0.6rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); font-size: 0.85rem;">
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem;">Facility Role</label>
+          <select id="bb-staff-role" required style="width: 100%; padding: 0.6rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); font-size: 0.85rem;">
+            <option value="lab_technician">Laboratory Technician (QC &amp; Screening)</option>
+            <option value="inventory_manager">Cold-Chain Inventory Manager</option>
+            <option value="dispatch_staff">Distribution &amp; Courier Logistics</option>
+            <option value="bloodbank_admin">Blood Bank Administrator</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem;">Department</label>
+          <input type="text" id="bb-staff-dept" value="Immunohematology Laboratory" required style="width: 100%; padding: 0.6rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); font-size: 0.85rem;">
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem;">License / Certification Number</label>
+          <input type="text" id="bb-staff-license" placeholder="e.g. LAB-TECH-99120" required style="width: 100%; padding: 0.6rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); font-size: 0.85rem;">
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+          <button type="button" class="btn btn-secondary btn-sm hospital-close-btn">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Issue Staff Authorization</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast-container" aria-live="polite"></div>
+
+  <!-- External Libraries & Three.js -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- Core Scripts -->
+  <script src="js/theme.js"></script>
+  <script src="js/components/toast.js"></script>
+  <script src="js/api/config.js"></script>
+  <script src="js/api/supabase-client.js"></script>
+  <script src="js/api/session-manager.js"></script>
+  <script src="js/api/profile-service.js"></script>
+  <script src="js/api/api-client.js"></script>
+
+  <!-- Blood Bank Command Center Scripts -->
+  <script src="js/bloodbank/bloodbank-service.js"></script>
+  <script src="js/bloodbank/bloodbank-3d-cell.js"></script>
+  <script src="js/bloodbank/bloodbank-command-center.js"></script>
+
+  <script>
+    (async function() {
+      // Role enforcement: blood_bank or admin
+      if (window.BloodLinkSession) {
+        const isAuthorized = await window.BloodLinkSession.requireAuth({
+          allowedRoles: ['blood_bank', 'admin']
+        });
+        if (!isAuthorized) return;
+
+        const profile = window.BloodLinkSession.getProfile();
+        const user = window.BloodLinkSession.getUser();
+        const name = profile?.full_name || user?.user_metadata?.full_name || 'Regional Blood Bank';
+
+        const nameEl = document.getElementById('bb-sidebar-name');
+        if (nameEl) nameEl.textContent = name;
+        const topName = document.getElementById('bb-topbar-user');
+        if (topName) topName.textContent = name;
+
+        const logoutBtn = document.getElementById('bb-btn-logout');
+        if (logoutBtn) {
+          logoutBtn.addEventListener('click', () => {
+            window.BloodLinkSession.signOut();
+          });
+        }
+      }
+    })();
+  </script>
+</body>
+</html>

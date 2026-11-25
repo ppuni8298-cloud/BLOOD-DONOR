@@ -1,0 +1,399 @@
+/* ==========================================================================
+   BLOODLINK - AUTHENTICATION PAGES STYLING (auth.css)
+   ========================================================================== */
+
+.auth-page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  background-color: var(--color-bg);
+  position: relative;
+  overflow-x: hidden;
+}
+
+.auth-split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Left Brand Showcase Side */
+.auth-brand-side {
+  background: linear-gradient(145deg, #18090C 0%, #2E0B12 50%, #150508 100%);
+  color: #FFFFFF;
+  padding: clamp(2.5rem, 5vw, 4.5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  border-right: 1px solid rgba(199, 25, 50, 0.2);
+}
+
+.auth-brand-glow {
+  position: absolute;
+  top: 15%;
+  left: 20%;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(199, 25, 50, 0.35) 0%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.auth-brand-header {
+  position: relative;
+  z-index: 2;
+}
+
+.auth-brand-content {
+  position: relative;
+  z-index: 2;
+  margin: auto 0;
+  max-width: 480px;
+}
+
+.auth-brand-title {
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: var(--font-weight-extrabold);
+  color: #FFFFFF;
+  line-height: 1.15;
+  margin-bottom: var(--space-4);
+}
+
+.auth-brand-desc {
+  font-size: var(--font-size-base);
+  color: rgba(255, 255, 255, 0.8);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--space-6);
+}
+
+.auth-stats-strip {
+  display: flex;
+  gap: var(--space-6);
+  padding-top: var(--space-5);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.auth-stat-mini h4 {
+  color: #FFFFFF;
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-extrabold);
+}
+
+.auth-stat-mini span {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.auth-brand-footer {
+  position: relative;
+  z-index: 2;
+  font-size: var(--font-size-xs);
+  color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Right Form Side */
+.auth-form-side {
+  padding: clamp(2rem, 5vw, 4rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.auth-form-container {
+  width: 100%;
+  max-width: 480px;
+}
+
+.auth-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-6);
+  width: 100%;
+}
+
+.back-home-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-medium);
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  transition: all var(--transition-fast);
+}
+
+.back-home-link:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  background-color: var(--color-soft-red);
+}
+
+.auth-tabs-nav {
+  display: flex;
+  background: var(--color-bg-tertiary);
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-6);
+  width: 100%;
+}
+
+.auth-tab-btn {
+  flex: 1;
+  padding: 0.65rem 1rem;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-secondary);
+  border-radius: var(--radius-xs);
+  transition: all var(--transition-fast);
+  text-align: center;
+}
+
+.auth-tab-btn.active {
+  background: var(--color-surface);
+  color: var(--color-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.auth-form-panel {
+  display: none;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.auth-form-panel.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Account Type Selector (Donor, Patient/Guardian, Hospital, Blood Bank) */
+.role-selector-label {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-2);
+  display: block;
+}
+
+.role-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.65rem;
+  margin-bottom: var(--space-5);
+}
+
+.role-option-card {
+  padding: 0.75rem 0.85rem;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.role-option-card:hover {
+  border-color: var(--color-primary);
+  background: var(--color-surface-hover);
+}
+
+.role-option-card.selected {
+  border-color: var(--color-primary);
+  background: var(--color-soft-red);
+  box-shadow: 0 0 0 1px var(--color-primary);
+}
+
+.role-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-xs);
+  background: var(--color-bg-tertiary);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.role-option-card.selected .role-icon {
+  background: var(--color-primary);
+  color: #FFFFFF;
+}
+
+.role-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.role-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.role-name {
+  font-size: 0.85rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+.role-desc {
+  font-size: 0.6875rem;
+  color: var(--color-text-tertiary);
+}
+
+/* Form Controls */
+.form-group {
+  margin-bottom: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.form-label {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+}
+
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon-left {
+  position: absolute;
+  left: 1rem;
+  color: var(--color-text-tertiary);
+  pointer-events: none;
+  width: 18px;
+  height: 18px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.65rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+  transition: all var(--transition-fast);
+}
+
+.form-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-subtle);
+  outline: none;
+}
+
+.form-row-remember {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-5);
+  font-size: var(--font-size-xs);
+}
+
+.remember-check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+.remember-check input[type="checkbox"] {
+  accent-color: var(--color-primary);
+  width: 15px;
+  height: 15px;
+}
+
+.forgot-pwd-link {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.forgot-pwd-link:hover {
+  text-decoration: underline;
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  margin: var(--space-5) 0;
+  color: var(--color-text-tertiary);
+  font-size: var(--font-size-xs);
+}
+
+.auth-divider::before, .auth-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+.auth-divider span {
+  padding: 0 0.75rem;
+}
+
+.btn-google-oauth {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  transition: all var(--transition-fast);
+  margin-bottom: var(--space-4);
+}
+
+.btn-google-oauth:hover {
+  background: var(--color-surface-hover);
+  border-color: var(--color-border-focus);
+}
+
+.oauth-badge-awaiting {
+  font-size: 0.65rem;
+  background: var(--color-warning-bg);
+  color: var(--color-warning);
+  padding: 0.15rem 0.4rem;
+  border-radius: var(--radius-full);
+}
+
+/* Responsive Auth Layout */
+@media (max-width: 992px) {
+  .auth-split-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-brand-side {
+    display: none;
+  }
+
+  .auth-form-side {
+    padding: 2rem 1.25rem;
+  }
+}

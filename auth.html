@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BloodLink Authentication - Access the Intelligent Blood Donation & Emergency Network.">
+  <title>Account Portal — BloodLink</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Core CSS Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23C71932'><path d='M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z'/></svg>">
+</head>
+<body>
+
+  <div class="auth-page-wrapper">
+    <div class="auth-split-grid">
+
+      <!-- Left Visual Brand Showcase -->
+      <div class="auth-brand-side">
+        <div class="auth-brand-glow"></div>
+
+        <div class="auth-brand-header">
+          <a href="index.html" class="brand-logo" style="color: #FFFFFF;">
+            <div class="brand-icon-wrapper">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+              </svg>
+            </div>
+            <div class="brand-name">
+              <span class="brand-title">Blood<span class="brand-highlight" style="color: #FF4D6D;">Link</span></span>
+              <span class="brand-tagline-micro" style="color: rgba(255,255,255,0.6);">Intelligent Network</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="auth-brand-content">
+          <span class="badge-pill" style="background: rgba(199, 25, 50, 0.3); border-color: rgba(255, 255, 255, 0.2); color: #FFFFFF; margin-bottom: 1.25rem;">
+            Unified Healthcare Identity
+          </span>
+          <h1 class="auth-brand-title">
+            One Donation.<br>
+            Three Lives.<br>
+            <span style="color: #FF4D6D;">One Connected Network.</span>
+          </h1>
+          <p class="auth-brand-desc">
+            Join thousands of voluntary donors, partner hospitals, accredited blood banks, and patients on a secure, HIPAA/GDPR-aligned transfusion network.
+          </p>
+
+          <div class="auth-stats-strip">
+            <div class="auth-stat-mini">
+              <h4>&lt; 15 min</h4>
+              <span>Dispatch Speed</span>
+            </div>
+            <div class="auth-stat-mini">
+              <h4>100%</h4>
+              <span>Cold-Chain Traceability</span>
+            </div>
+            <div class="auth-stat-mini">
+              <h4>SDG 3</h4>
+              <span>Health Equity</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="auth-brand-footer">
+          <span>&copy; 2026 BloodLink Healthcare Technologies</span>
+          <span>Prepared for Supabase Auth</span>
+        </div>
+      </div>
+
+      <!-- Right Form Container -->
+      <div class="auth-form-side">
+
+        <div class="auth-header-top">
+          <a href="index.html" class="back-home-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px;"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Back to Home
+          </a>
+
+          <!-- Theme switcher -->
+          <button class="theme-toggle-btn" aria-label="Toggle Theme" title="Toggle Theme">
+            <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+            <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+          </button>
+        </div>
+
+        <div class="auth-form-container">
+
+          <!-- Tab Selector: Login vs Signup -->
+          <div class="auth-tabs-nav" role="tablist">
+            <button class="auth-tab-btn active" data-target-tab="tab-login" role="tab" aria-selected="true">
+              Sign In
+            </button>
+            <button class="auth-tab-btn" data-target-tab="tab-signup" role="tab" aria-selected="false">
+              Create Account
+            </button>
+          </div>
+
+          <!-- ================================================================
+               LOGIN FORM PANEL
+               ================================================================ -->
+          <div class="auth-form-panel active" id="tab-login" role="tabpanel">
+            <h2 style="font-size: 1.75rem; margin-bottom: 0.35rem;">Welcome back</h2>
+            <p style="font-size: 0.875rem; color: var(--color-text-secondary); margin-bottom: 1.5rem;">
+              Enter your credentials to access your BloodLink dashboard.
+            </p>
+
+            <!-- Google OAuth Button -->
+            <button type="button" class="btn-google-oauth">
+              <svg viewBox="0 0 24 24" style="width: 18px; height: 18px;">
+                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+              </svg>
+              <span>Continue with Google</span>
+              <span class="oauth-badge-awaiting">OAuth Ready</span>
+            </button>
+
+            <div class="auth-divider">
+              <span>or sign in with email</span>
+            </div>
+
+            <form id="login-form">
+              <div class="form-group">
+                <label class="form-label" for="login-email">Email Address</label>
+                <div class="input-with-icon">
+                  <svg class="input-icon-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                  <input type="email" id="login-email" class="form-input" placeholder="name@domain.com" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="login-password">Password</label>
+                <div class="input-with-icon">
+                  <svg class="input-icon-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                  <input type="password" id="login-password" class="form-input" placeholder="••••••••" required>
+                </div>
+              </div>
+
+              <div class="form-row-remember">
+                <label class="remember-check">
+                  <input type="checkbox" id="login-remember">
+                  <span>Remember session</span>
+                </label>
+                <a href="#forgot" class="forgot-pwd-link" onclick="if(window.BloodLinkToast) window.BloodLinkToast.info('Password reset is pre-wired to Supabase resetPasswordForEmail().'); return false;">Forgot password?</a>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.85rem;">
+                Sign In to BloodLink &rarr;
+              </button>
+            </form>
+
+            <p style="text-align: center; font-size: 0.8rem; margin-top: 1.5rem; color: var(--color-text-secondary);">
+              Don't have an account yet?
+              <button type="button" class="forgot-pwd-link" style="border: none; background: none; cursor: pointer;" onclick="document.querySelectorAll('.auth-tab-btn')[1].click();">Create an account</button>
+            </p>
+          </div>
+
+          <!-- ================================================================
+               SIGNUP FORM PANEL
+               ================================================================ -->
+          <div class="auth-form-panel" id="tab-signup" role="tabpanel">
+            <h2 style="font-size: 1.75rem; margin-bottom: 0.35rem;">Join BloodLink</h2>
+            <p style="font-size: 0.875rem; color: var(--color-text-secondary); margin-bottom: 1.25rem;">
+              Create your unified account to donate, request, or manage blood reserves.
+            </p>
+
+            <form id="signup-form">
+
+              <!-- Account Type Selection (Donor, Patient/Guardian, Hospital, Blood Bank) -->
+              <span class="role-selector-label">1. Select Account Type</span>
+              <div class="role-grid">
+
+                <div class="role-option-card selected" data-role="donor">
+                  <div class="role-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>
+                  </div>
+                  <div class="role-meta">
+                    <span class="role-name">Donor</span>
+                    <span class="role-desc">Save lives voluntarily</span>
+                  </div>
+                </div>
+
+                <div class="role-option-card" data-role="patient">
+                  <div class="role-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+                  </div>
+                  <div class="role-meta">
+                    <span class="role-name">Patient / Guardian</span>
+                    <span class="role-desc">Request blood for surgery</span>
+                  </div>
+                </div>
+
+                <div class="role-option-card" data-role="hospital">
+                  <div class="role-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 6v12"></path><path d="M6 12h12"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg>
+                  </div>
+                  <div class="role-meta">
+                    <span class="role-name">Hospital / Clinic</span>
+                    <span class="role-desc">Emergency surgical care</span>
+                  </div>
+                </div>
+
+                <div class="role-option-card" data-role="blood_bank">
+                  <div class="role-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path></svg>
+                  </div>
+                  <div class="role-meta">
+                    <span class="role-name">Blood Bank</span>
+                    <span class="role-desc">Cold-chain storage facility</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Hidden input holding chosen account type -->
+              <input type="hidden" id="signup-account-type" value="donor">
+
+              <div id="role-guidance-note" style="font-size: 0.75rem; color: var(--color-primary); background: var(--color-soft-red); border: 1px solid var(--color-soft-red-border); padding: 0.5rem 0.75rem; border-radius: var(--radius-xs); margin-bottom: var(--space-4);">
+                Donors contribute voluntarily and gain instant access to digital health passes and donation scheduling.
+              </div>
+
+              <span class="role-selector-label">2. Account Credentials</span>
+
+              <div class="form-group">
+                <label class="form-label" for="signup-name">Full Name / Official Entity Name</label>
+                <div class="input-with-icon">
+                  <svg class="input-icon-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                  <input type="text" id="signup-name" class="form-input" placeholder="Dr. Sarah Jenkins" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="signup-email">Official Email Address</label>
+                <div class="input-with-icon">
+                  <svg class="input-icon-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                  <input type="email" id="signup-email" class="form-input" placeholder="sarah.jenkins@hospital.org" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="signup-password">Create Password (Min 8 characters)</label>
+                <div class="input-with-icon">
+                  <svg class="input-icon-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                  <input type="password" id="signup-password" class="form-input" placeholder="••••••••" minlength="8" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="signup-confirm-password">Confirm Password</label>
+                <div class="input-with-icon">
+                  <svg class="input-icon-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                  <input type="password" id="signup-confirm-password" class="form-input" placeholder="••••••••" minlength="8" required>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.85rem; margin-top: 0.5rem;">
+                Create Verified Account &rarr;
+              </button>
+            </form>
+
+            <p style="text-align: center; font-size: 0.8rem; margin-top: 1.25rem; color: var(--color-text-secondary);">
+              Already have an account?
+              <button type="button" class="forgot-pwd-link" style="border: none; background: none; cursor: pointer;" onclick="document.querySelectorAll('.auth-tab-btn')[0].click();">Sign In</button>
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" aria-live="polite"></div>
+
+  <!-- Supabase Official JS SDK CDN (v2) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- Scripts -->
+  <script src="js/theme.js"></script>
+  <script src="js/components/toast.js"></script>
+  <script src="js/api/config.js"></script>
+  <script src="js/api/supabase-client.js"></script>
+  <script src="js/api/session-manager.js"></script>
+  <script src="js/api/profile-service.js"></script>
+  <script src="js/api/api-client.js"></script>
+  <script src="js/api/auth-handler.js"></script>
+
+  <!-- URL Query Parameter Handler (auto-select tab or role if passed in URL) -->
+  <script>
+    (function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const tabParam = urlParams.get('tab');
+      const roleParam = urlParams.get('role');
+
+      if (tabParam === 'signup') {
+        const signupTab = document.querySelectorAll('.auth-tab-btn')[1];
+        if (signupTab) signupTab.click();
+      }
+
+      if (roleParam) {
+        const matchingCard = document.querySelector(`.role-option-card[data-role="${roleParam}"]`);
+        if (matchingCard) matchingCard.click();
+      }
+    })();
+  </script>
+</body>
+</html>
